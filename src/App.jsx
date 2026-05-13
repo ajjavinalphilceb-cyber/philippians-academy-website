@@ -1,14 +1,50 @@
 import logoSrc from './assets/Philippians Logo.jpg';
 import heroBanner from './assets/hero banner.png';
 
+const responsiveStyles = `
+.hero-content { max-width: 1500px; margin: 0 auto; }
+.hero-nav-links a { white-space: nowrap; }
+.hero-enroll-button { white-space: nowrap; }
+.hero-headline { font-size: 64px; }
+.hero-subheadline { font-size: 20px; }
+.program-bar { width: calc(100% - 96px); }
+.value-grid { gap: 18px; }
+
+@media (max-width: 1060px) {
+  .hero-content { padding: 28px 32px 32px; }
+  .hero-header { gap: 18px; margin-bottom: 38px; }
+  .hero-nav-links { gap: 16px; }
+  .hero-nav-links a { display: none; }
+  .hero-enroll-button { margin-left: auto; }
+  .hero-headline { font-size: 54px; }
+  .hero-subheadline { font-size: 18px; max-width: 100%; }
+  .program-bar { width: calc(100% - 64px); }
+  .program-bar .program-card { flex: 1 1 220px; min-width: 220px; }
+}
+
+@media (max-width: 720px) {
+  .hero-content { padding: 20px 20px 24px; }
+  .hero-header { flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
+  .hero-nav-links { width: 100%; justify-content: flex-start; gap: 12px; }
+  .hero-nav-links a { display: none; }
+  .hero-enroll-button { width: 100%; }
+  .hero-headline { font-size: 38px; line-height: 1.05; }
+  .hero-subheadline { font-size: 16px; line-height: 1.75; }
+  .value-grid { grid-template-columns: 1fr; }
+  .program-bar { width: calc(100% - 40px); bottom: 14px; flex-wrap: wrap; }
+  .program-bar .program-card { min-width: calc(50% - 8px); }
+}
+`;
+
 function App() {
   return (
     <main style={page}>
+      <style>{responsiveStyles}</style>
       <section style={hero}>
         <div style={heroOverlay} />
 
-        <div style={heroContent}>
-          <header style={heroHeader}>
+        <div style={heroContent} className="hero-content">
+          <header style={heroHeader} className="hero-header">
             <div style={brandBlock}>
               <img src={logoSrc} alt="Philippians Academy logo" style={brandLogo} />
               <div>
@@ -19,25 +55,25 @@ function App() {
               </div>
             </div>
 
-            <div style={topNav}>
+            <div style={topNav} className="hero-nav-links">
               <a href="#about" style={navLink}>About Us</a>
               <a href="#academics" style={navLink}>Academics</a>
               <a href="#admissions" style={navLink}>Admissions</a>
               <a href="#student-life" style={navLink}>Student Life</a>
               <a href="#contact" style={navLink}>Contact</a>
-              <button style={enrollButton}>Enroll Now</button>
+              <button style={enrollButton} className="hero-enroll-button">Enroll Now</button>
             </div>
           </header>
 
           <div style={heroBody}>
             <div style={heroText}>
-              <h1 style={headline}>
+              <h1 style={headline} className="hero-headline">
                 Faith. Excellence.
                 <br />
                 <span style={headlineAccent}>Purpose.</span>
               </h1>
 
-              <p style={subheadline}>
+              <p style={subheadline} className="hero-subheadline">
                 Guiding hearts. Developing minds.
                 <br />
                 Preparing leaders for a greater tomorrow.
@@ -69,16 +105,16 @@ function App() {
           </div>
         </div>
 
-        <div style={programBar}>
-          <div style={programCard}>
+        <div style={programBar} className="program-bar">
+          <div style={programCard} className="program-card">
             <div style={programLabel}>Pre-School</div>
             <div style={programText}>Nurturing early learners</div>
           </div>
-          <div style={programCard}>
+          <div style={programCard} className="program-card">
             <div style={programLabel}>Elementary</div>
             <div style={programText}>Building strong foundations</div>
           </div>
-          <div style={programCard}>
+          <div style={programCard} className="program-card">
             <div style={programLabel}>Junior High School</div>
             <div style={programText}>Empowering future leaders</div>
           </div>
@@ -97,12 +133,12 @@ const page = {
 
 const hero = {
   position: 'relative',
-  minHeight: '92vh',
+  height: '100vh',
   width: '100%',
   overflow: 'hidden',
   backgroundImage: `url(${heroBanner})`,
   backgroundSize: 'cover',
-  backgroundPosition: 'center center',
+  backgroundPosition: 'center top',
   backgroundRepeat: 'no-repeat',
   display: 'flex',
   alignItems: 'center',
@@ -113,7 +149,7 @@ const heroOverlay = {
   position: 'absolute',
   inset: 0,
   background:
-    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 24%, rgba(8, 24, 60, 0.35) 50%, rgba(8, 24, 60, 0.14) 62%, rgba(8, 24, 60, 0.06) 80%, rgba(8, 24, 60, 0.02) 100%)',
+    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.72) 28%, rgba(8, 24, 60, 0.18) 58%, rgba(8, 24, 60, 0.04) 84%, transparent 100%)',
   pointerEvents: 'none',
 };
 
@@ -121,8 +157,8 @@ const heroContent = {
   position: 'relative',
   zIndex: 1,
   width: '100%',
-  maxWidth: '1320px',
-  padding: '24px 48px 42px',
+  maxWidth: '1500px',
+  padding: '32px 48px 36px',
   boxSizing: 'border-box',
 };
 
@@ -131,7 +167,7 @@ const heroHeader = {
   alignItems: 'center',
   justifyContent: 'space-between',
   gap: '24px',
-  marginBottom: '48px',
+  marginBottom: '38px',
   flexWrap: 'wrap',
 };
 
@@ -197,6 +233,7 @@ const heroBody = {
   width: '100%',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
+  minHeight: 'calc(100vh - 170px)',
 };
 
 const heroText = {
@@ -276,17 +313,17 @@ const programBar = {
   position: 'absolute',
   left: '50%',
   transform: 'translateX(-50%)',
-  bottom: '20px',
+  bottom: '18px',
   width: 'calc(100% - 96px)',
-  maxWidth: '1160px',
+  maxWidth: '980px',
   display: 'flex',
-  justifyContent: 'space-between',
-  gap: '18px',
-  padding: '18px',
-  background: 'rgba(8, 24, 60, 0.84)',
+  justifyContent: 'center',
+  gap: '16px',
+  padding: '16px',
+  background: 'rgba(8, 24, 60, 0.78)',
   border: '1px solid rgba(255,255,255,0.12)',
-  borderRadius: '30px',
-  boxShadow: '0 30px 70px rgba(0,0,0,0.25)',
+  borderRadius: '26px',
+  boxShadow: '0 26px 60px rgba(0,0,0,0.2)',
   backdropFilter: 'blur(18px)',
 };
 
