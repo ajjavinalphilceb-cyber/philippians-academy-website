@@ -97,7 +97,7 @@ const page = {
 
 const hero = {
   position: 'relative',
-  minHeight: '100vh',
+  minHeight: '92vh',
   width: '100%',
   overflow: 'hidden',
   backgroundImage: `url(${heroBanner})`,
@@ -113,7 +113,7 @@ const heroOverlay = {
   position: 'absolute',
   inset: 0,
   background:
-    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 24%, rgba(8, 24, 60, 0.35) 50%, rgba(8, 24, 60, 0.12) 72%, rgba(8, 24, 60, 0.04) 100%)',
+    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 24%, rgba(8, 24, 60, 0.35) 50%, rgba(8, 24, 60, 0.14) 62%, rgba(8, 24, 60, 0.06) 80%, rgba(8, 24, 60, 0.02) 100%)',
   pointerEvents: 'none',
 };
 
@@ -122,16 +122,16 @@ const heroContent = {
   zIndex: 1,
   width: '100%',
   maxWidth: '1320px',
-  padding: '40px 48px 72px',
+  padding: '24px 48px 42px',
   boxSizing: 'border-box',
 };
 
 const heroHeader = {
   display: 'flex',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   justifyContent: 'space-between',
   gap: '24px',
-  marginBottom: '80px',
+  marginBottom: '48px',
   flexWrap: 'wrap',
 };
 
@@ -196,10 +196,12 @@ const heroBody = {
   display: 'flex',
   width: '100%',
   justifyContent: 'flex-start',
+  alignItems: 'flex-start',
 };
 
 const heroText = {
   maxWidth: '680px',
+  marginTop: '0',
 };
 
 const headline = {
@@ -274,7 +276,7 @@ const programBar = {
   position: 'absolute',
   left: '50%',
   transform: 'translateX(-50%)',
-  bottom: '30px',
+  bottom: '20px',
   width: 'calc(100% - 96px)',
   maxWidth: '1160px',
   display: 'flex',
