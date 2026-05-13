@@ -1,4 +1,5 @@
 import logoSrc from './assets/Philippians Logo.jpg';
+import heroBanner from './assets/hero banner.png';
 
 function App() {
   return (
@@ -99,10 +100,10 @@ const hero = {
   minHeight: '100vh',
   width: '100%',
   overflow: 'hidden',
-  backgroundImage:
-    "url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=2070&q=80')",
+  backgroundImage: `url(${heroBanner})`,
   backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  backgroundPosition: 'center center',
+  backgroundRepeat: 'no-repeat',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -112,7 +113,7 @@ const heroOverlay = {
   position: 'absolute',
   inset: 0,
   background:
-    'linear-gradient(135deg, rgba(8, 24, 60, 0.92) 0%, rgba(8, 24, 60, 0.65) 30%, rgba(8, 24, 60, 0.24) 100%)',
+    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 24%, rgba(8, 24, 60, 0.35) 50%, rgba(8, 24, 60, 0.12) 72%, rgba(8, 24, 60, 0.04) 100%)',
   pointerEvents: 'none',
 };
 
