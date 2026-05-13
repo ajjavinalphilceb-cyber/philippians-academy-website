@@ -1,7 +1,5 @@
 import logoSrc from './assets/Philippians Logo.jpg';
 
-import logoSrc from './assets/Philippians Logo.jpg';
-
 function App() {
   return (
     <main style={page}>
