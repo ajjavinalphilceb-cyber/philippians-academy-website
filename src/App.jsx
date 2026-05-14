@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import logoSrc from './assets/Philippians Logo.jpg';
 import heroBanner from './assets/hero banner.png';
+import kindergartenImage from './assets/Kindergarten.png';
+import gradeSchoolImage from './assets/Grade School.png';
+import juniorHighImage from './assets/Junior High School.png';
+import seniorHighImage from './assets/Senior High School.png';
 
 const responsiveStyles = `
 .hero { min-height: 680px; max-height: 720px; }
-.hero-content { max-width: 1500px; margin: 0 auto; padding: clamp(24px, 3vw, 48px); }
-.hero-header { gap: 24px; margin-bottom: 32px; align-items: flex-start; }
+.hero-content { max-width: 1500px; margin: 0 auto; padding: clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px); }
+.site-nav { padding: clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px); }
+.hero-header { gap: 24px; align-items: center; }
 .brand-block { gap: 16px; min-width: 0; }
-.hero-nav-links { gap: 28px; flex-wrap: nowrap; justify-content: flex-end; align-items: center; }
+.hero-nav-links { display: flex; gap: 28px; flex-wrap: nowrap; justify-content: flex-end; align-items: center; }
 .hero-nav-links a { white-space: nowrap; }
 .mobile-toggle { display: none; }
-.mobile-menu { display: none; width: 100%; flex-direction: column; gap: 14px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); }
-.mobile-menu.open { display: flex; }
+.mobile-menu { display: none; width: 100%; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 0; border-top: 1px solid rgba(255,255,255,0.12); }
 .mobile-nav-link { display: block; width: 100%; }
-.program-bar { width: 100%; max-width: 980px; flex-wrap: wrap; justify-content: center; }
-.program-bar .program-card { min-width: 220px; flex: 1 1 220px; }
 .hero-headline { font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.02; max-width: 11ch; }
 .hero-subheadline { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; max-width: 620px; }
-.value-grid { gap: 18px; }
 
 /* New sections responsive styles */
 .about-preview { padding: 80px 0; background: #ffffff; }
@@ -37,13 +38,21 @@ const responsiveStyles = `
 .why-choose-us .feature-title { font-size: 1.25rem; font-weight: 700; color: #08183c; margin-bottom: 15px; }
 .why-choose-us .feature-desc { color: #6b7280; line-height: 1.6; }
 
-.academic-programs { padding: 80px 0; background: #ffffff; }
-.academic-programs .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.academic-programs h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 60px; }
-.academic-programs .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.academic-programs .program-card { background: #f8f9fa; padding: 40px 30px; border-radius: 20px; text-align: center; }
-.academic-programs .program-title { font-size: 1.5rem; font-weight: 800; color: #08183c; margin-bottom: 15px; }
-.academic-programs .program-desc { color: #6b7280; line-height: 1.6; }
+.academic-programs { padding: 90px 0; background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%); }
+.academic-programs .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.academic-programs h2 { text-align: center; font-size: clamp(2.25rem, 3.4vw, 3rem); color: #08183c; margin-bottom: 18px; }
+.academic-programs .section-intro { max-width: 760px; margin: 0 auto 52px; color: #6b7280; font-size: 1.05rem; line-height: 1.75; text-align: center; }
+.academic-programs .programs-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
+.academic-programs .program-card { min-width: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); border-radius: 18px; box-shadow: 0 18px 42px rgba(8, 24, 60, 0.1); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+.academic-programs .program-card:hover { transform: translateY(-8px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 26px 60px rgba(8, 24, 60, 0.16); }
+.academic-programs .program-image { aspect-ratio: 4 / 3; width: 100%; overflow: hidden; background: #e5e7eb; border-radius: 18px 18px 0 0; }
+.academic-programs .program-image img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 18px 18px 0 0; transition: transform 320ms ease; }
+.academic-programs .program-card:hover .program-image img { transform: scale(1.045); }
+.academic-programs .program-content { display: flex; flex: 1; flex-direction: column; padding: 30px 24px 24px; }
+.academic-programs .program-title { font-size: 1.35rem; font-weight: 850; color: #08183c; margin-bottom: 14px; line-height: 1.2; }
+.academic-programs .program-desc { color: #5f6878; line-height: 1.72; margin-bottom: 26px; }
+.academic-programs .program-action { margin-top: auto; align-self: flex-start; background: #f2c14e; color: #08183c; padding: 13px 22px; border-radius: 999px; font-weight: 800; border: none; cursor: pointer; box-shadow: 0 12px 24px rgba(242, 193, 78, 0.24); }
+.academic-programs .program-action:hover { background: rgba(242, 193, 78, 0.92); }
 
 .student-life { padding: 80px 0; background: #f8f9fa; }
 .student-life .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -89,21 +98,24 @@ const responsiveStyles = `
 .footer .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
 
 @media (max-width: 1200px) {
-  .hero-content { padding: clamp(24px, 3vw, 42px); }
+  .hero-content { padding: clamp(132px, 14vw, 168px) clamp(24px, 3vw, 42px) clamp(64px, 8vw, 96px); }
   .hero-headline { max-width: 12ch; }
 }
 
 @media (max-width: 992px) {
-  .hero-header { width: 100%; }
-  .hero-nav-links { display: none; }
-  .mobile-toggle { display: inline-flex; }
-  .brand-block { width: 100%; flex-wrap: wrap; align-items: flex-start; }
-  .brand-text { min-width: 0; width: calc(100% - 64px); }
-  .program-bar { position: static !important; transform: none !important; left: auto !important; bottom: auto !important; margin: 0 auto; padding: 16px; }
-  .program-bar .program-card { width: 100% !important; min-width: auto !important; }
+  .site-nav { padding: 16px 20px; }
+  .hero-header { width: 100%; align-items: center; flex-wrap: nowrap; }
+  .hero-nav-links { display: none !important; }
+  .mobile-toggle { display: inline-flex !important; }
+  .mobile-menu { display: flex; max-height: 0; opacity: 0; overflow: hidden; pointer-events: none; transform: translateY(-8px); transition: max-height 240ms ease, opacity 180ms ease, transform 180ms ease, padding-top 180ms ease; }
+  .mobile-menu.open { max-height: 380px; opacity: 1; pointer-events: auto; transform: translateY(0); padding-top: 14px; }
+  .mobile-menu .mobile-nav-link { padding: 10px 0; }
+  .mobile-menu button { width: 100%; margin-top: 4px; }
+  .brand-block { width: auto; flex: 1 1 auto; flex-wrap: nowrap; align-items: center; }
+  .brand-text { min-width: 0; width: auto; }
   .about-preview .container { grid-template-columns: 1fr; gap: 40px; }
   .why-choose-us .features-grid { grid-template-columns: 1fr; }
-  .academic-programs .programs-grid { grid-template-columns: 1fr; }
+  .academic-programs .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-life .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .testimonials .testimonials-grid { grid-template-columns: 1fr; }
   .news-events .news-grid { grid-template-columns: 1fr; }
@@ -111,13 +123,11 @@ const responsiveStyles = `
 }
 
 @media (max-width: 768px) {
-  .hero-content { padding: 24px 20px 28px; }
-  .hero-header { flex-direction: column; align-items: stretch; }
-  .brand-block { flex-direction: column; align-items: flex-start; }
+  .hero-content { padding: 172px 20px 56px; }
+  .hero-header { flex-direction: row; align-items: center; }
+  .brand-block { flex-direction: row; align-items: center; }
   .hero-headline { font-size: clamp(2.75rem, 8vw, 4.2rem); }
   .hero-subheadline { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
-  .value-grid { grid-template-columns: 1fr; }
-  .program-bar { gap: 14px; }
   .about-preview { padding: 60px 0; }
   .why-choose-us { padding: 60px 0; }
   .academic-programs { padding: 60px 0; }
@@ -127,15 +137,16 @@ const responsiveStyles = `
   .news-events { padding: 60px 0; }
   .student-life .gallery-grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; height: auto; }
+  .academic-programs .programs-grid { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 576px) {
-  .hero-content { padding: 20px 18px 24px; }
+  .hero-content { padding: 188px 18px 48px; }
+  .site-nav { padding: 14px 18px; }
   .hero-header { gap: 16px; }
   .hero-headline { font-size: clamp(2.4rem, 9vw, 3.5rem); }
   .hero-subheadline { font-size: 0.95rem; }
-  .value-item { padding: 14px 16px; }
-  .program-bar { padding: 14px; }
-  .program-bar .program-card { width: 100% !important; }
+  .brand-address { display: none; }
   .about-preview .container { padding: 0 15px; }
   .why-choose-us .container { padding: 0 15px; }
   .academic-programs .container { padding: 0 15px; }
@@ -152,16 +163,16 @@ function App() {
   return (
     <main style={page}>
       <style>{responsiveStyles}</style>
-      <section style={hero}>
+      <section id="home" style={hero}>
         <div style={heroOverlay} />
 
-        <div style={heroContent} className="hero-content">
+        <div style={siteNav} className="site-nav">
           <header style={heroHeader} className="hero-header">
             <div style={brandBlock} className="brand-block">
               <img src={logoSrc} alt="Philippians Academy logo" style={brandLogo} />
               <div style={brandText} className="brand-text">
                 <div style={brandName}>Philippians Academy</div>
-                <div style={brandAddress}>
+                <div style={brandAddress} className="brand-address">
                   1316 Haise Street, Moonwalk Village, Parañaque City
                 </div>
               </div>
@@ -169,12 +180,11 @@ function App() {
 
             <div style={navArea}>
               <div style={topNav} className="hero-nav-links">
+                <a href="#home" style={navLink}>Home</a>
                 <a href="#about" style={navLink}>About Us</a>
-                <a href="#academics" style={navLink}>Academics</a>
                 <a href="#admissions" style={navLink}>Admissions</a>
-                <a href="#student-life" style={navLink}>Student Life</a>
-                <a href="#contact" style={navLink}>Contact</a>
-                <button style={enrollButton} className="hero-enroll-button">Enroll Now</button>
+                <a href="#contact" style={navLink}>Contact Us</a>
+                <button style={navCtaButton} className="hero-login-button">Login</button>
               </div>
               <button
                 type="button"
@@ -190,14 +200,15 @@ function App() {
           </header>
 
           <div style={mobileMenu} className={`mobile-menu${mobileNavOpen ? ' open' : ''}`}>
+            <a href="#home" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Home</a>
             <a href="#about" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>About Us</a>
-            <a href="#academics" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Academics</a>
             <a href="#admissions" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Admissions</a>
-            <a href="#student-life" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Student Life</a>
-            <a href="#contact" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Contact</a>
-            <button style={enrollButton} onClick={() => setMobileNavOpen(false)}>Enroll Now</button>
+            <a href="#contact" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Contact Us</a>
+            <button style={navCtaButton} onClick={() => setMobileNavOpen(false)}>Login</button>
           </div>
+        </div>
 
+        <div style={heroContent} className="hero-content">
           <div style={heroBody} className="hero-body">
             <div style={heroText}>
               <h1 style={headline} className="hero-headline">
@@ -212,46 +223,11 @@ function App() {
                 Preparing leaders for a greater tomorrow.
               </p>
 
-              <div style={valueGrid}>
-                <div style={valueItem}>
-                  <div style={valueIcon}>✝</div>
-                  <div>
-                    <div style={valueTitle}>Christ-Centered Education</div>
-                  </div>
-                </div>
-                <div style={valueItem}>
-                  <div style={valueIcon}>📘</div>
-                  <div>
-                    <div style={valueTitle}>Academic Excellence</div>
-                  </div>
-                </div>
-                <div style={valueItem}>
-                  <div style={valueIcon}>🤝</div>
-                  <div>
-                    <div style={valueTitle}>Values-Driven Community</div>
-                  </div>
-                </div>
-              </div>
-
               <button style={discoverButton}>Discover More</button>
             </div>
           </div>
         </div>
 
-        <div style={programBar} className="program-bar">
-          <div style={programCard} className="program-card">
-            <div style={programLabel}>Pre-School</div>
-            <div style={programText}>Nurturing early learners</div>
-          </div>
-          <div style={programCard} className="program-card">
-            <div style={programLabel}>Elementary</div>
-            <div style={programText}>Building strong foundations</div>
-          </div>
-          <div style={programCard} className="program-card">
-            <div style={programLabel}>Junior High School</div>
-            <div style={programText}>Empowering future leaders</div>
-          </div>
-        </div>
       </section>
 
       {/* About Preview Section */}
@@ -264,6 +240,61 @@ function App() {
             <h2>About Philippians Academy</h2>
             <p>Philippians Academy is committed to providing a Christ-centered education that nurtures the whole child—spiritually, academically, and socially. Our mission is to guide hearts, develop minds, and prepare leaders for a greater tomorrow through faith-based learning and values formation.</p>
             <button className="learn-more-btn">Learn More</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Academic Programs Section */}
+      <section id="academics" className="academic-programs">
+        <div className="container">
+          <h2>Academic Programs</h2>
+          <p className="section-intro">
+            Purposeful learning pathways designed to nurture faith, character, academic excellence, and leadership at every stage.
+          </p>
+          <div className="programs-grid">
+            <article className="program-card">
+              <div className="program-image">
+                <img src={kindergartenImage} alt="Kindergarten students learning together" />
+              </div>
+              <div className="program-content">
+                <h3 className="program-title">Kindergarten</h3>
+                <p className="program-desc">Our Kindergarten program nurtures young learners through interactive play, creativity, foundational academics, and Christ-centered values in a safe and joyful environment.</p>
+                <button className="program-action">Learn More</button>
+              </div>
+            </article>
+
+            <article className="program-card">
+              <div className="program-image">
+                <img src={gradeSchoolImage} alt="Grade School students in an academy setting" />
+              </div>
+              <div className="program-content">
+                <h3 className="program-title">Grade School</h3>
+                <p className="program-desc">The Grade School department builds strong academic foundations while developing discipline, curiosity, confidence, leadership, and lifelong learning habits.</p>
+                <button className="program-action">Learn More</button>
+              </div>
+            </article>
+
+            <article className="program-card">
+              <div className="program-image">
+                <img src={juniorHighImage} alt="Junior High School students studying" />
+              </div>
+              <div className="program-content">
+                <h3 className="program-title">Junior High School</h3>
+                <p className="program-desc">Our Junior High School program prepares students for advanced learning through academic excellence, character formation, collaboration, and leadership development.</p>
+                <button className="program-action">Learn More</button>
+              </div>
+            </article>
+
+            <article className="program-card">
+              <div className="program-image">
+                <img src={seniorHighImage} alt="Senior High School students preparing for the future" />
+              </div>
+              <div className="program-content">
+                <h3 className="program-title">Senior High School</h3>
+                <p className="program-desc">The Senior High School program equips students for college, careers, and future success through specialized tracks, critical thinking, and values-driven education.</p>
+                <button className="program-action">Learn More</button>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -292,27 +323,6 @@ function App() {
               <div className="feature-icon">🛡️</div>
               <h3 className="feature-title">Safe Learning Environment</h3>
               <p className="feature-desc">Secure campus with dedicated staff ensuring student safety and well-being.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Academic Programs Section */}
-      <section className="academic-programs">
-        <div className="container">
-          <h2>Academic Programs</h2>
-          <div className="programs-grid">
-            <div className="program-card">
-              <h3 className="program-title">Preschool</h3>
-              <p className="program-desc">Nurturing early learners with play-based activities and foundational skills in a loving environment.</p>
-            </div>
-            <div className="program-card">
-              <h3 className="program-title">Elementary</h3>
-              <p className="program-desc">Building strong academic foundations while fostering creativity, curiosity, and social skills.</p>
-            </div>
-            <div className="program-card">
-              <h3 className="program-title">Junior High School</h3>
-              <p className="program-desc">Empowering future leaders with advanced academics, leadership training, and character development.</p>
             </div>
           </div>
         </div>
@@ -356,7 +366,6 @@ function App() {
         <div className="container">
           <h2>Join Our Community</h2>
           <p>Take the first step towards a transformative educational experience. Enroll your child today and become part of the Philippians Academy family.</p>
-          <button className="enroll-btn">Enroll Now</button>
         </div>
       </section>
 
@@ -481,24 +490,40 @@ const heroContent = {
   zIndex: 1,
   width: '100%',
   maxWidth: '1500px',
-  padding: 'clamp(24px, 3vw, 48px)',
+  padding: 'clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px)',
   boxSizing: 'border-box',
+};
+
+const siteNav = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: 50,
+  padding: 'clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px)',
+  background: 'rgba(8, 24, 60, 0.72)',
+  borderBottom: '1px solid rgba(255,255,255,0.12)',
+  boxShadow: '0 16px 40px rgba(0,0,0,0.16)',
+  backdropFilter: 'blur(16px)',
+  WebkitBackdropFilter: 'blur(16px)',
 };
 
 const heroHeader = {
   display: 'flex',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   justifyContent: 'space-between',
   gap: '24px',
-  marginBottom: '32px',
   flexWrap: 'wrap',
+  width: '100%',
+  maxWidth: '1500px',
+  margin: '0 auto',
 };
 
 const brandBlock = {
   display: 'flex',
   alignItems: 'center',
   gap: '16px',
-  minWidth: '280px',
+  minWidth: '0',
 };
 
 const brandText = {
@@ -533,10 +558,10 @@ const navArea = {
   display: 'flex',
   alignItems: 'center',
   gap: '16px',
+  flexShrink: 0,
 };
 
 const topNav = {
-  display: 'flex',
   alignItems: 'center',
   gap: '24px',
   flexWrap: 'nowrap',
@@ -559,9 +584,12 @@ const menuButton = {
 
 const mobileMenu = {
   width: '100%',
+  maxWidth: '1500px',
   flexDirection: 'column',
   gap: '14px',
   marginTop: '12px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   paddingTop: '14px',
   borderTop: '1px solid rgba(255,255,255,0.12)',
 };
@@ -573,7 +601,7 @@ const navLink = {
   textDecoration: 'none',
 };
 
-const enrollButton = {
+const navCtaButton = {
   background: 'rgba(242, 193, 78, 0.95)',
   color: 'rgb(17, 24, 39)',
   border: 'none',
@@ -610,46 +638,11 @@ const headlineAccent = {
 
 const subheadline = {
   marginTop: '28px',
-  marginBottom: '24px',
+  marginBottom: '28px',
   fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
   lineHeight: 1.9,
   maxWidth: '520px',
   color: 'rgba(255,255,255,0.88)',
-};
-
-const valueGrid = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-  gap: '18px',
-  marginBottom: '24px',
-};
-
-const valueItem = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '14px',
-  padding: '18px 20px',
-  background: 'rgba(255,255,255,0.08)',
-  border: '1px solid rgba(255,255,255,0.12)',
-  borderRadius: '20px',
-  backdropFilter: 'blur(12px)',
-};
-
-const valueIcon = {
-  minWidth: '44px',
-  minHeight: '44px',
-  borderRadius: '14px',
-  background: 'rgba(242, 193, 78, 0.15)',
-  color: 'rgb(242, 193, 78)',
-  display: 'grid',
-  placeItems: 'center',
-  fontSize: '18px',
-};
-
-const valueTitle = {
-  fontSize: '15px',
-  fontWeight: 700,
-  color: 'white',
 };
 
 const discoverButton = {
@@ -662,45 +655,6 @@ const discoverButton = {
   fontWeight: 700,
   cursor: 'pointer',
   boxShadow: '0 16px 30px rgba(0,0,0,0.2)',
-};
-
-const programBar = {
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  bottom: '12px',
-  width: '100%',
-  maxWidth: '980px',
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '16px',
-  padding: '16px',
-  background: 'rgba(8, 24, 60, 0.78)',
-  border: '1px solid rgba(255,255,255,0.12)',
-  borderRadius: '26px',
-  boxShadow: '0 26px 60px rgba(0,0,0,0.2)',
-  backdropFilter: 'blur(18px)',
-};
-
-const programCard = {
-  flex: '1',
-  minWidth: '160px',
-  padding: '22px 24px',
-  borderRadius: '24px',
-  background: 'rgba(255,255,255,0.06)',
-};
-
-const programLabel = {
-  fontSize: '15px',
-  fontWeight: 800,
-  color: 'white',
-  marginBottom: '8px',
-};
-
-const programText = {
-  fontSize: '14px',
-  color: 'rgba(255,255,255,0.78)',
-  lineHeight: 1.7,
 };
 
 export default App;
