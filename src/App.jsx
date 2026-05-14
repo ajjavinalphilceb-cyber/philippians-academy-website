@@ -3,7 +3,7 @@ import logoSrc from './assets/Philippians Logo.jpg';
 import heroBanner from './assets/hero banner.png';
 
 const responsiveStyles = `
-.hero { min-height: 100vh; }
+.hero { min-height: 680px; max-height: 720px; }
 .hero-content { max-width: 1500px; margin: 0 auto; padding: clamp(24px, 3vw, 48px); }
 .hero-header { gap: 24px; margin-bottom: 32px; align-items: flex-start; }
 .brand-block { gap: 16px; min-width: 0; }
@@ -126,7 +126,7 @@ const responsiveStyles = `
   .testimonials { padding: 60px 0; }
   .news-events { padding: 60px 0; }
   .student-life .gallery-grid { grid-template-columns: 1fr; }
-}
+  .hero { min-height: auto; height: auto; }
 
 @media (max-width: 576px) {
   .hero-content { padding: 20px 18px 24px; }
@@ -455,7 +455,8 @@ const page = {
 
 const hero = {
   position: 'relative',
-  minHeight: '100vh',
+  minHeight: '680px',
+  maxHeight: '720px',
   width: '100%',
   overflow: 'hidden',
   backgroundImage: `url(${heroBanner})`,
@@ -588,7 +589,6 @@ const heroBody = {
   width: '100%',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
-  minHeight: 'calc(100vh - 170px)',
 };
 
 const heroText = {
@@ -610,7 +610,7 @@ const headlineAccent = {
 
 const subheadline = {
   marginTop: '28px',
-  marginBottom: '40px',
+  marginBottom: '24px',
   fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
   lineHeight: 1.9,
   maxWidth: '520px',
@@ -621,7 +621,7 @@ const valueGrid = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   gap: '18px',
-  marginBottom: '40px',
+  marginBottom: '24px',
 };
 
 const valueItem = {
@@ -668,7 +668,7 @@ const programBar = {
   position: 'absolute',
   left: '50%',
   transform: 'translateX(-50%)',
-  bottom: '18px',
+  bottom: '12px',
   width: '100%',
   maxWidth: '980px',
   display: 'flex',
