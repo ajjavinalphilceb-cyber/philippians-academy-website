@@ -5,6 +5,15 @@ import kindergartenImage from './assets/Kindergarten.png';
 import gradeSchoolImage from './assets/Grade School.png';
 import juniorHighImage from './assets/Junior High School.png';
 import seniorHighImage from './assets/Senior High School.png';
+import englishOnlyImage from './assets/English only Policy.png';
+import roboticsAiImage from './assets/Robotics AI.png';
+import webDevelopmentImage from './assets/Web Development.png';
+import multimediaImage from './assets/Multi Media.png';
+import culinaryImage from './assets/Culinary.png';
+import speechDevelopmentImage from './assets/Speech Dev.png';
+import tableMannersImage from './assets/Proper table manner.png';
+import properOutfitImage from './assets/Proper Outfit.png';
+import publicSpeakingImage from './assets/Public Speaking.png';
 
 const responsiveStyles = `
 .hero { min-height: 680px; max-height: 720px; }
@@ -19,14 +28,47 @@ const responsiveStyles = `
 .mobile-nav-link { display: block; width: 100%; }
 .hero-headline { font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.02; max-width: 11ch; }
 .hero-subheadline { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; max-width: 620px; }
+.whats-new-section, .academic-programs, .admissions-cta, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
-.about-preview { padding: 80px 0; background: #ffffff; }
-.about-preview .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.about-preview .image-card { background: #f8f9fa; border-radius: 20px; overflow: hidden; height: 400px; }
-.about-preview .text-content h2 { font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 20px; }
-.about-preview .text-content p { font-size: 1.1rem; line-height: 1.7; color: #6b7280; margin-bottom: 30px; }
-.about-preview .learn-more-btn { background: #f2c14e; color: #08183c; padding: 14px 28px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; }
+.whats-new-section { position: relative; padding: 92px 0 86px; overflow: hidden; background: linear-gradient(180deg, #f7fbff 0%, #ffffff 48%, #f5f8fc 100%); }
+.whats-new-section::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(8, 24, 60, 0.09) 0%, rgba(8, 24, 60, 0) 38%), radial-gradient(circle at 88% 8%, rgba(242, 193, 78, 0.16), transparent 24%); }
+.whats-new-section .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.section-kicker { display: flex; align-items: center; justify-content: center; gap: 14px; color: #d69b14; font-size: 0.8rem; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
+.section-kicker::before, .section-kicker::after { content: ""; width: 54px; height: 1px; background: rgba(214, 155, 20, 0.65); }
+.section-heading { max-width: 820px; margin: 0 auto 48px; text-align: center; }
+.section-heading h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.6rem, 5vw, 4.9rem); line-height: 0.98; margin: 0 0 20px; }
+.section-heading p { color: #23314f; font-size: clamp(1rem, 1.6vw, 1.22rem); line-height: 1.65; margin: 0 auto; max-width: 660px; }
+.new-programs-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.new-program-card { position: relative; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 24px 20px 28px; border-radius: 18px; border: 1px solid rgba(8, 24, 60, 0.08); background: #ffffff; box-shadow: 0 18px 44px rgba(8, 24, 60, 0.11); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+.new-program-card::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 36px; height: 16px; border-radius: 18px 18px 0 0; background: #08183c; transform: translateX(-50%); border-top: 3px solid #f2c14e; }
+.new-program-card:hover { transform: translateY(-8px); border-color: rgba(242, 193, 78, 0.5); box-shadow: 0 28px 62px rgba(8, 24, 60, 0.16); }
+.new-program-image { width: clamp(96px, 9vw, 132px); aspect-ratio: 1; margin-bottom: 22px; border-radius: 999px; padding: 6px; background: linear-gradient(145deg, #08183c, #0e2f74); border: 2px solid #f2c14e; box-shadow: 0 12px 30px rgba(8, 24, 60, 0.18); overflow: hidden; }
+.new-program-image img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 999px; }
+.new-program-title { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.25rem, 1.65vw, 1.6rem); line-height: 1.08; margin: 0 0 18px; min-height: 3.25rem; display: flex; align-items: center; justify-content: center; }
+.new-program-card .gold-rule { width: 72px; height: 1px; background: rgba(242, 193, 78, 0.72); margin: 0 auto 18px; position: relative; }
+.new-program-card .gold-rule::after { content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 999px; background: #d69b14; transform: translate(-50%, -50%); }
+.new-program-desc { color: #26324e; line-height: 1.62; font-size: 0.94rem; margin: 0; }
+
+.personality-development { padding: 88px 0 94px; overflow: hidden; background: #ffffff; }
+.personality-development .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 54px; align-items: center; }
+.personality-copy { min-width: 0; }
+.personality-copy .section-kicker { justify-content: flex-start; margin-bottom: 16px; }
+.personality-copy .section-kicker::before { display: none; }
+.personality-copy .section-kicker::after { width: 82px; }
+.personality-copy h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.7rem, 5vw, 5rem); line-height: 0.94; margin: 0 0 18px; }
+.personality-subtitle { color: #d69b14; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.32; font-weight: 750; margin: 0 0 20px; }
+.personality-intro { color: #26324e; font-size: 1rem; line-height: 1.72; max-width: 560px; margin: 0 0 28px; }
+.personality-features { display: grid; gap: 18px; }
+.personality-feature { display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: center; min-width: 0; }
+.personality-icon { width: 72px; aspect-ratio: 1; border-radius: 999px; padding: 6px; border: 2px solid #f2c14e; background: #08183c; box-shadow: 0 12px 26px rgba(8, 24, 60, 0.16); overflow: hidden; }
+.personality-icon img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 999px; }
+.personality-feature h3 { color: #08183c; font-size: 1.08rem; line-height: 1.25; margin: 0 0 6px; }
+.personality-feature p { color: #4f5b70; font-size: 0.95rem; line-height: 1.55; margin: 0; }
+.personality-photo { position: relative; min-width: 0; border-radius: 30px; overflow: hidden; min-height: 560px; box-shadow: 0 28px 72px rgba(8, 24, 60, 0.2); border: 1px solid rgba(8, 24, 60, 0.08); }
+.personality-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(8, 24, 60, 0.22), rgba(8, 24, 60, 0)); pointer-events: none; }
+.personality-photo::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 9px; background: linear-gradient(180deg, #f2c14e, #08183c); z-index: 2; }
+.personality-photo img { width: 100%; height: 100%; min-height: 560px; display: block; object-fit: cover; }
 
 .why-choose-us { padding: 80px 0; background: #f8f9fa; }
 .why-choose-us .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -113,7 +155,10 @@ const responsiveStyles = `
   .mobile-menu button { width: 100%; margin-top: 4px; }
   .brand-block { width: auto; flex: 1 1 auto; flex-wrap: nowrap; align-items: center; }
   .brand-text { min-width: 0; width: auto; }
-  .about-preview .container { grid-template-columns: 1fr; gap: 40px; }
+  .new-programs-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .personality-development .container { grid-template-columns: 1fr; gap: 44px; }
+  .personality-photo { min-height: 440px; }
+  .personality-photo img { min-height: 440px; }
   .why-choose-us .features-grid { grid-template-columns: 1fr; }
   .academic-programs .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-life .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -128,7 +173,12 @@ const responsiveStyles = `
   .brand-block { flex-direction: row; align-items: center; }
   .hero-headline { font-size: clamp(2.75rem, 8vw, 4.2rem); }
   .hero-subheadline { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
-  .about-preview { padding: 60px 0; }
+  .whats-new-section { padding: 68px 0; }
+  .personality-development { padding: 66px 0; }
+  .new-programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-heading { margin-bottom: 34px; }
+  .personality-feature { grid-template-columns: 64px 1fr; gap: 14px; }
+  .personality-icon { width: 64px; }
   .why-choose-us { padding: 60px 0; }
   .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
@@ -147,7 +197,18 @@ const responsiveStyles = `
   .hero-headline { font-size: clamp(2.4rem, 9vw, 3.5rem); }
   .hero-subheadline { font-size: 0.95rem; }
   .brand-address { display: none; }
-  .about-preview .container { padding: 0 15px; }
+  .whats-new-section .container { padding: 0 15px; }
+  .personality-development .container { padding: 0 15px; }
+  .new-programs-grid { grid-template-columns: 1fr; }
+  .new-program-card { padding: 24px 20px 30px; }
+  .new-program-title { min-height: auto; }
+  .personality-copy .section-kicker { justify-content: center; }
+  .personality-copy .section-kicker::after { width: 54px; }
+  .personality-copy h2, .personality-subtitle, .personality-intro { text-align: center; }
+  .personality-feature { grid-template-columns: 58px 1fr; gap: 13px; }
+  .personality-icon { width: 58px; }
+  .personality-photo { min-height: 320px; border-radius: 22px; }
+  .personality-photo img { min-height: 320px; }
   .why-choose-us .container { padding: 0 15px; }
   .academic-programs .container { padding: 0 15px; }
   .student-life .container { padding: 0 15px; }
@@ -157,6 +218,66 @@ const responsiveStyles = `
   .footer .container { padding: 0 15px; }
 }
 `;
+
+const whatsNewPrograms = [
+  {
+    title: 'English Only Policy',
+    description: 'Enhancing communication confidence through an immersive English-speaking environment that strengthens fluency, comprehension, and self-expression.',
+    image: englishOnlyImage,
+    alt: 'English Only Policy icon',
+  },
+  {
+    title: 'Robotics and AI Training',
+    description: 'Students explore innovation through hands-on robotics, coding fundamentals, automation, and artificial intelligence learning experiences.',
+    image: roboticsAiImage,
+    alt: 'Robotics and AI Training icon',
+  },
+  {
+    title: 'Web Development',
+    description: 'Introducing modern digital skills including website creation, interface design, coding logic, and interactive web technologies.',
+    image: webDevelopmentImage,
+    alt: 'Web Development icon',
+  },
+  {
+    title: 'Multimedia and Digital Creations',
+    description: 'Empowering creativity through graphic design, video editing, digital storytelling, photography, and multimedia production.',
+    image: multimediaImage,
+    alt: 'Multimedia and Digital Creations icon',
+  },
+  {
+    title: 'Culinary and Baking Workshops',
+    description: 'Developing practical life skills through culinary arts, baking workshops, food preparation, and kitchen creativity.',
+    image: culinaryImage,
+    alt: 'Culinary and Baking Workshops icon',
+  },
+];
+
+const personalityFeatures = [
+  {
+    title: 'Speech Development',
+    description: 'Strengthening articulation, confidence, and effective communication skills.',
+    image: speechDevelopmentImage,
+    alt: 'Speech Development icon',
+  },
+  {
+    title: 'Proper Table Manners and Etiquette',
+    description: 'Teaching professionalism, social grace, and respectful behavior in formal settings.',
+    image: tableMannersImage,
+    alt: 'Proper Table Manners and Etiquette icon',
+  },
+  {
+    title: 'Proper Outfit',
+    description: 'Encouraging neatness, confidence, and appropriate presentation.',
+    image: properOutfitImage,
+    alt: 'Proper Outfit icon',
+  },
+  {
+    title: 'Public Speaking',
+    description: 'Building leadership presence through confidence training, presentation skills, and audience communication.',
+    image: publicSpeakingImage,
+    alt: 'Public Speaking icon',
+  },
+];
 
 function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -230,16 +351,58 @@ function App() {
 
       </section>
 
-      {/* About Preview Section */}
-      <section className="about-preview">
+      {/* What's New Section */}
+      <section id="about" className="whats-new-section">
         <div className="container">
-          <div className="image-card">
-            <img src={heroBanner} alt="Academy building" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div className="section-kicker">New at Philippians</div>
+          <div className="section-heading">
+            <h2>What's New in Philippians?</h2>
+            <p>Innovative programs and modern learning opportunities designed for the leaders of tomorrow.</p>
           </div>
-          <div className="text-content">
-            <h2>About Philippians Academy</h2>
-            <p>Philippians Academy is committed to providing a Christ-centered education that nurtures the whole child—spiritually, academically, and socially. Our mission is to guide hearts, develop minds, and prepare leaders for a greater tomorrow through faith-based learning and values formation.</p>
-            <button className="learn-more-btn">Learn More</button>
+
+          <div className="new-programs-grid">
+            {whatsNewPrograms.map((program) => (
+              <article className="new-program-card" key={program.title}>
+                <div className="new-program-image">
+                  <img src={program.image} alt={program.alt} />
+                </div>
+                <h3 className="new-program-title">{program.title}</h3>
+                <div className="gold-rule" />
+                <p className="new-program-desc">{program.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Personality Development Section */}
+      <section className="personality-development">
+        <div className="container">
+          <div className="personality-copy">
+            <div className="section-kicker">We also have</div>
+            <h2>Personality Development</h2>
+            <p className="personality-subtitle">Building confidence, character, and leadership.</p>
+            <p className="personality-intro">
+              At Philippians Academy, education goes beyond academics. We nurture students to become confident, disciplined, and socially prepared individuals through our Personality Development Program.
+            </p>
+
+            <div className="personality-features">
+              {personalityFeatures.map((feature) => (
+                <article className="personality-feature" key={feature.title}>
+                  <div className="personality-icon">
+                    <img src={feature.image} alt={feature.alt} />
+                  </div>
+                  <div>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="personality-photo">
+            <img src={heroBanner} alt="Philippians Academy students on campus" />
           </div>
         </div>
       </section>
