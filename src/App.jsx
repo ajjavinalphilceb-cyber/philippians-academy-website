@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logoSrc from './assets/Philippians Logo.jpg';
 import heroBanner from './assets/hero banner.png';
 import kindergartenImage from './assets/Kindergarten.png';
@@ -29,7 +29,7 @@ const responsiveStyles = `
 .mobile-nav-link { display: block; width: 100%; }
 .hero-headline { font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.02; max-width: 11ch; }
 .hero-subheadline { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; max-width: 620px; }
-.whats-new-section, .academic-programs, .admissions-cta, .footer { scroll-margin-top: 110px; }
+.whats-new-section, .academic-programs, .uniform-collection, .admissions-cta, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
 .whats-new-section { position: relative; padding: 92px 0 86px; overflow: hidden; background: linear-gradient(180deg, #f7fbff 0%, #ffffff 48%, #f5f8fc 100%); }
@@ -70,6 +70,44 @@ const responsiveStyles = `
 .personality-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(8, 24, 60, 0.22), rgba(8, 24, 60, 0)); pointer-events: none; }
 .personality-photo::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 9px; background: linear-gradient(180deg, #f2c14e, #08183c); z-index: 2; }
 .personality-photo img { width: 100%; height: 100%; min-height: 560px; display: block; object-fit: cover; }
+
+.uniform-collection { position: relative; overflow: hidden; padding: 94px 0 98px; background: linear-gradient(135deg, #fffdf8 0%, #ffffff 46%, #f6f0df 100%); }
+.uniform-collection::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 12% 12%, rgba(242, 193, 78, 0.22), transparent 27%), radial-gradient(circle at 88% 76%, rgba(8, 24, 60, 0.1), transparent 28%); }
+.uniform-collection::after { content: ""; position: absolute; inset: 20px; border: 1px solid rgba(214, 155, 20, 0.14); border-radius: 34px; pointer-events: none; }
+.uniform-collection .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.uniform-header { max-width: 920px; margin: 0 auto 52px; text-align: center; }
+.uniform-header h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.75rem, 5.4vw, 5.35rem); line-height: 0.96; margin: 0 0 20px; }
+.uniform-subtext { color: #26324e; font-size: clamp(1rem, 1.65vw, 1.22rem); line-height: 1.72; max-width: 780px; margin: 0 auto 18px; }
+.uniform-tagline { color: #b98416; font-size: 0.82rem; font-weight: 850; letter-spacing: 0.2em; text-transform: uppercase; margin: 0; }
+.uniform-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.95fr); gap: 42px; align-items: center; }
+.uniform-showcase { min-width: 0; border-radius: 30px; padding: 9px; background: linear-gradient(135deg, rgba(242, 193, 78, 0.86), rgba(8, 24, 60, 0.92)); box-shadow: 0 30px 76px rgba(8, 24, 60, 0.18); animation: uniformFloat 6s ease-in-out infinite; }
+.uniform-carousel { position: relative; overflow: hidden; border-radius: 24px; background: #08183c; }
+.uniform-carousel-track { display: flex; transform: translateX(calc(var(--active-slide) * -100%)); transition: transform 780ms cubic-bezier(0.22, 1, 0.36, 1); }
+.uniform-slide { flex: 0 0 100%; position: relative; min-height: 610px; overflow: hidden; }
+.uniform-slide img { width: 100%; height: 100%; min-height: 610px; display: block; object-fit: cover; transition: transform 700ms ease, filter 700ms ease; }
+.uniform-showcase:hover .uniform-slide img { transform: scale(1.035); filter: saturate(1.04) contrast(1.02); }
+.uniform-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 24, 60, 0) 42%, rgba(8, 24, 60, 0.7)); pointer-events: none; }
+.uniform-slide-caption { position: absolute; left: 28px; right: 28px; bottom: 26px; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; color: #ffffff; }
+.uniform-slide-caption h3 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.5rem, 2.5vw, 2.35rem); line-height: 1; margin: 0; }
+.uniform-slide-caption span { color: #f2c14e; font-size: 0.78rem; font-weight: 850; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; }
+.uniform-dots { position: absolute; z-index: 2; top: 24px; right: 24px; display: flex; gap: 9px; }
+.uniform-dot { width: 34px; height: 4px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, 0.44); cursor: pointer; transition: width 220ms ease, background 220ms ease; }
+.uniform-dot.active { width: 48px; background: #f2c14e; }
+.uniform-info { display: grid; gap: 18px; min-width: 0; }
+.uniform-card { position: relative; overflow: hidden; padding: 25px 24px 24px; border-radius: 18px; background: rgba(255, 255, 255, 0.86); border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 20px 48px rgba(8, 24, 60, 0.11); backdrop-filter: blur(14px); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+.uniform-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, #f2c14e, #08183c); }
+.uniform-card:hover { transform: translateY(-5px); border-color: rgba(242, 193, 78, 0.38); box-shadow: 0 28px 62px rgba(8, 24, 60, 0.15); }
+.uniform-card h3 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: 1.28rem; line-height: 1.18; margin: 0 0 15px; }
+.uniform-card ul { list-style: none; display: grid; gap: 9px; padding: 0; margin: 0; }
+.uniform-card li { color: #465268; font-size: 0.95rem; line-height: 1.35; }
+.uniform-card li::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; border-radius: 999px; background: #d69b14; vertical-align: 0.12em; }
+.uniform-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 42px; }
+.uniform-badge { display: inline-flex; align-items: center; gap: 9px; padding: 11px 16px; border-radius: 999px; color: #08183c; background: rgba(255, 255, 255, 0.82); border: 1px solid rgba(214, 155, 20, 0.22); box-shadow: 0 12px 28px rgba(8, 24, 60, 0.08); font-size: 0.9rem; font-weight: 750; }
+.uniform-badge span { color: #d69b14; }
+@keyframes uniformFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 .why-choose-us { padding: 80px 0; background: #f8f9fa; }
 .why-choose-us .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -160,6 +198,9 @@ const responsiveStyles = `
   .personality-development .container { grid-template-columns: 1fr; gap: 44px; }
   .personality-photo { min-height: 440px; }
   .personality-photo img { min-height: 440px; }
+  .uniform-layout { grid-template-columns: 1fr; gap: 34px; }
+  .uniform-info { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .uniform-card { padding: 23px 20px 22px; }
   .why-choose-us .features-grid { grid-template-columns: 1fr; }
   .academic-programs .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-life .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -176,10 +217,20 @@ const responsiveStyles = `
   .hero-subheadline { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
   .whats-new-section { padding: 68px 0; }
   .personality-development { padding: 66px 0; }
+  .uniform-collection { padding: 72px 0; }
+  .uniform-collection::after { inset: 12px; border-radius: 24px; }
   .new-programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-heading { margin-bottom: 34px; }
   .personality-feature { grid-template-columns: 64px 1fr; gap: 14px; }
   .personality-icon { width: 64px; }
+  .uniform-header { margin-bottom: 36px; }
+  .uniform-layout { gap: 30px; }
+  .uniform-showcase { padding: 7px; border-radius: 24px; animation: none; }
+  .uniform-carousel { overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 18px; }
+  .uniform-carousel-track { transform: none !important; }
+  .uniform-slide { min-height: 440px; scroll-snap-align: start; }
+  .uniform-slide img { min-height: 440px; }
+  .uniform-info { grid-template-columns: 1fr; }
   .why-choose-us { padding: 60px 0; }
   .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
@@ -200,6 +251,7 @@ const responsiveStyles = `
   .brand-address { display: none; }
   .whats-new-section .container { padding: 0 15px; }
   .personality-development .container { padding: 0 15px; }
+  .uniform-collection .container { padding: 0 15px; }
   .new-programs-grid { grid-template-columns: 1fr; }
   .new-program-card { padding: 24px 20px 30px; }
   .new-program-title { min-height: auto; }
@@ -210,6 +262,18 @@ const responsiveStyles = `
   .personality-icon { width: 58px; }
   .personality-photo { min-height: 320px; border-radius: 22px; }
   .personality-photo img { min-height: 320px; }
+  .uniform-header { text-align: center; }
+  .uniform-subtext { font-size: 0.98rem; }
+  .uniform-tagline { font-size: 0.72rem; letter-spacing: 0.14em; }
+  .uniform-slide { min-height: 350px; }
+  .uniform-slide img { min-height: 350px; }
+  .uniform-slide-caption { left: 18px; right: 18px; bottom: 18px; display: block; }
+  .uniform-slide-caption span { display: block; margin-top: 9px; white-space: normal; }
+  .uniform-dots { top: 16px; right: 16px; }
+  .uniform-dot { width: 24px; }
+  .uniform-dot.active { width: 34px; }
+  .uniform-features { gap: 9px; margin-top: 30px; }
+  .uniform-badge { padding: 10px 13px; font-size: 0.84rem; }
   .why-choose-us .container { padding: 0 15px; }
   .academic-programs .container { padding: 0 15px; }
   .student-life .container { padding: 0 15px; }
@@ -280,8 +344,83 @@ const personalityFeatures = [
   },
 ];
 
+const uniformSlides = [
+  {
+    title: 'High School Couple Uniform',
+    label: 'Signature Academic Style',
+    image: seniorHighImage,
+    alt: 'High school students wearing Philippians Academy uniforms',
+  },
+  {
+    title: 'Preschool Boy',
+    label: 'Comfort for Young Learners',
+    image: kindergartenImage,
+    alt: 'Preschool students wearing Philippians Academy uniforms',
+  },
+  {
+    title: 'Preschool Girl',
+    label: 'Classic Child-Friendly Design',
+    image: gradeSchoolImage,
+    alt: 'Young students wearing Philippians Academy uniforms',
+  },
+  {
+    title: 'Senior High Female Blazer',
+    label: 'Premium Formal Identity',
+    image: personalityDevelopmentImage,
+    alt: 'Philippians Academy student in a premium blazer-inspired uniform',
+  },
+];
+
+const uniformCards = [
+  {
+    title: '👦👧 Preschool Collection',
+    details: [
+      'Comfortable Premium Fabric',
+      'Soft & Child-Friendly Materials',
+      'Elegant Modern Design',
+      'Easy Movement for Kids',
+    ],
+  },
+  {
+    title: '🎓 Academic Collection',
+    details: [
+      'Clean European-inspired Style',
+      'Smart Casual Professional Look',
+      'Comfortable Daily Wear',
+      'Confidence-building Appearance',
+    ],
+  },
+  {
+    title: '✨ Premium Senior High Uniform',
+    details: [
+      'Executive-inspired Blazer Design',
+      'Modern Professional Aesthetic',
+      'Elegant Formal Identity',
+      'International School Standard',
+    ],
+  },
+];
+
+const uniformBadges = [
+  ['🛡', 'Elegant'],
+  ['👑', 'Premium Quality'],
+  ['✨', 'Faith-Based'],
+  ['🧵', 'Comfortable Fabric'],
+  ['🎓', 'Academic Excellence'],
+];
+
 function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [activeUniformSlide, setActiveUniformSlide] = useState(0);
+
+  useEffect(() => {
+    const slideTimer = window.setInterval(() => {
+      setActiveUniformSlide((current) => (current + 1) % uniformSlides.length);
+    }, 4200);
+
+    return () => window.clearInterval(slideTimer);
+  }, []);
+
   return (
     <main style={page}>
       <style>{responsiveStyles}</style>
@@ -404,6 +543,72 @@ function App() {
 
           <div className="personality-photo">
             <img src={personalityDevelopmentImage} alt="Personality Development program" />
+          </div>
+        </div>
+      </section>
+
+      {/* Uniform Collection Section */}
+      <section id="uniforms" className="uniform-collection">
+        <div className="container">
+          <div className="uniform-header">
+            <div className="section-kicker">New Collection</div>
+            <h2>The New Philippians Uniform</h2>
+            <p className="uniform-subtext">
+              Designed with sophistication, comfort, confidence, and excellence in mind — reflecting the values and identity of every Philippians student.
+            </p>
+            <p className="uniform-tagline">Faith • Excellence • Character • Service</p>
+          </div>
+
+          <div className="uniform-layout">
+            <div className="uniform-showcase">
+              <div className="uniform-carousel">
+                <div className="uniform-carousel-track" style={{ '--active-slide': activeUniformSlide }}>
+                  {uniformSlides.map((slide) => (
+                    <article className="uniform-slide" key={slide.title}>
+                      <img src={slide.image} alt={slide.alt} />
+                      <div className="uniform-slide-caption">
+                        <h3>{slide.title}</h3>
+                        <span>{slide.label}</span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="uniform-dots" aria-label="Uniform collection slides">
+                  {uniformSlides.map((slide, index) => (
+                    <button
+                      type="button"
+                      className={`uniform-dot${activeUniformSlide === index ? ' active' : ''}`}
+                      key={slide.title}
+                      aria-label={`Show ${slide.title}`}
+                      onClick={() => setActiveUniformSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="uniform-info">
+              {uniformCards.map((card) => (
+                <article className="uniform-card" key={card.title}>
+                  <h3>{card.title}</h3>
+                  <ul>
+                    {card.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="uniform-features">
+            {uniformBadges.map(([icon, label]) => (
+              <div className="uniform-badge" key={label}>
+                <span aria-hidden="true">{icon}</span>
+                {label}
+              </div>
+            ))}
           </div>
         </div>
       </section>
