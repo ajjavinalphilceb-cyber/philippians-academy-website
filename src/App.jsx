@@ -10,6 +10,7 @@ import roboticsAiImage from './assets/Robotics AI.png';
 import webDevelopmentImage from './assets/Web Development.png';
 import multimediaImage from './assets/Multi Media.png';
 import culinaryImage from './assets/Culinary.png';
+import personalityDevelopmentImage from './assets/Personality Development.png';
 import speechDevelopmentImage from './assets/Speech Dev.png';
 import tableMannersImage from './assets/Proper table manner.png';
 import properOutfitImage from './assets/Proper Outfit.png';
@@ -402,7 +403,7 @@ function App() {
           </div>
 
           <div className="personality-photo">
-            <img src={heroBanner} alt="Philippians Academy students on campus" />
+            <img src={personalityDevelopmentImage} alt="Personality Development program" />
           </div>
         </div>
       </section>
