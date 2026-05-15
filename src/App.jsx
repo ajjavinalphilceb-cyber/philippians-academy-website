@@ -10,7 +10,7 @@ import roboticsAiImage from './assets/Robotics AI.png';
 import webDevelopmentImage from './assets/Web Development.png';
 import multimediaImage from './assets/Multi Media.png';
 import culinaryImage from './assets/Culinary.png';
-import personalityDevelopmentImage from './assets/Personality Development.png';
+import personalityDevelopmentImage from './assets/Personality Development.png?version=20260515';
 import speechDevelopmentImage from './assets/Speech Dev.png';
 import tableMannersImage from './assets/Proper table manner.png';
 import properOutfitImage from './assets/Proper Outfit.png';
