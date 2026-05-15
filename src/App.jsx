@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
 import logoSrc from './assets/Philippians Logo.jpg';
 import heroBanner from './assets/hero banner.png';
 import kindergartenImage from './assets/Kindergarten.png';
 import gradeSchoolImage from './assets/Grade School.png';
 import juniorHighImage from './assets/Junior High School.png';
 import seniorHighImage from './assets/Senior High School.png';
-import kindergartenUniformImage from './assets/Kindergarten Uniform.jpg';
-import gradeSchoolUniformImage from './assets/Grade School Uniform.jpg';
-import juniorHighUniformImage from './assets/Junior  High Uniform.jpg';
-import seniorHighUniformImage from './assets/Senior High Uniform.jpg';
+import kindergartenUniformImage from './assets/Kindergarten Uniform.png';
+import gradeSchoolUniformImage from './assets/Grade School Uniform.png';
+import juniorHighUniformImage from './assets/Junior  High Uniform.png';
+import seniorHighUniformImage from './assets/Senior High Uniform.png';
 import englishOnlyImage from './assets/English only Policy.png?version=20260515-refresh';
 import roboticsAiImage from './assets/Robotics AI.png?version=20260515-refresh';
 import webDevelopmentImage from './assets/Web Development.png?version=20260515-refresh';
@@ -75,33 +76,21 @@ const responsiveStyles = `
 .personality-photo::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 9px; background: linear-gradient(180deg, #f2c14e, #08183c); z-index: 2; }
 .personality-photo img { width: 100%; height: 100%; min-height: 560px; display: block; object-fit: cover; }
 
-.uniform-collection { position: relative; overflow: hidden; padding: 94px 0 98px; background: linear-gradient(135deg, #fffdf8 0%, #ffffff 46%, #f6f0df 100%); }
-.uniform-collection::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 12% 12%, rgba(242, 193, 78, 0.22), transparent 27%), radial-gradient(circle at 88% 76%, rgba(8, 24, 60, 0.1), transparent 28%); }
-.uniform-collection::after { content: ""; position: absolute; inset: 20px; border: 1px solid rgba(214, 155, 20, 0.14); border-radius: 34px; pointer-events: none; }
+.uniform-collection { position: relative; overflow: hidden; padding: 92px 0 96px; background: linear-gradient(135deg, #fffdf8 0%, #ffffff 52%, #f7f0df 100%); }
+.uniform-collection::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 10% 12%, rgba(242, 193, 78, 0.18), transparent 26%), radial-gradient(circle at 92% 86%, rgba(8, 24, 60, 0.08), transparent 27%); }
 .uniform-collection .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
-.uniform-header { max-width: 920px; margin: 0 auto 52px; text-align: center; }
-.uniform-header h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.75rem, 5.4vw, 5.35rem); line-height: 0.96; margin: 0 0 20px; }
-.uniform-subtext { color: #26324e; font-size: clamp(1rem, 1.65vw, 1.22rem); line-height: 1.72; max-width: 780px; margin: 0 auto 18px; }
-.uniform-tagline { color: #b98416; font-size: 0.82rem; font-weight: 850; letter-spacing: 0.2em; text-transform: uppercase; margin: 0; }
-.uniform-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.95fr); gap: 42px; align-items: center; }
-.uniform-showcase { min-width: 0; border-radius: 30px; padding: 9px; background: linear-gradient(135deg, rgba(242, 193, 78, 0.86), rgba(8, 24, 60, 0.92)); box-shadow: 0 30px 76px rgba(8, 24, 60, 0.18); animation: uniformFloat 6s ease-in-out infinite; }
-.uniform-carousel { position: relative; overflow: hidden; border-radius: 24px; background: #08183c; }
-.uniform-carousel-track { display: flex; transform: translateX(calc(var(--active-slide) * -100%)); transition: transform 780ms cubic-bezier(0.22, 1, 0.36, 1); }
-.uniform-slide { flex: 0 0 100%; position: relative; min-height: 610px; overflow: hidden; }
-.uniform-slide img { width: 100%; height: 100%; min-height: 610px; display: block; object-fit: cover; transition: transform 700ms ease, filter 700ms ease; }
-.uniform-showcase:hover .uniform-slide img { transform: scale(1.035); filter: saturate(1.04) contrast(1.02); }
-.uniform-dots { position: absolute; z-index: 2; top: 24px; right: 24px; display: flex; gap: 9px; }
-.uniform-dot { width: 34px; height: 4px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, 0.44); cursor: pointer; transition: width 220ms ease, background 220ms ease; }
-.uniform-dot.active { width: 48px; background: #f2c14e; }
-.uniform-info { display: grid; gap: 18px; min-width: 0; }
-.uniform-card { min-height: 138px; overflow: hidden; border-radius: 18px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 20px 48px rgba(8, 24, 60, 0.11); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
-.uniform-card:hover { transform: translateY(-5px); border-color: rgba(242, 193, 78, 0.38); box-shadow: 0 28px 62px rgba(8, 24, 60, 0.15); }
-.uniform-card img { width: 100%; height: 100%; min-height: 138px; display: block; object-fit: cover; transition: transform 520ms ease; }
-.uniform-card:hover img { transform: scale(1.035); }
-@keyframes uniformFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
+.uniform-header { max-width: 880px; margin: 0 auto 48px; text-align: center; }
+.uniform-header h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 4.8vw, 4.9rem); line-height: 0.98; margin: 0 0 20px; }
+.uniform-subtext { color: #26324e; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; max-width: 760px; margin: 0 auto; }
+.uniform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.uniform-card { min-width: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; border-radius: 20px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 18px 46px rgba(8, 24, 60, 0.11); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+.uniform-card:hover { transform: translateY(-6px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 28px 64px rgba(8, 24, 60, 0.16); }
+.uniform-card-image { width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: #f1f3f7; }
+.uniform-card-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 420ms ease; }
+.uniform-card:hover .uniform-card-image img { transform: scale(1.035); }
+.uniform-card-body { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; min-height: 118px; padding: 24px 18px 26px; text-align: center; }
+.uniform-card h3 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.18rem, 1.45vw, 1.45rem); line-height: 1.18; margin: 0 0 14px; }
+.uniform-accent { width: 48px; height: 3px; border-radius: 999px; background: #d69b14; }
 
 .why-choose-us { padding: 80px 0; background: #f8f9fa; }
 .why-choose-us .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -192,8 +181,7 @@ const responsiveStyles = `
   .personality-development .container { grid-template-columns: 1fr; gap: 44px; }
   .personality-photo { min-height: 440px; }
   .personality-photo img { min-height: 440px; }
-  .uniform-layout { grid-template-columns: 1fr; gap: 34px; }
-  .uniform-info { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .uniform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .why-choose-us .features-grid { grid-template-columns: 1fr; }
   .academic-programs .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-life .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -211,19 +199,11 @@ const responsiveStyles = `
   .whats-new-section { padding: 68px 0; }
   .personality-development { padding: 66px 0; }
   .uniform-collection { padding: 72px 0; }
-  .uniform-collection::after { inset: 12px; border-radius: 24px; }
   .new-programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-heading { margin-bottom: 34px; }
   .personality-feature { grid-template-columns: 64px 1fr; gap: 14px; }
   .personality-icon { width: 64px; }
   .uniform-header { margin-bottom: 36px; }
-  .uniform-layout { gap: 30px; }
-  .uniform-showcase { padding: 7px; border-radius: 24px; animation: none; }
-  .uniform-carousel { overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 18px; }
-  .uniform-carousel-track { transform: none !important; }
-  .uniform-slide { min-height: 440px; scroll-snap-align: start; }
-  .uniform-slide img { min-height: 440px; }
-  .uniform-info { grid-template-columns: 1fr; }
   .why-choose-us { padding: 60px 0; }
   .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
@@ -245,6 +225,7 @@ const responsiveStyles = `
   .whats-new-section .container { padding: 0 15px; }
   .personality-development .container { padding: 0 15px; }
   .uniform-collection .container { padding: 0 15px; }
+  .uniform-grid { grid-template-columns: 1fr; gap: 20px; }
   .new-programs-grid { grid-template-columns: 1fr; }
   .new-program-card { padding: 24px 20px 30px; }
   .new-program-title { min-height: auto; }
@@ -257,12 +238,7 @@ const responsiveStyles = `
   .personality-photo img { min-height: 320px; }
   .uniform-header { text-align: center; }
   .uniform-subtext { font-size: 0.98rem; }
-  .uniform-tagline { font-size: 0.72rem; letter-spacing: 0.14em; }
-  .uniform-slide { min-height: 350px; }
-  .uniform-slide img { min-height: 350px; }
-  .uniform-dots { top: 16px; right: 16px; }
-  .uniform-dot { width: 24px; }
-  .uniform-dot.active { width: 34px; }
+  .uniform-card-body { min-height: 104px; padding: 22px 16px 24px; }
   .why-choose-us .container { padding: 0 15px; }
   .academic-programs .container { padding: 0 15px; }
   .student-life .container { padding: 0 15px; }
@@ -345,7 +321,7 @@ const uniformSlides = [
     alt: 'Grade School Philippians Academy uniform',
   },
   {
-    title: 'Junior High Uniform',
+    title: 'Junior High School Uniform',
     image: juniorHighUniformImage,
     alt: 'Junior High Philippians Academy uniform',
   },
@@ -358,16 +334,6 @@ const uniformSlides = [
 
 function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [activeUniformSlide, setActiveUniformSlide] = useState(0);
-
-  useEffect(() => {
-    const slideTimer = window.setInterval(() => {
-      setActiveUniformSlide((current) => (current + 1) % uniformSlides.length);
-    }, 4200);
-
-    return () => window.clearInterval(slideTimer);
-  }, []);
-
   return (
     <main style={page}>
       <style>{responsiveStyles}</style>
@@ -498,46 +464,24 @@ function App() {
       <section id="uniforms" className="uniform-collection">
         <div className="container">
           <div className="uniform-header">
-            <div className="section-kicker">New Collection</div>
             <h2>The New Philippians Uniform</h2>
             <p className="uniform-subtext">
-              Designed with sophistication, comfort, confidence, and excellence in mind — reflecting the values and identity of every Philippians student.
+              Designed with sophistication, comfort, confidence, and excellence in mind — reflecting the value and identity of every Philippians student.
             </p>
-            <p className="uniform-tagline">Faith • Excellence • Character • Service</p>
           </div>
 
-          <div className="uniform-layout">
-            <div className="uniform-showcase">
-              <div className="uniform-carousel">
-                <div className="uniform-carousel-track" style={{ '--active-slide': activeUniformSlide }}>
-                  {uniformSlides.map((slide) => (
-                    <article className="uniform-slide" key={slide.title}>
-                      <img src={slide.image} alt={slide.alt} />
-                    </article>
-                  ))}
-                </div>
-
-                <div className="uniform-dots" aria-label="Uniform collection slides">
-                  {uniformSlides.map((slide, index) => (
-                    <button
-                      type="button"
-                      className={`uniform-dot${activeUniformSlide === index ? ' active' : ''}`}
-                      key={slide.title}
-                      aria-label={`Show ${slide.title}`}
-                      onClick={() => setActiveUniformSlide(index)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="uniform-info">
-              {uniformSlides.map((slide) => (
-                <article className="uniform-card" key={`${slide.title}-card`}>
+          <div className="uniform-grid">
+            {uniformSlides.map((slide) => (
+              <article className="uniform-card" key={slide.title}>
+                <div className="uniform-card-image">
                   <img src={slide.image} alt={slide.alt} />
-                </article>
-              ))}
-            </div>
+                </div>
+                <div className="uniform-card-body">
+                  <h3>{slide.title}</h3>
+                  <div className="uniform-accent" />
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
