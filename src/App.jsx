@@ -5,16 +5,16 @@ import kindergartenImage from './assets/Kindergarten.png';
 import gradeSchoolImage from './assets/Grade School.png';
 import juniorHighImage from './assets/Junior High School.png';
 import seniorHighImage from './assets/Senior High School.png';
-import englishOnlyImage from './assets/English only Policy.png';
-import roboticsAiImage from './assets/Robotics AI.png';
-import webDevelopmentImage from './assets/Web Development.png';
-import multimediaImage from './assets/Multi Media.png';
-import culinaryImage from './assets/Culinary.png';
-import personalityDevelopmentImage from './assets/Personality Development.png?version=20260515';
-import speechDevelopmentImage from './assets/Speech Dev.png';
-import tableMannersImage from './assets/Proper table manner.png';
-import properOutfitImage from './assets/Proper Outfit.png';
-import publicSpeakingImage from './assets/Public Speaking.png';
+import englishOnlyImage from './assets/English only Policy.png?version=20260515-refresh';
+import roboticsAiImage from './assets/Robotics AI.png?version=20260515-refresh';
+import webDevelopmentImage from './assets/Web Development.png?version=20260515-refresh';
+import multimediaImage from './assets/Multi Media.png?version=20260515-refresh';
+import culinaryImage from './assets/Culinary.png?version=20260515-refresh';
+import personalityDevelopmentImage from './assets/Personality Development.png?version=20260515-refresh';
+import speechDevelopmentImage from './assets/Speech Dev.png?version=20260515-refresh';
+import tableMannersImage from './assets/Proper table manner.png?version=20260515-refresh';
+import properOutfitImage from './assets/Proper Outfit.png?version=20260515-refresh';
+import publicSpeakingImage from './assets/Public Speaking.png?version=20260515-refresh';
 
 const responsiveStyles = `
 .hero { min-height: 680px; max-height: 720px; }
