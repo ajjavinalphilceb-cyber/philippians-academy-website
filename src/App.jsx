@@ -44,7 +44,7 @@ const responsiveStyles = `
 .new-program-card { position: relative; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 24px 20px 28px; border-radius: 18px; border: 1px solid rgba(8, 24, 60, 0.08); background: #ffffff; box-shadow: 0 18px 44px rgba(8, 24, 60, 0.11); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
 .new-program-card::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 36px; height: 16px; border-radius: 18px 18px 0 0; background: #08183c; transform: translateX(-50%); border-top: 3px solid #f2c14e; }
 .new-program-card:hover { transform: translateY(-8px); border-color: rgba(242, 193, 78, 0.5); box-shadow: 0 28px 62px rgba(8, 24, 60, 0.16); }
-.new-program-image { width: clamp(96px, 9vw, 132px); aspect-ratio: 1; margin-bottom: 22px; border-radius: 999px; padding: 6px; background: linear-gradient(145deg, #08183c, #0e2f74); border: 2px solid #f2c14e; box-shadow: 0 12px 30px rgba(8, 24, 60, 0.18); overflow: hidden; }
+.new-program-image { width: clamp(96px, 9vw, 132px); aspect-ratio: 1; margin-bottom: 22px; border-radius: 999px; overflow: hidden; }
 .new-program-image img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 999px; }
 .new-program-title { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.25rem, 1.65vw, 1.6rem); line-height: 1.08; margin: 0 0 18px; min-height: 3.25rem; display: flex; align-items: center; justify-content: center; }
 .new-program-card .gold-rule { width: 72px; height: 1px; background: rgba(242, 193, 78, 0.72); margin: 0 auto 18px; position: relative; }
