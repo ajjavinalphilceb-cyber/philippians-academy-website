@@ -92,63 +92,98 @@ const responsiveStyles = `
 .uniform-card h3 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.18rem, 1.45vw, 1.45rem); line-height: 1.18; margin: 0 0 14px; }
 .uniform-accent { width: 48px; height: 3px; border-radius: 999px; background: #d69b14; }
 
-.why-choose-us { padding: 80px 0; background: #f8f9fa; }
-.why-choose-us .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.why-choose-us h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 60px; }
-.why-choose-us .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.why-choose-us .feature-card { background: #ffffff; padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-.why-choose-us .feature-card:hover { transform: translateY(-5px); }
-.why-choose-us .feature-icon { font-size: 3rem; margin-bottom: 20px; }
-.why-choose-us .feature-title { font-size: 1.25rem; font-weight: 700; color: #08183c; margin-bottom: 15px; }
-.why-choose-us .feature-desc { color: #6b7280; line-height: 1.6; }
+.why-choose-us { position: relative; overflow: hidden; padding: 78px 0 84px; background: linear-gradient(180deg, #ffffff 0%, #fffaf0 54%, #f6f8fc 100%); }
+.why-choose-us::before { content: ""; position: absolute; left: 50%; top: 28px; width: min(720px, 82vw); aspect-ratio: 1 / 0.42; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(242, 193, 78, 0.22), rgba(242, 193, 78, 0)); pointer-events: none; }
+.why-choose-us .container { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.why-header { max-width: 850px; margin: 0 auto 42px; text-align: center; }
+.why-tagline { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 14px; }
+.why-choose-us h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.45rem, 4.8vw, 4.65rem); line-height: 0.98; margin: 0 0 18px; }
+.why-subtitle { color: #344057; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.68; max-width: 680px; margin: 0 auto; }
+.why-choose-us .features-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
+.why-choose-us .feature-card { position: relative; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; overflow: hidden; padding: 34px 24px 32px; border-radius: 24px; text-align: center; background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 18px 44px rgba(8, 24, 60, 0.1); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
+.why-choose-us .feature-card::before { content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 3px; border-radius: 0 0 999px 999px; background: linear-gradient(90deg, transparent, #d69b14, transparent); }
+.why-choose-us .feature-card:hover { transform: translateY(-8px); border-color: rgba(242, 193, 78, 0.45); box-shadow: 0 30px 68px rgba(8, 24, 60, 0.16); }
+.why-choose-us .feature-icon { width: 76px; aspect-ratio: 1; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 999px; color: #d69b14; background: linear-gradient(145deg, rgba(8, 24, 60, 0.96), #102b65); border: 1px solid rgba(242, 193, 78, 0.46); box-shadow: 0 14px 30px rgba(8, 24, 60, 0.18); }
+.why-choose-us .feature-icon svg { width: 34px; height: 34px; stroke-width: 1.8; }
+.why-choose-us .feature-title { color: #08183c; font-size: 1.18rem; line-height: 1.22; font-weight: 850; margin: 0 0 13px; }
+.why-card-accent { width: 44px; height: 2px; margin: 0 auto 16px; border-radius: 999px; background: #d69b14; }
+.why-choose-us .feature-desc { color: #5e6878; font-size: 0.95rem; line-height: 1.65; margin: 0; }
 
-.academic-programs { padding: 90px 0; background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%); }
-.academic-programs .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
-.academic-programs h2 { text-align: center; font-size: clamp(2.25rem, 3.4vw, 3rem); color: #08183c; margin-bottom: 18px; }
-.academic-programs .section-intro { max-width: 760px; margin: 0 auto 52px; color: #6b7280; font-size: 1.05rem; line-height: 1.75; text-align: center; }
-.academic-programs .programs-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
-.academic-programs .program-card { min-width: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); border-radius: 18px; box-shadow: 0 18px 42px rgba(8, 24, 60, 0.1); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
-.academic-programs .program-card:hover { transform: translateY(-8px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 26px 60px rgba(8, 24, 60, 0.16); }
-.academic-programs .program-image { aspect-ratio: 4 / 3; width: 100%; overflow: hidden; background: #e5e7eb; border-radius: 18px 18px 0 0; }
-.academic-programs .program-image img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 18px 18px 0 0; transition: transform 320ms ease; }
-.academic-programs .program-card:hover .program-image img { transform: scale(1.045); }
-.academic-programs .program-content { display: flex; flex: 1; flex-direction: column; padding: 30px 24px 24px; }
-.academic-programs .program-title { font-size: 1.35rem; font-weight: 850; color: #08183c; margin-bottom: 14px; line-height: 1.2; }
-.academic-programs .program-desc { color: #5f6878; line-height: 1.72; margin-bottom: 26px; }
-.academic-programs .program-action { margin-top: auto; align-self: flex-start; background: #f2c14e; color: #08183c; padding: 13px 22px; border-radius: 999px; font-weight: 800; border: none; cursor: pointer; box-shadow: 0 12px 24px rgba(242, 193, 78, 0.24); }
-.academic-programs .program-action:hover { background: rgba(242, 193, 78, 0.92); }
+.academic-programs { padding: 96px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); overflow: hidden; }
+.academic-programs .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.academic-programs h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.65rem, 5vw, 5rem); line-height: 0.98; margin: 0 0 18px; text-align: center; }
+.academic-programs .section-intro { max-width: 720px; margin: 0 auto 58px; color: #465268; font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.76; text-align: center; }
+.program-stories { display: grid; gap: 74px; }
+.program-story { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr); gap: clamp(30px, 5vw, 70px); align-items: center; }
+.program-story.reverse { grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr); }
+.program-story.reverse .program-story-media { order: 2; }
+.program-story.reverse .program-story-copy { order: 1; }
+.program-story-media { position: relative; min-width: 0; min-height: 420px; overflow: hidden; border-radius: 28px; }
+.program-story-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, 0.34); border-radius: inherit; pointer-events: none; }
+.program-story-media img { width: 100%; height: 100%; min-height: 420px; display: block; object-fit: cover; transition: transform 480ms ease; }
+.program-story:hover .program-story-media img { transform: scale(1.035); }
+.program-story-copy { min-width: 0; max-width: 540px; }
+.program-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px; }
+.program-story-copy h3 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 3.4vw, 3.45rem); line-height: 1; margin: 0 0 18px; }
+.program-story-copy p { color: #465268; font-size: 1.03rem; line-height: 1.78; margin: 0 0 24px; }
+.program-link { display: inline-flex; align-items: center; gap: 10px; color: #08183c; font-size: 0.92rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.program-link::after { content: ""; width: 42px; height: 2px; border-radius: 999px; background: #d69b14; transition: width 220ms ease; }
+.program-link:hover::after { width: 62px; }
 
-.student-life { padding: 80px 0; background: #f8f9fa; }
-.student-life .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.student-life h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 60px; }
-.student-life .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.student-life .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 250px; }
-.student-life .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-.student-life .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 20px; }
-.student-life .gallery-label { color: white; font-weight: 600; }
+.student-life { padding: 94px 0 100px; background: #ffffff; overflow: hidden; }
+.student-life .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.student-life-header { max-width: 820px; margin: 0 0 48px; }
+.student-life h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 5vw, 4.8rem); line-height: 0.98; margin: 0 0 18px; }
+.student-life-subtitle { color: #465268; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; max-width: 700px; margin: 0; }
+.student-life-editorial { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.75fr); gap: 26px; align-items: stretch; }
+.student-life-feature, .student-life-stack figure { position: relative; min-width: 0; overflow: hidden; border-radius: 28px; background: #08183c; }
+.student-life-feature { min-height: 610px; }
+.student-life-stack { display: grid; gap: 26px; }
+.student-life-stack figure { min-height: 292px; margin: 0; }
+.student-life-feature img, .student-life-stack img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 520ms ease; }
+.student-life-feature:hover img, .student-life-stack figure:hover img { transform: scale(1.035); }
+.student-life-feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 24, 60, 0) 42%, rgba(8, 24, 60, 0.72)); pointer-events: none; }
+.student-life-mantra { position: absolute; left: 34px; right: 34px; bottom: 30px; z-index: 1; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.65rem, 3vw, 2.55rem); line-height: 1.1; }
+.student-life-mantra span { color: #f2c14e; }
 
-.admissions-cta { padding: 80px 0; background: #08183c; color: white; text-align: center; }
-.admissions-cta .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-.admissions-cta h2 { font-size: clamp(2.5rem, 4vw, 3rem); margin-bottom: 20px; }
-.admissions-cta p { font-size: 1.2rem; line-height: 1.7; margin-bottom: 40px; opacity: 0.9; }
-.admissions-cta .enroll-btn { background: #f2c14e; color: #08183c; padding: 16px 32px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; font-size: 1.1rem; }
+.admissions-cta { position: relative; overflow: hidden; padding: 104px 0 108px; background: #08183c; color: white; text-align: center; }
+.admissions-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242, 193, 78, 0.18), transparent 34%); pointer-events: none; }
+.admissions-cta .container { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 24px; }
+.scripture-line { width: 88px; height: 3px; border-radius: 999px; background: #f2c14e; margin: 0 auto 30px; }
+.admissions-cta h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4.2vw, 4.1rem); line-height: 1.1; margin: 0 0 18px; color: #ffffff; }
+.scripture-reference { color: #f2c14e; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 28px; }
+.admissions-cta p { color: rgba(255, 255, 255, 0.84); font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; max-width: 700px; margin: 0 auto 34px; }
+.admissions-cta .enroll-btn { background: #f2c14e; color: #08183c; padding: 15px 28px; border-radius: 999px; font-weight: 850; border: none; cursor: pointer; font-size: 0.98rem; letter-spacing: 0.04em; text-transform: uppercase; transition: transform 220ms ease, background 220ms ease; }
+.admissions-cta .enroll-btn:hover { transform: translateY(-3px); background: #ffd96d; }
 
-.testimonials { padding: 80px 0; background: #ffffff; }
-.testimonials .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.testimonials h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 60px; }
-.testimonials .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.testimonials .testimonial-card { background: #f8f9fa; padding: 30px; border-radius: 20px; }
-.testimonials .testimonial-quote { font-style: italic; color: #6b7280; line-height: 1.6; margin-bottom: 20px; }
-.testimonials .testimonial-author { font-weight: 600; color: #08183c; }
-
-.news-events { padding: 80px 0; background: #f8f9fa; }
-.news-events .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.news-events h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.5rem); color: #08183c; margin-bottom: 60px; }
-.news-events .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.news-events .news-card { background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.news-events .news-date { color: #f2c14e; font-weight: 600; margin-bottom: 10px; }
-.news-events .news-title { font-size: 1.25rem; font-weight: 700; color: #08183c; margin-bottom: 15px; }
-.news-events .news-excerpt { color: #6b7280; line-height: 1.6; }
+.news-events { position: relative; overflow: hidden; padding: 96px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
+.news-events::before { content: ""; position: absolute; top: 0; right: 0; width: min(520px, 70vw); aspect-ratio: 1; background: radial-gradient(circle, rgba(242, 193, 78, 0.15), transparent 62%); pointer-events: none; }
+.news-events .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+.news-header { max-width: 820px; margin: 0 auto 50px; text-align: center; }
+.news-tagline { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px; }
+.news-events h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 5vw, 4.9rem); line-height: 0.98; margin: 0 0 18px; }
+.news-subtitle { color: #465268; font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.72; max-width: 720px; margin: 0 auto; }
+.news-grid { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr); gap: 26px; align-items: stretch; }
+.news-side-stack { display: grid; gap: 26px; }
+.news-card { min-width: 0; display: flex; overflow: hidden; border-radius: 24px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 18px 48px rgba(8, 24, 60, 0.1); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
+.news-card:hover { transform: translateY(-7px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 30px 68px rgba(8, 24, 60, 0.16); }
+.news-card.featured { flex-direction: column; min-height: 100%; }
+.news-side-stack .news-card { min-height: 300px; }
+.news-image { position: relative; flex: 0 0 38%; min-height: 100%; overflow: hidden; background: #08183c; }
+.news-card.featured .news-image { flex-basis: auto; height: 390px; }
+.news-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 520ms ease; }
+.news-card:hover .news-image img { transform: scale(1.04); }
+.news-body { display: flex; flex: 1; flex-direction: column; padding: 28px 28px 30px; }
+.news-card.featured .news-body { padding: 34px 36px 38px; }
+.news-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-bottom: 17px; }
+.news-date { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+.news-category { display: inline-flex; align-items: center; min-height: 28px; padding: 6px 11px; border-radius: 999px; color: #08183c; background: rgba(242, 193, 78, 0.16); border: 1px solid rgba(214, 155, 20, 0.22); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+.news-title { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.4vw, 2.4rem); line-height: 1.08; margin: 0 0 16px; }
+.news-side-stack .news-title { font-size: clamp(1.18rem, 1.7vw, 1.55rem); }
+.news-divider { width: 54px; height: 2px; border-radius: 999px; background: #d69b14; margin-bottom: 17px; }
+.news-excerpt { color: #5f6878; font-size: 0.96rem; line-height: 1.68; margin: 0 0 24px; }
+.news-action { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(8, 24, 60, 0.18); border-radius: 999px; background: #08183c; color: #ffffff; padding: 11px 18px; font-size: 0.78rem; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease; }
+.news-action:hover { background: #f2c14e; color: #08183c; border-color: #f2c14e; transform: translateX(3px); }
 
 .footer { background: #08183c; color: white; padding: 60px 0 30px; }
 .footer .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
@@ -182,11 +217,20 @@ const responsiveStyles = `
   .personality-photo { min-height: 440px; }
   .personality-photo img { min-height: 440px; }
   .uniform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .why-choose-us .features-grid { grid-template-columns: 1fr; }
-  .academic-programs .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .student-life .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .testimonials .testimonials-grid { grid-template-columns: 1fr; }
-  .news-events .news-grid { grid-template-columns: 1fr; }
+  .why-choose-us .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .program-story,
+  .program-story.reverse { grid-template-columns: 1fr; gap: 28px; }
+  .program-story.reverse .program-story-media,
+  .program-story.reverse .program-story-copy { order: initial; }
+  .program-story-copy { max-width: 100%; }
+  .student-life-editorial { grid-template-columns: 1fr; }
+  .student-life-feature { min-height: 480px; }
+  .student-life-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .student-life-stack figure { min-height: 260px; }
+  .news-grid { grid-template-columns: 1fr; }
+  .news-side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .news-side-stack .news-card { flex-direction: column; min-height: 100%; }
+  .news-side-stack .news-image { flex-basis: auto; height: 230px; }
   .footer .container { grid-template-columns: 1fr; text-align: center; }
 }
 
@@ -208,11 +252,20 @@ const responsiveStyles = `
   .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
   .admissions-cta { padding: 60px 0; }
-  .testimonials { padding: 60px 0; }
   .news-events { padding: 60px 0; }
-  .student-life .gallery-grid { grid-template-columns: 1fr; }
+  .news-header { margin-bottom: 34px; }
+  .news-side-stack { grid-template-columns: 1fr; }
+  .news-card,
+  .news-side-stack .news-card { flex-direction: column; }
+  .news-card.featured .news-image,
+  .news-side-stack .news-image { height: 260px; }
   .hero { min-height: auto; height: auto; }
-  .academic-programs .programs-grid { grid-template-columns: 1fr; }
+  .program-stories { gap: 54px; }
+  .program-story-media,
+  .program-story-media img { min-height: 340px; }
+  .student-life-feature { min-height: 410px; }
+  .student-life-stack { grid-template-columns: 1fr; }
+  .admissions-cta { padding: 84px 0 88px; }
 }
 
 @media (max-width: 576px) {
@@ -240,11 +293,27 @@ const responsiveStyles = `
   .uniform-subtext { font-size: 0.98rem; }
   .uniform-card-body { min-height: 104px; padding: 22px 16px 24px; }
   .why-choose-us .container { padding: 0 15px; }
+  .why-header { margin-bottom: 30px; }
+  .why-tagline { font-size: 0.7rem; letter-spacing: 0.16em; }
+  .why-choose-us .features-grid { grid-template-columns: 1fr; gap: 18px; }
+  .why-choose-us .feature-card { padding: 30px 22px 28px; }
+  .why-choose-us .feature-icon { width: 68px; margin-bottom: 20px; }
   .academic-programs .container { padding: 0 15px; }
+  .program-stories { gap: 44px; }
+  .program-story-media,
+  .program-story-media img { min-height: 285px; border-radius: 22px; }
+  .program-label { font-size: 0.7rem; letter-spacing: 0.14em; }
   .student-life .container { padding: 0 15px; }
+  .student-life-header { margin-bottom: 30px; }
+  .student-life-feature { min-height: 340px; border-radius: 22px; }
+  .student-life-stack figure { min-height: 210px; border-radius: 20px; }
+  .student-life-mantra { left: 20px; right: 20px; bottom: 20px; }
   .admissions-cta .container { padding: 0 15px; }
-  .testimonials .container { padding: 0 15px; }
   .news-events .container { padding: 0 15px; }
+  .news-card { border-radius: 20px; }
+  .news-card.featured .news-body,
+  .news-body { padding: 24px 20px 26px; }
+  .news-tagline { font-size: 0.7rem; letter-spacing: 0.14em; }
   .footer .container { padding: 0 15px; }
 }
 `;
@@ -493,48 +562,52 @@ function App() {
           <p className="section-intro">
             Purposeful learning pathways designed to nurture faith, character, academic excellence, and leadership at every stage.
           </p>
-          <div className="programs-grid">
-            <article className="program-card">
-              <div className="program-image">
+          <div className="program-stories">
+            <article className="program-story">
+              <div className="program-story-media">
                 <img src={kindergartenImage} alt="Kindergarten students learning together" />
               </div>
-              <div className="program-content">
-                <h3 className="program-title">Kindergarten</h3>
-                <p className="program-desc">Our Kindergarten program nurtures young learners through interactive play, creativity, foundational academics, and Christ-centered values in a safe and joyful environment.</p>
-                <button className="program-action">Learn More</button>
+              <div className="program-story-copy">
+                <p className="program-label">Early Learning</p>
+                <h3>Kindergarten</h3>
+                <p>Building joyful foundations through Christ-centered early learning and creativity.</p>
+                <a className="program-link" href="#admissions">Learn More</a>
               </div>
             </article>
 
-            <article className="program-card">
-              <div className="program-image">
+            <article className="program-story reverse">
+              <div className="program-story-media">
                 <img src={gradeSchoolImage} alt="Grade School students in an academy setting" />
               </div>
-              <div className="program-content">
-                <h3 className="program-title">Grade School</h3>
-                <p className="program-desc">The Grade School department builds strong academic foundations while developing discipline, curiosity, confidence, leadership, and lifelong learning habits.</p>
-                <button className="program-action">Learn More</button>
+              <div className="program-story-copy">
+                <p className="program-label">Foundation Years</p>
+                <h3>Grade School</h3>
+                <p>Developing discipline, confidence, academic excellence, and lifelong curiosity.</p>
+                <a className="program-link" href="#admissions">Learn More</a>
               </div>
             </article>
 
-            <article className="program-card">
-              <div className="program-image">
+            <article className="program-story">
+              <div className="program-story-media">
                 <img src={juniorHighImage} alt="Junior High School students studying" />
               </div>
-              <div className="program-content">
-                <h3 className="program-title">Junior High School</h3>
-                <p className="program-desc">Our Junior High School program prepares students for advanced learning through academic excellence, character formation, collaboration, and leadership development.</p>
-                <button className="program-action">Learn More</button>
+              <div className="program-story-copy">
+                <p className="program-label">Leadership Formation</p>
+                <h3>Junior High School</h3>
+                <p>Empowering students through leadership, collaboration, and deeper academic growth.</p>
+                <a className="program-link" href="#admissions">Learn More</a>
               </div>
             </article>
 
-            <article className="program-card">
-              <div className="program-image">
+            <article className="program-story reverse">
+              <div className="program-story-media">
                 <img src={seniorHighImage} alt="Senior High School students preparing for the future" />
               </div>
-              <div className="program-content">
-                <h3 className="program-title">Senior High School</h3>
-                <p className="program-desc">The Senior High School program equips students for college, careers, and future success through specialized tracks, critical thinking, and values-driven education.</p>
-                <button className="program-action">Learn More</button>
+              <div className="program-story-copy">
+                <p className="program-label">Future Readiness</p>
+                <h3>Senior High School</h3>
+                <p>Preparing future-ready learners for college, careers, and purposeful leadership.</p>
+                <a className="program-link" href="#admissions">Learn More</a>
               </div>
             </article>
           </div>
@@ -544,27 +617,46 @@ function App() {
       {/* Why Choose Us Section */}
       <section className="why-choose-us">
         <div className="container">
-          <h2>Why Choose Philippians Academy?</h2>
+          <div className="why-header">
+            <p className="why-tagline">FAITH &bull; EXCELLENCE &bull; CHARACTER &bull; SERVICE</p>
+            <h2>Why Choose Philippians Academy?</h2>
+            <p className="why-subtitle">
+              Nurturing hearts, building futures, and glorifying God through Christ-centered education.
+            </p>
+          </div>
+
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">✝</div>
+              <div className="feature-icon">
+                <Cross aria-hidden="true" />
+              </div>
               <h3 className="feature-title">Christ-Centered Education</h3>
-              <p className="feature-desc">Faith-based learning integrated into every aspect of our curriculum.</p>
+              <div className="why-card-accent" />
+              <p className="feature-desc">Faith-based learning integrated into every aspect of our curriculum to guide students with wisdom and purpose.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">📘</div>
+              <div className="feature-icon">
+                <BookOpenCheck aria-hidden="true" />
+              </div>
               <h3 className="feature-title">Academic Excellence</h3>
-              <p className="feature-desc">Rigorous academic programs designed to challenge and inspire students.</p>
+              <div className="why-card-accent" />
+              <p className="feature-desc">Rigorous and innovative programs that inspire students to achieve their highest potential.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🤝</div>
-              <h3 className="feature-title">Values Formation</h3>
-              <p className="feature-desc">Character development through service, leadership, and community involvement.</p>
+              <div className="feature-icon">
+                <HandHeart aria-hidden="true" />
+              </div>
+              <h3 className="feature-title">Character &amp; Leadership</h3>
+              <div className="why-card-accent" />
+              <p className="feature-desc">Developing integrity, compassion, leadership, and service through meaningful experiences.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🛡️</div>
-              <h3 className="feature-title">Safe Learning Environment</h3>
-              <p className="feature-desc">Secure campus with dedicated staff ensuring student safety and well-being.</p>
+              <div className="feature-icon">
+                <ShieldCheck aria-hidden="true" />
+              </div>
+              <h3 className="feature-title">Safe &amp; Supportive Campus</h3>
+              <div className="why-card-accent" />
+              <p className="feature-desc">A nurturing environment where students grow with confidence, security, and care.</p>
             </div>
           </div>
         </div>
@@ -573,31 +665,27 @@ function App() {
       {/* Student Life Section */}
       <section className="student-life">
         <div className="container">
-          <h2>Student Life</h2>
-          <div className="gallery-grid">
-            <div className="gallery-item">
-              <img src={heroBanner} alt="Classroom activity" />
-              <div className="gallery-overlay">
-                <div className="gallery-label">Classroom Learning</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src={heroBanner} alt="Sports activity" />
-              <div className="gallery-overlay">
-                <div className="gallery-label">Sports & Recreation</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src={heroBanner} alt="Arts and crafts" />
-              <div className="gallery-overlay">
-                <div className="gallery-label">Arts & Creativity</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src={heroBanner} alt="Community service" />
-              <div className="gallery-overlay">
-                <div className="gallery-label">Community Service</div>
-              </div>
+          <div className="student-life-header">
+            <h2>Student Life at Philippians</h2>
+            <p className="student-life-subtitle">
+              Faith, friendship, leadership, and meaningful experiences that shape future-ready students.
+            </p>
+          </div>
+
+          <div className="student-life-editorial">
+            <figure className="student-life-feature">
+              <img src={heroBanner} alt="Philippians Academy student life" />
+              <figcaption className="student-life-mantra">
+                Faith <span>&bull;</span> Friendship <span>&bull;</span> Leadership <span>&bull;</span> Service
+              </figcaption>
+            </figure>
+            <div className="student-life-stack">
+              <figure>
+                <img src={seniorHighImage} alt="Senior High students at Philippians Academy" />
+              </figure>
+              <figure>
+                <img src={gradeSchoolImage} alt="Grade School students at Philippians Academy" />
+              </figure>
             </div>
           </div>
         </div>
@@ -606,29 +694,11 @@ function App() {
       {/* Admissions CTA Section */}
       <section className="admissions-cta">
         <div className="container">
-          <h2>Join Our Community</h2>
-          <p>Take the first step towards a transformative educational experience. Enroll your child today and become part of the Philippians Academy family.</p>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="testimonials">
-        <div className="container">
-          <h2>What Parents Say</h2>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <p className="testimonial-quote">"Philippians Academy has been a blessing for our family. The Christ-centered approach and excellent academics have helped our child grow both spiritually and intellectually."</p>
-              <div className="testimonial-author">- Maria Santos, Parent</div>
-            </div>
-            <div className="testimonial-card">
-              <p className="testimonial-quote">"The teachers are dedicated and caring. Our son has developed strong values and leadership skills that will serve him well in the future."</p>
-              <div className="testimonial-author">- John Reyes, Parent</div>
-            </div>
-            <div className="testimonial-card">
-              <p className="testimonial-quote">"As a graduate, I can attest to the quality education and character formation I received. Philippians Academy truly prepares students for life."</p>
-              <div className="testimonial-author">- Anna Cruz, Alumni</div>
-            </div>
-          </div>
+          <div className="scripture-line" />
+          <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
+          <div className="scripture-reference">PHILIPPIANS 4:13</div>
+          <p>Begin your child&rsquo;s journey in a faith-centered learning community built on excellence, character, and purpose.</p>
+          <button className="enroll-btn">Apply for Admission</button>
         </div>
       </section>
 
