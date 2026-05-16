@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
-import logoSrc from './assets/Philippians Logo.jpg';
+import Footer from './components/Footer.jsx';
+import SiteNav from './components/SiteNav.jsx';
+import Admissions from './pages/Admissions.jsx';
+import CampusLife from './pages/CampusLife.jsx';
+import SchoolEvents from './pages/SchoolEvents.jsx';
 import heroBanner from './assets/hero banner.png';
 import kindergartenImage from './assets/Kindergarten.png';
 import gradeSchoolImage from './assets/Grade School.png';
@@ -22,6 +27,8 @@ import properOutfitImage from './assets/Proper Outfit.png?version=20260515-refre
 import publicSpeakingImage from './assets/Public Speaking.png?version=20260515-refresh';
 
 const responsiveStyles = `
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
 .hero { min-height: 680px; max-height: 720px; }
 .hero-content { max-width: 1500px; margin: 0 auto; padding: clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px); }
 .site-nav { padding: clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px); }
@@ -34,7 +41,7 @@ const responsiveStyles = `
 .mobile-nav-link { display: block; width: 100%; }
 .hero-headline { font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.02; max-width: 11ch; }
 .hero-subheadline { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; max-width: 620px; }
-.whats-new-section, .academic-programs, .uniform-collection, .admissions-cta, .footer { scroll-margin-top: 110px; }
+.whats-new-section, .academic-programs, .uniform-collection, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
 .whats-new-section { position: relative; padding: 92px 0 86px; overflow: hidden; background: linear-gradient(180deg, #f7fbff 0%, #ffffff 48%, #f5f8fc 100%); }
@@ -146,45 +153,41 @@ const responsiveStyles = `
 .student-life-mantra { position: absolute; left: 34px; right: 34px; bottom: 30px; z-index: 1; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.65rem, 3vw, 2.55rem); line-height: 1.1; }
 .student-life-mantra span { color: #f2c14e; }
 
-.admissions-cta { position: relative; overflow: hidden; padding: 104px 0 108px; background: #08183c; color: white; text-align: center; }
-.admissions-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242, 193, 78, 0.18), transparent 34%); pointer-events: none; }
-.admissions-cta .container { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 24px; }
-.scripture-line { width: 88px; height: 3px; border-radius: 999px; background: #f2c14e; margin: 0 auto 30px; }
-.admissions-cta h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4.2vw, 4.1rem); line-height: 1.1; margin: 0 0 18px; color: #ffffff; }
-.scripture-reference { color: #f2c14e; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 28px; }
-.admissions-cta p { color: rgba(255, 255, 255, 0.84); font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; max-width: 700px; margin: 0 auto 34px; }
-.admissions-cta .enroll-btn { background: #f2c14e; color: #08183c; padding: 15px 28px; border-radius: 999px; font-weight: 850; border: none; cursor: pointer; font-size: 0.98rem; letter-spacing: 0.04em; text-transform: uppercase; transition: transform 220ms ease, background 220ms ease; }
-.admissions-cta .enroll-btn:hover { transform: translateY(-3px); background: #ffd96d; }
-
-.news-events { position: relative; overflow: hidden; padding: 96px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
-.news-events::before { content: ""; position: absolute; top: 0; right: 0; width: min(520px, 70vw); aspect-ratio: 1; background: radial-gradient(circle, rgba(242, 193, 78, 0.15), transparent 62%); pointer-events: none; }
-.news-events .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
-.news-header { max-width: 820px; margin: 0 auto 50px; text-align: center; }
-.news-tagline { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px; }
-.news-events h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 5vw, 4.9rem); line-height: 0.98; margin: 0 0 18px; }
-.news-subtitle { color: #465268; font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.72; max-width: 720px; margin: 0 auto; }
-.news-grid { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr); gap: 26px; align-items: stretch; }
-.news-side-stack { display: grid; gap: 26px; }
-.news-card { min-width: 0; display: flex; overflow: hidden; border-radius: 24px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 18px 48px rgba(8, 24, 60, 0.1); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
-.news-card:hover { transform: translateY(-7px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 30px 68px rgba(8, 24, 60, 0.16); }
-.news-card.featured { flex-direction: column; min-height: 100%; }
-.news-side-stack .news-card { min-height: 300px; }
-.news-image { position: relative; flex: 0 0 38%; min-height: 100%; overflow: hidden; background: #08183c; }
-.news-card.featured .news-image { flex-basis: auto; height: 390px; }
-.news-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 520ms ease; }
-.news-card:hover .news-image img { transform: scale(1.04); }
-.news-body { display: flex; flex: 1; flex-direction: column; padding: 28px 28px 30px; }
-.news-card.featured .news-body { padding: 34px 36px 38px; }
-.news-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-bottom: 17px; }
+.news-events { position: relative; overflow: hidden; padding: 94px 0 102px; background: #ffffff; }
+.news-events .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.news-header { max-width: 780px; margin: 0 auto 48px; text-align: center; }
+.news-events h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.45rem, 4.6vw, 4.5rem); line-height: 1; margin: 0 0 18px; }
+.news-subtitle { color: #4b5568; font-size: clamp(1rem, 1.35vw, 1.14rem); line-height: 1.72; max-width: 660px; margin: 0 auto; }
+.news-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr); gap: 30px; align-items: start; }
+.news-side-stack { display: grid; gap: 24px; }
+.news-card { min-width: 0; display: grid; overflow: hidden; border-radius: 18px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.1); box-shadow: 0 16px 38px rgba(8, 24, 60, 0.08); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
+.news-card:hover { transform: translateY(-5px); border-color: rgba(214, 155, 20, 0.34); box-shadow: 0 24px 52px rgba(8, 24, 60, 0.12); }
+.news-card.featured { grid-template-rows: auto auto; }
+.news-side-stack .news-card { grid-template-rows: auto 1fr; min-height: 100%; }
+.news-image { position: relative; overflow: hidden; background: #eef2f7; }
+.news-card.featured .news-image { aspect-ratio: 16 / 9; max-height: 312px; }
+.news-side-stack .news-image { aspect-ratio: 16 / 9; max-height: 190px; }
+.news-image img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform 520ms ease; }
+.news-card:hover .news-image img { transform: scale(1.025); }
+.news-body { min-width: 0; display: flex; flex: 1; flex-direction: column; padding: 28px; }
+.news-card.featured .news-body { padding: 30px 32px 34px; }
+.news-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
 .news-date { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
-.news-category { display: inline-flex; align-items: center; min-height: 28px; padding: 6px 11px; border-radius: 999px; color: #08183c; background: rgba(242, 193, 78, 0.16); border: 1px solid rgba(214, 155, 20, 0.22); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
-.news-title { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.4vw, 2.4rem); line-height: 1.08; margin: 0 0 16px; }
-.news-side-stack .news-title { font-size: clamp(1.18rem, 1.7vw, 1.55rem); }
-.news-divider { width: 54px; height: 2px; border-radius: 999px; background: #d69b14; margin-bottom: 17px; }
-.news-excerpt { color: #5f6878; font-size: 0.96rem; line-height: 1.68; margin: 0 0 24px; }
-.news-action { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(8, 24, 60, 0.18); border-radius: 999px; background: #08183c; color: #ffffff; padding: 11px 18px; font-size: 0.78rem; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease; }
-.news-action:hover { background: #f2c14e; color: #08183c; border-color: #f2c14e; transform: translateX(3px); }
+.news-category { display: inline-flex; align-items: center; min-height: 28px; padding: 5px 11px; border-radius: 999px; color: #08183c; background: rgba(242, 193, 78, 0.14); border: 1px solid rgba(214, 155, 20, 0.24); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.07em; text-transform: uppercase; }
+.news-title { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.45rem, 2.4vw, 2.35rem); line-height: 1.08; margin: 0 0 14px; }
+.news-side-stack .news-title { font-size: clamp(1.18rem, 1.55vw, 1.52rem); }
+.news-divider { width: 46px; height: 2px; border-radius: 999px; background: #d69b14; margin-bottom: 16px; }
+.news-excerpt { color: #5b6577; font-size: 0.95rem; line-height: 1.68; margin: 0 0 22px; }
+.news-side-stack .news-excerpt { font-size: 0.9rem; line-height: 1.58; }
+.news-action { margin-top: auto; align-self: flex-start; color: #08183c; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid #d69b14; padding-bottom: 5px; transition: color 220ms ease, transform 220ms ease, border-color 220ms ease; }
+.news-action:hover { color: #b98416; border-color: #08183c; transform: translateX(3px); }
 
+.scripture-cta { position: relative; overflow: hidden; padding: 104px 0 108px; background: #08183c; color: #ffffff; text-align: center; }
+.scripture-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242, 193, 78, 0.2), transparent 36%), linear-gradient(135deg, rgba(255,255,255,0.06), transparent 42%); pointer-events: none; }
+.scripture-cta .container { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 24px; }
+.scripture-line { width: 86px; height: 3px; border-radius: 999px; background: #f2c14e; margin: 0 auto 30px; }
+.scripture-cta h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4.2vw, 4.1rem); line-height: 1.1; margin: 0 0 20px; color: #ffffff; }
+.scripture-reference { color: #f2c14e; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 30px; }
 .footer { background: #08183c; color: white; padding: 60px 0 30px; }
 .footer .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
 .footer .footer-logo { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 20px; }
@@ -227,10 +230,11 @@ const responsiveStyles = `
   .student-life-feature { min-height: 480px; }
   .student-life-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-life-stack figure { min-height: 260px; }
-  .news-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .news-side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .news-side-stack .news-card { flex-direction: column; min-height: 100%; }
-  .news-side-stack .news-image { flex-basis: auto; height: 230px; }
+  .news-side-stack { grid-column: 1 / -1; }
+  .news-side-stack .news-card { min-height: 100%; }
+  .news-side-stack .news-image { max-height: none; }
   .footer .container { grid-template-columns: 1fr; text-align: center; }
 }
 
@@ -251,21 +255,19 @@ const responsiveStyles = `
   .why-choose-us { padding: 60px 0; }
   .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
-  .admissions-cta { padding: 60px 0; }
   .news-events { padding: 60px 0; }
+  .scripture-cta { padding: 76px 0 80px; }
   .news-header { margin-bottom: 34px; }
+  .news-grid { grid-template-columns: 1fr; gap: 22px; }
   .news-side-stack { grid-template-columns: 1fr; }
-  .news-card,
-  .news-side-stack .news-card { flex-direction: column; }
   .news-card.featured .news-image,
-  .news-side-stack .news-image { height: 260px; }
+  .news-side-stack .news-image { aspect-ratio: 16 / 9; max-height: none; }
   .hero { min-height: auto; height: auto; }
   .program-stories { gap: 54px; }
   .program-story-media,
   .program-story-media img { min-height: 340px; }
   .student-life-feature { min-height: 410px; }
   .student-life-stack { grid-template-columns: 1fr; }
-  .admissions-cta { padding: 84px 0 88px; }
 }
 
 @media (max-width: 576px) {
@@ -274,7 +276,6 @@ const responsiveStyles = `
   .hero-header { gap: 16px; }
   .hero-headline { font-size: clamp(2.4rem, 9vw, 3.5rem); }
   .hero-subheadline { font-size: 0.95rem; }
-  .brand-address { display: none; }
   .whats-new-section .container { padding: 0 15px; }
   .personality-development .container { padding: 0 15px; }
   .uniform-collection .container { padding: 0 15px; }
@@ -308,12 +309,11 @@ const responsiveStyles = `
   .student-life-feature { min-height: 340px; border-radius: 22px; }
   .student-life-stack figure { min-height: 210px; border-radius: 20px; }
   .student-life-mantra { left: 20px; right: 20px; bottom: 20px; }
-  .admissions-cta .container { padding: 0 15px; }
   .news-events .container { padding: 0 15px; }
-  .news-card { border-radius: 20px; }
+  .news-card { border-radius: 16px; }
   .news-card.featured .news-body,
   .news-body { padding: 24px 20px 26px; }
-  .news-tagline { font-size: 0.7rem; letter-spacing: 0.14em; }
+  .scripture-cta .container { padding: 0 15px; }
   .footer .container { padding: 0 15px; }
 }
 `;
@@ -402,54 +402,40 @@ const uniformSlides = [
 ];
 
 function App() {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.requestAnimationFrame(() => {
+      const sectionId = location.hash.slice(1);
+
+      if (sectionId) {
+        document.getElementById(sectionId)?.scrollIntoView({ block: 'start' });
+        return;
+      }
+
+      window.scrollTo({ top: 0 });
+    });
+  }, [location.pathname, location.hash]);
+
   return (
     <main style={page}>
       <style>{responsiveStyles}</style>
+      <SiteNav />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/admissions" element={<Admissions />} />
+        <Route path="/campus-life" element={<CampusLife />} />
+        <Route path="/school-events" element={<SchoolEvents />} />
+      </Routes>
+    </main>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
       <section id="home" style={hero}>
         <div style={heroOverlay} />
-
-        <div style={siteNav} className="site-nav">
-          <header style={heroHeader} className="hero-header">
-            <div style={brandBlock} className="brand-block">
-              <img src={logoSrc} alt="Philippians Academy logo" style={brandLogo} />
-              <div style={brandText} className="brand-text">
-                <div style={brandName}>Philippians Academy</div>
-                <div style={brandAddress} className="brand-address">
-                  1316 Haise Street, Moonwalk Village, Parañaque City
-                </div>
-              </div>
-            </div>
-
-            <div style={navArea}>
-              <div style={topNav} className="hero-nav-links">
-                <a href="#home" style={navLink}>Home</a>
-                <a href="#about" style={navLink}>About Us</a>
-                <a href="#admissions" style={navLink}>Admissions</a>
-                <a href="#contact" style={navLink}>Contact Us</a>
-                <button style={navCtaButton} className="hero-login-button">Login</button>
-              </div>
-              <button
-                type="button"
-                style={menuButton}
-                className="mobile-toggle"
-                aria-expanded={mobileNavOpen}
-                aria-label="Open navigation menu"
-                onClick={() => setMobileNavOpen((open) => !open)}
-              >
-                ☰
-              </button>
-            </div>
-          </header>
-
-          <div style={mobileMenu} className={`mobile-menu${mobileNavOpen ? ' open' : ''}`}>
-            <a href="#home" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Home</a>
-            <a href="#about" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>About Us</a>
-            <a href="#admissions" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Admissions</a>
-            <a href="#contact" style={navLink} className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Contact Us</a>
-            <button style={navCtaButton} onClick={() => setMobileNavOpen(false)}>Login</button>
-          </div>
-        </div>
 
         <div style={heroContent} className="hero-content">
           <div style={heroBody} className="hero-body">
@@ -555,6 +541,14 @@ function App() {
         </div>
       </section>
 
+      <section className="scripture-cta">
+        <div className="container">
+          <div className="scripture-line" />
+          <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
+          <div className="scripture-reference">PHILIPPIANS 4:13</div>
+        </div>
+      </section>
+
       {/* Academic Programs Section */}
       <section id="academics" className="academic-programs">
         <div className="container">
@@ -571,7 +565,7 @@ function App() {
                 <p className="program-label">Early Learning</p>
                 <h3>Kindergarten</h3>
                 <p>Building joyful foundations through Christ-centered early learning and creativity.</p>
-                <a className="program-link" href="#admissions">Learn More</a>
+                <a className="program-link" href="/admissions">Learn More</a>
               </div>
             </article>
 
@@ -583,7 +577,7 @@ function App() {
                 <p className="program-label">Foundation Years</p>
                 <h3>Grade School</h3>
                 <p>Developing discipline, confidence, academic excellence, and lifelong curiosity.</p>
-                <a className="program-link" href="#admissions">Learn More</a>
+                <a className="program-link" href="/admissions">Learn More</a>
               </div>
             </article>
 
@@ -595,7 +589,7 @@ function App() {
                 <p className="program-label">Leadership Formation</p>
                 <h3>Junior High School</h3>
                 <p>Empowering students through leadership, collaboration, and deeper academic growth.</p>
-                <a className="program-link" href="#admissions">Learn More</a>
+                <a className="program-link" href="/admissions">Learn More</a>
               </div>
             </article>
 
@@ -607,7 +601,7 @@ function App() {
                 <p className="program-label">Future Readiness</p>
                 <h3>Senior High School</h3>
                 <p>Preparing future-ready learners for college, careers, and purposeful leadership.</p>
-                <a className="program-link" href="#admissions">Learn More</a>
+                <a className="program-link" href="/admissions">Learn More</a>
               </div>
             </article>
           </div>
@@ -662,154 +656,8 @@ function App() {
         </div>
       </section>
 
-      {/* Student Life Section */}
-      <section className="student-life">
-        <div className="container">
-          <div className="student-life-header">
-            <h2>Student Life at Philippians</h2>
-            <p className="student-life-subtitle">
-              Faith, friendship, leadership, and meaningful experiences that shape future-ready students.
-            </p>
-          </div>
-
-          <div className="student-life-editorial">
-            <figure className="student-life-feature">
-              <img src={heroBanner} alt="Philippians Academy student life" />
-              <figcaption className="student-life-mantra">
-                Faith <span>&bull;</span> Friendship <span>&bull;</span> Leadership <span>&bull;</span> Service
-              </figcaption>
-            </figure>
-            <div className="student-life-stack">
-              <figure>
-                <img src={seniorHighImage} alt="Senior High students at Philippians Academy" />
-              </figure>
-              <figure>
-                <img src={gradeSchoolImage} alt="Grade School students at Philippians Academy" />
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Admissions CTA Section */}
-      <section className="admissions-cta">
-        <div className="container">
-          <div className="scripture-line" />
-          <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
-          <div className="scripture-reference">PHILIPPIANS 4:13</div>
-          <p>Begin your child&rsquo;s journey in a faith-centered learning community built on excellence, character, and purpose.</p>
-          <button className="enroll-btn">Apply for Admission</button>
-        </div>
-      </section>
-
-      {/* News & Events Section */}
-      <section className="news-events">
-        <div className="container">
-          <div className="news-header">
-            <p className="news-tagline">CAMPUS NEWS &bull; EVENTS &bull; STUDENT LIFE</p>
-            <h2>Latest News &amp; Events</h2>
-            <p className="news-subtitle">
-              Celebrating faith, excellence, achievement, and meaningful student experiences at Philippians Academy.
-            </p>
-          </div>
-
-          <div className="news-grid">
-            <article className="news-card featured">
-              <div className="news-image">
-                <img src={heroBanner} alt="Philippians Academy campus event" />
-              </div>
-              <div className="news-body">
-                <div className="news-meta">
-                  <span className="news-date">May 2026</span>
-                  <span className="news-category">School Event</span>
-                </div>
-                <h3 className="news-title">Philippians Academy Joins the PSAP School Fair 2026</h3>
-                <div className="news-divider" />
-                <p className="news-excerpt">
-                  Philippians Academy proudly participated in the PSAP School Fair 2026 at SM BF Para&ntilde;aque, welcoming parents and future students to explore the school&rsquo;s Christ-centered academic programs. Visitors experienced the academy&rsquo;s commitment to faith, excellence, character, and service through engaging presentations, enrollment assistance, and meaningful conversations with faculty and staff.
-                </p>
-                <button className="news-action">Read More</button>
-              </div>
-            </article>
-
-            <div className="news-side-stack">
-              <article className="news-card">
-                <div className="news-image">
-                  <img src={seniorHighImage} alt="Philippians Academy recognition ceremony" />
-                </div>
-                <div className="news-body">
-                  <div className="news-meta">
-                    <span className="news-date">April 2026</span>
-                    <span className="news-category">Recognition Ceremony</span>
-                  </div>
-                  <h3 className="news-title">Recognition &amp; Moving-Up Ceremony 2026</h3>
-                  <div className="news-divider" />
-                  <p className="news-excerpt">
-                    Philippians Academy celebrated the achievements and milestones of its learners during the Recognition, Moving-Up, and Completion Ceremony 2026. The event honored academic excellence, perseverance, leadership, and the faith-driven growth of students as they advance toward new opportunities and brighter futures.
-                  </p>
-                  <button className="news-action">Read More</button>
-                </div>
-              </article>
-
-              <article className="news-card">
-                <div className="news-image">
-                  <img src={gradeSchoolImage} alt="Philippians Academy Foundation Day celebration" />
-                </div>
-                <div className="news-body">
-                  <div className="news-meta">
-                    <span className="news-date">March 2026</span>
-                    <span className="news-category">Student Life</span>
-                  </div>
-                  <h3 className="news-title">Foundation Day Celebration 2026</h3>
-                  <div className="news-divider" />
-                  <p className="news-excerpt">
-                    Students, teachers, and families came together to celebrate Foundation Day 2026 through performances, games, presentations, and community activities that showcased school spirit, unity, creativity, and joyful learning. The celebration reflected the academy&rsquo;s mission of nurturing hearts and building futures through Christ-centered education.
-                  </p>
-                  <button className="news-action">Read More</button>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div>
-            <img src={logoSrc} alt="Philippians Academy logo" className="footer-logo" />
-            <p>Guiding hearts. Developing minds. Preparing leaders for a greater tomorrow.</p>
-          </div>
-          <div>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#academics">Academics</a></li>
-              <li><a href="#admissions">Admissions</a></li>
-              <li><a href="#student-life">Student Life</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3>Contact Info</h3>
-            <p>1316 Haise Street<br />Moonwalk Village, Parañaque City</p>
-            <p>Phone: (02) 123-4567<br />Email: info@philippiansacademy.edu.ph</p>
-          </div>
-          <div>
-            <h3>Follow Us</h3>
-            <div className="social-icons">
-              <a href="#" className="social-icon">📘</a>
-              <a href="#" className="social-icon">🐦</a>
-              <a href="#" className="social-icon">📷</a>
-              <a href="#" className="social-icon">🎥</a>
-            </div>
-          </div>
-        </div>
-        <div className="copyright">
-          <p>&copy; 2024 Philippians Academy. All rights reserved.</p>
-        </div>
-      </footer>
-    </main>
+      <Footer />
+    </>
   );
 }
 
@@ -851,124 +699,6 @@ const heroContent = {
   maxWidth: '1500px',
   padding: 'clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px)',
   boxSizing: 'border-box',
-};
-
-const siteNav = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  zIndex: 50,
-  padding: 'clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px)',
-  background: 'rgba(8, 24, 60, 0.72)',
-  borderBottom: '1px solid rgba(255,255,255,0.12)',
-  boxShadow: '0 16px 40px rgba(0,0,0,0.16)',
-  backdropFilter: 'blur(16px)',
-  WebkitBackdropFilter: 'blur(16px)',
-};
-
-const heroHeader = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '24px',
-  flexWrap: 'wrap',
-  width: '100%',
-  maxWidth: '1500px',
-  margin: '0 auto',
-};
-
-const brandBlock = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '16px',
-  minWidth: '0',
-};
-
-const brandText = {
-  minWidth: '0',
-};
-
-const brandLogo = {
-  width: '52px',
-  height: '52px',
-  objectFit: 'cover',
-  borderRadius: '999px',
-  border: '2px solid rgba(255,255,255,0.18)',
-  boxShadow: '0 12px 35px rgba(0, 0, 0, 0.22)',
-};
-
-const brandName = {
-  fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)',
-  fontWeight: 800,
-  letterSpacing: '0.08em',
-  textTransform: 'uppercase',
-  color: 'white',
-};
-
-const brandAddress = {
-  marginTop: '6px',
-  fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
-  color: 'rgba(255,255,255,0.82)',
-  lineHeight: 1.6,
-};
-
-const navArea = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '16px',
-  flexShrink: 0,
-};
-
-const topNav = {
-  alignItems: 'center',
-  gap: '24px',
-  flexWrap: 'nowrap',
-  justifyContent: 'flex-end',
-};
-
-const menuButton = {
-  minWidth: '52px',
-  minHeight: '52px',
-  borderRadius: '16px',
-  border: '1px solid rgba(255,255,255,0.18)',
-  background: 'rgba(255,255,255,0.08)',
-  color: 'white',
-  fontSize: '1.3rem',
-  cursor: 'pointer',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0',
-};
-
-const mobileMenu = {
-  width: '100%',
-  maxWidth: '1500px',
-  flexDirection: 'column',
-  gap: '14px',
-  marginTop: '12px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  paddingTop: '14px',
-  borderTop: '1px solid rgba(255,255,255,0.12)',
-};
-
-const navLink = {
-  fontSize: '14px',
-  fontWeight: 600,
-  color: 'rgba(255,255,255,0.92)',
-  textDecoration: 'none',
-};
-
-const navCtaButton = {
-  background: 'rgba(242, 193, 78, 0.95)',
-  color: 'rgb(17, 24, 39)',
-  border: 'none',
-  padding: '14px 28px',
-  borderRadius: '999px',
-  fontWeight: 700,
-  cursor: 'pointer',
-  boxShadow: '0 14px 30px rgba(0,0,0,0.18)',
 };
 
 const heroBody = {
