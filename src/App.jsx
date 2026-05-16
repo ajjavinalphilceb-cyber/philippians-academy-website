@@ -31,9 +31,9 @@ import publicSpeakingImage from './assets/Public Speaking.png?version=20260515-r
 const responsiveStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
-.hero { min-height: min(820px, 100vh); }
+.hero { min-height: clamp(560px, 80vh, 720px); }
 .hero::after { content: ""; position: absolute; inset: auto 0 0 0; z-index: 1; height: 10px; background: linear-gradient(90deg, transparent, rgba(242, 193, 78, 0.9), transparent); box-shadow: 0 -22px 70px rgba(242, 193, 78, 0.16); pointer-events: none; }
-.hero-content { position: relative; z-index: 2; width: min(1320px, calc(100% - 48px)); max-width: 1320px; margin: 0 auto; padding: 188px 0 92px; box-sizing: border-box; }
+.hero-content { position: relative; z-index: 2; width: min(1320px, calc(100% - 48px)); max-width: 1320px; margin: 0 auto; padding: clamp(128px, 15vh, 164px) 0 clamp(54px, 8vh, 76px); box-sizing: border-box; }
 .site-nav { padding: clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px); }
 .hero-header { gap: 24px; align-items: center; }
 .brand-block { gap: 16px; min-width: 0; }
@@ -42,8 +42,8 @@ const responsiveStyles = `
 .mobile-toggle { display: none; }
 .mobile-menu { display: none; width: 100%; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 0; border-top: 1px solid rgba(255,255,255,0.12); }
 .mobile-nav-link { display: block; width: 100%; }
-.hero-headline { font-size: clamp(3.05rem, 6.7vw, 7.2rem); line-height: 0.92; max-width: 900px; }
-.hero-subheadline { font-size: clamp(1rem, 1.45vw, 1.22rem); line-height: 1.82; max-width: 680px; }
+.hero-headline { font-size: clamp(2.85rem, 5vw, 5.45rem); line-height: 0.98; max-width: 820px; }
+.hero-subheadline { font-size: clamp(0.98rem, 1.25vw, 1.12rem); line-height: 1.68; max-width: 620px; }
 .whats-new-section, .academic-programs, .uniform-collection, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
@@ -203,7 +203,8 @@ const responsiveStyles = `
 .footer .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
 
 @media (max-width: 1200px) {
-  .hero-content { padding: 176px 0 86px; }
+  .hero { min-height: clamp(540px, 78vh, 680px); }
+  .hero-content { padding: clamp(122px, 14vh, 150px) 0 clamp(50px, 7vh, 68px); }
 }
 
 @media (max-width: 992px) {
@@ -241,11 +242,12 @@ const responsiveStyles = `
 }
 
 @media (max-width: 768px) {
-  .hero-content { width: min(100% - 30px, 1320px); padding: 164px 0 64px; }
+  .hero { min-height: clamp(500px, 72vh, 620px); }
+  .hero-content { width: min(100% - 30px, 1320px); padding: 140px 0 48px; }
   .hero-header { flex-direction: row; align-items: center; }
   .brand-block { flex-direction: row; align-items: center; }
-  .hero-headline { font-size: clamp(2.75rem, 13vw, 4.35rem); }
-  .hero-subheadline { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
+  .hero-headline { font-size: clamp(2.25rem, 9.5vw, 3.55rem); line-height: 1.02; }
+  .hero-subheadline { font-size: clamp(0.92rem, 2.5vw, 1rem); line-height: 1.58; }
   .whats-new-section { padding: 68px 0; }
   .personality-development { padding: 66px 0; }
   .uniform-collection { padding: 72px 0; }
@@ -264,7 +266,7 @@ const responsiveStyles = `
   .news-side-stack { grid-template-columns: 1fr; }
   .news-card.featured .news-image,
   .news-side-stack .news-image { aspect-ratio: 16 / 9; max-height: none; }
-  .hero { min-height: auto; height: auto; }
+  .hero { height: auto; }
   .program-stories { gap: 54px; }
   .program-story-media,
   .program-story-media img { min-height: 340px; }
@@ -273,11 +275,12 @@ const responsiveStyles = `
 }
 
 @media (max-width: 576px) {
-  .hero-content { width: min(100% - 30px, 1320px); padding: 164px 0 60px; }
+  .hero { min-height: clamp(480px, 70vh, 580px); }
+  .hero-content { width: min(100% - 30px, 1320px); padding: 126px 0 40px; }
   .site-nav { padding: 14px 18px; }
   .hero-header { gap: 16px; }
-  .hero-headline { font-size: clamp(2.65rem, 13vw, 4rem); }
-  .hero-subheadline { font-size: 0.95rem; }
+  .hero-headline { font-size: clamp(1.9rem, 8vw, 2.75rem); line-height: 1.06; max-width: 15ch; }
+  .hero-subheadline { font-size: 0.9rem; line-height: 1.54; max-width: 34ch; }
   .whats-new-section .container { padding: 0 15px; }
   .personality-development .container { padding: 0 15px; }
   .uniform-collection .container { padding: 0 15px; }
@@ -409,6 +412,13 @@ const homeHeroRevealProps = {
   transition: { duration: 0.72, ease: 'easeOut' },
 };
 
+const homeRevealProps = (delay = 0) => ({
+  initial: { opacity: 0, y: 34 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.18 },
+  transition: { duration: 0.68, ease: 'easeOut', delay },
+});
+
 function App() {
   const location = useLocation();
 
@@ -470,22 +480,22 @@ function HomePage() {
       {/* What's New Section */}
       <section id="about" className="whats-new-section">
         <div className="container">
-          <div className="section-kicker">New at Philippians</div>
-          <div className="section-heading">
+          <motion.div {...homeRevealProps()} className="section-kicker">New at Philippians</motion.div>
+          <motion.div {...homeRevealProps(0.06)} className="section-heading">
             <h2>What's New in Philippians?</h2>
             <p>Innovative programs and modern learning opportunities designed for the leaders of tomorrow.</p>
-          </div>
+          </motion.div>
 
           <div className="new-programs-grid">
-            {whatsNewPrograms.map((program) => (
-              <article className="new-program-card" key={program.title}>
+            {whatsNewPrograms.map((program, index) => (
+              <motion.article className="new-program-card" key={program.title} {...homeRevealProps(index * 0.04)}>
                 <div className="new-program-image">
                   <img src={program.image} alt={program.alt} />
                 </div>
                 <h3 className="new-program-title">{program.title}</h3>
                 <div className="gold-rule" />
                 <p className="new-program-desc">{program.description}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -494,7 +504,7 @@ function HomePage() {
       {/* Personality Development Section */}
       <section className="personality-development">
         <div className="container">
-          <div className="personality-copy">
+          <motion.div className="personality-copy" {...homeRevealProps()}>
             <div className="section-kicker">We also have</div>
             <h2>Personality Development</h2>
             <p className="personality-subtitle">Building confidence, character, and leadership.</p>
@@ -503,8 +513,8 @@ function HomePage() {
             </p>
 
             <div className="personality-features">
-              {personalityFeatures.map((feature) => (
-                <article className="personality-feature" key={feature.title}>
+              {personalityFeatures.map((feature, index) => (
+                <motion.article className="personality-feature" key={feature.title} {...homeRevealProps(index * 0.04)}>
                   <div className="personality-icon">
                     <img src={feature.image} alt={feature.alt} />
                   </div>
@@ -512,30 +522,30 @@ function HomePage() {
                     <h3>{feature.title}</h3>
                     <p>{feature.description}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="personality-photo">
+          <motion.div className="personality-photo" {...homeRevealProps(0.1)}>
             <img src={personalityDevelopmentImage} alt="Personality Development program" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Uniform Collection Section */}
       <section id="uniforms" className="uniform-collection">
         <div className="container">
-          <div className="uniform-header">
+          <motion.div className="uniform-header" {...homeRevealProps()}>
             <h2>The New Philippians Uniform</h2>
             <p className="uniform-subtext">
               Designed with sophistication, comfort, confidence, and excellence in mind — reflecting the value and identity of every Philippians student.
             </p>
-          </div>
+          </motion.div>
 
           <div className="uniform-grid">
-            {uniformSlides.map((slide) => (
-              <article className="uniform-card" key={slide.title}>
+            {uniformSlides.map((slide, index) => (
+              <motion.article className="uniform-card" key={slide.title} {...homeRevealProps(index * 0.05)}>
                 <div className="uniform-card-image">
                   <img src={slide.image} alt={slide.alt} />
                 </div>
@@ -543,29 +553,31 @@ function HomePage() {
                   <h3>{slide.title}</h3>
                   <div className="uniform-accent" />
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
       <section className="scripture-cta">
-        <div className="container">
+        <motion.div className="container" {...homeRevealProps()}>
           <div className="scripture-line" />
           <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
           <div className="scripture-reference">PHILIPPIANS 4:13</div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Academic Programs Section */}
       <section id="academics" className="academic-programs">
         <div className="container">
-          <h2>Academic Programs</h2>
-          <p className="section-intro">
-            Purposeful learning pathways designed to nurture faith, character, academic excellence, and leadership at every stage.
-          </p>
+          <motion.div {...homeRevealProps()}>
+            <h2>Academic Programs</h2>
+            <p className="section-intro">
+              Purposeful learning pathways designed to nurture faith, character, academic excellence, and leadership at every stage.
+            </p>
+          </motion.div>
           <div className="program-stories">
-            <article className="program-story">
+            <motion.article className="program-story" {...homeRevealProps()}>
               <div className="program-story-media">
                 <img src={kindergartenImage} alt="Kindergarten students learning together" />
               </div>
@@ -575,9 +587,9 @@ function HomePage() {
                 <p>Building joyful foundations through Christ-centered early learning and creativity.</p>
                 <a className="program-link" href="/admissions">Learn More</a>
               </div>
-            </article>
+            </motion.article>
 
-            <article className="program-story reverse">
+            <motion.article className="program-story reverse" {...homeRevealProps()}>
               <div className="program-story-media">
                 <img src={gradeSchoolImage} alt="Grade School students in an academy setting" />
               </div>
@@ -587,9 +599,9 @@ function HomePage() {
                 <p>Developing discipline, confidence, academic excellence, and lifelong curiosity.</p>
                 <a className="program-link" href="/admissions">Learn More</a>
               </div>
-            </article>
+            </motion.article>
 
-            <article className="program-story">
+            <motion.article className="program-story" {...homeRevealProps()}>
               <div className="program-story-media">
                 <img src={juniorHighImage} alt="Junior High School students studying" />
               </div>
@@ -599,9 +611,9 @@ function HomePage() {
                 <p>Empowering students through leadership, collaboration, and deeper academic growth.</p>
                 <a className="program-link" href="/admissions">Learn More</a>
               </div>
-            </article>
+            </motion.article>
 
-            <article className="program-story reverse">
+            <motion.article className="program-story reverse" {...homeRevealProps()}>
               <div className="program-story-media">
                 <img src={seniorHighImage} alt="Senior High School students preparing for the future" />
               </div>
@@ -611,7 +623,7 @@ function HomePage() {
                 <p>Preparing future-ready learners for college, careers, and purposeful leadership.</p>
                 <a className="program-link" href="/admissions">Learn More</a>
               </div>
-            </article>
+            </motion.article>
           </div>
         </div>
       </section>
@@ -619,47 +631,47 @@ function HomePage() {
       {/* Why Choose Us Section */}
       <section className="why-choose-us">
         <div className="container">
-          <div className="why-header">
+          <motion.div className="why-header" {...homeRevealProps()}>
             <p className="why-tagline">FAITH &bull; EXCELLENCE &bull; CHARACTER &bull; SERVICE</p>
             <h2>Why Choose Philippians Academy?</h2>
             <p className="why-subtitle">
               Nurturing hearts, building futures, and glorifying God through Christ-centered education.
             </p>
-          </div>
+          </motion.div>
 
           <div className="features-grid">
-            <div className="feature-card">
+            <motion.div className="feature-card" {...homeRevealProps(0)}>
               <div className="feature-icon">
                 <Cross aria-hidden="true" />
               </div>
               <h3 className="feature-title">Christ-Centered Education</h3>
               <div className="why-card-accent" />
               <p className="feature-desc">Faith-based learning integrated into every aspect of our curriculum to guide students with wisdom and purpose.</p>
-            </div>
-            <div className="feature-card">
+            </motion.div>
+            <motion.div className="feature-card" {...homeRevealProps(0.04)}>
               <div className="feature-icon">
                 <BookOpenCheck aria-hidden="true" />
               </div>
               <h3 className="feature-title">Academic Excellence</h3>
               <div className="why-card-accent" />
               <p className="feature-desc">Rigorous and innovative programs that inspire students to achieve their highest potential.</p>
-            </div>
-            <div className="feature-card">
+            </motion.div>
+            <motion.div className="feature-card" {...homeRevealProps(0.08)}>
               <div className="feature-icon">
                 <HandHeart aria-hidden="true" />
               </div>
               <h3 className="feature-title">Character &amp; Leadership</h3>
               <div className="why-card-accent" />
               <p className="feature-desc">Developing integrity, compassion, leadership, and service through meaningful experiences.</p>
-            </div>
-            <div className="feature-card">
+            </motion.div>
+            <motion.div className="feature-card" {...homeRevealProps(0.12)}>
               <div className="feature-icon">
                 <ShieldCheck aria-hidden="true" />
               </div>
               <h3 className="feature-title">Safe &amp; Supportive Campus</h3>
               <div className="why-card-accent" />
               <p className="feature-desc">A nurturing environment where students grow with confidence, security, and care.</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -706,14 +718,12 @@ const heroBody = {
 };
 
 const heroText = {
-  maxWidth: '900px',
+  maxWidth: '820px',
   marginTop: '0',
 };
 
 const headline = {
   fontFamily: "Georgia, 'Times New Roman', serif",
-  fontSize: 'clamp(3.05rem, 6.7vw, 7.2rem)',
-  lineHeight: '0.92',
   fontWeight: 700,
   letterSpacing: 0,
   margin: 0,
@@ -725,11 +735,8 @@ const headlineAccent = {
 };
 
 const subheadline = {
-  marginTop: '28px',
-  marginBottom: '34px',
-  fontSize: 'clamp(1rem, 1.45vw, 1.22rem)',
-  lineHeight: 1.82,
-  maxWidth: '680px',
+  marginTop: '22px',
+  marginBottom: '26px',
   color: 'rgba(255,255,255,0.86)',
 };
 
@@ -747,7 +754,7 @@ const discoverButton = {
   background: 'linear-gradient(135deg, rgb(242, 193, 78), #d99a21)',
   color: 'rgb(8, 24, 60)',
   border: '1px solid rgba(242, 193, 78, 0.82)',
-  padding: '14px 26px',
+  padding: '13px 24px',
   borderRadius: '999px',
   fontSize: '0.82rem',
   fontWeight: 900,
