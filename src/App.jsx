@@ -705,22 +705,69 @@ function App() {
       {/* News & Events Section */}
       <section className="news-events">
         <div className="container">
-          <h2>News & Events</h2>
+          <div className="news-header">
+            <p className="news-tagline">CAMPUS NEWS &bull; EVENTS &bull; STUDENT LIFE</p>
+            <h2>Latest News &amp; Events</h2>
+            <p className="news-subtitle">
+              Celebrating faith, excellence, achievement, and meaningful student experiences at Philippians Academy.
+            </p>
+          </div>
+
           <div className="news-grid">
-            <div className="news-card">
-              <div className="news-date">March 15, 2024</div>
-              <h3 className="news-title">Annual Science Fair Winners</h3>
-              <p className="news-excerpt">Congratulations to our Junior High students who excelled in this year's science fair, showcasing innovative projects and critical thinking skills.</p>
-            </div>
-            <div className="news-card">
-              <div className="news-date">February 28, 2024</div>
-              <h3 className="news-title">Community Service Day</h3>
-              <p className="news-excerpt">Students participated in a day of service, helping local communities and learning the importance of giving back.</p>
-            </div>
-            <div className="news-card">
-              <div className="news-date">January 20, 2024</div>
-              <h3 className="news-title">New STEM Program Launch</h3>
-              <p className="news-excerpt">We're excited to announce the launch of our enhanced STEM program, designed to inspire the next generation of innovators.</p>
+            <article className="news-card featured">
+              <div className="news-image">
+                <img src={heroBanner} alt="Philippians Academy campus event" />
+              </div>
+              <div className="news-body">
+                <div className="news-meta">
+                  <span className="news-date">May 2026</span>
+                  <span className="news-category">School Event</span>
+                </div>
+                <h3 className="news-title">Philippians Academy Joins the PSAP School Fair 2026</h3>
+                <div className="news-divider" />
+                <p className="news-excerpt">
+                  Philippians Academy proudly participated in the PSAP School Fair 2026 at SM BF Para&ntilde;aque, welcoming parents and future students to explore the school&rsquo;s Christ-centered academic programs. Visitors experienced the academy&rsquo;s commitment to faith, excellence, character, and service through engaging presentations, enrollment assistance, and meaningful conversations with faculty and staff.
+                </p>
+                <button className="news-action">Read More</button>
+              </div>
+            </article>
+
+            <div className="news-side-stack">
+              <article className="news-card">
+                <div className="news-image">
+                  <img src={seniorHighImage} alt="Philippians Academy recognition ceremony" />
+                </div>
+                <div className="news-body">
+                  <div className="news-meta">
+                    <span className="news-date">April 2026</span>
+                    <span className="news-category">Recognition Ceremony</span>
+                  </div>
+                  <h3 className="news-title">Recognition &amp; Moving-Up Ceremony 2026</h3>
+                  <div className="news-divider" />
+                  <p className="news-excerpt">
+                    Philippians Academy celebrated the achievements and milestones of its learners during the Recognition, Moving-Up, and Completion Ceremony 2026. The event honored academic excellence, perseverance, leadership, and the faith-driven growth of students as they advance toward new opportunities and brighter futures.
+                  </p>
+                  <button className="news-action">Read More</button>
+                </div>
+              </article>
+
+              <article className="news-card">
+                <div className="news-image">
+                  <img src={gradeSchoolImage} alt="Philippians Academy Foundation Day celebration" />
+                </div>
+                <div className="news-body">
+                  <div className="news-meta">
+                    <span className="news-date">March 2026</span>
+                    <span className="news-category">Student Life</span>
+                  </div>
+                  <h3 className="news-title">Foundation Day Celebration 2026</h3>
+                  <div className="news-divider" />
+                  <p className="news-excerpt">
+                    Students, teachers, and families came together to celebrate Foundation Day 2026 through performances, games, presentations, and community activities that showcased school spirit, unity, creativity, and joyful learning. The celebration reflected the academy&rsquo;s mission of nurturing hearts and building futures through Christ-centered education.
+                  </p>
+                  <button className="news-action">Read More</button>
+                </div>
+              </article>
             </div>
           </div>
         </div>
