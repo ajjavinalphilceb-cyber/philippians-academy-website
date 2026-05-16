@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
 import Footer from './components/Footer.jsx';
 import SiteNav from './components/SiteNav.jsx';
+import About from './pages/About.jsx';
 import Admissions from './pages/Admissions.jsx';
 import CampusLife from './pages/CampusLife.jsx';
 import SchoolEvents from './pages/SchoolEvents.jsx';
@@ -29,8 +31,9 @@ import publicSpeakingImage from './assets/Public Speaking.png?version=20260515-r
 const responsiveStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
-.hero { min-height: 680px; max-height: 720px; }
-.hero-content { max-width: 1500px; margin: 0 auto; padding: clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px); }
+.hero { min-height: min(820px, 100vh); }
+.hero::after { content: ""; position: absolute; inset: auto 0 0 0; z-index: 1; height: 10px; background: linear-gradient(90deg, transparent, rgba(242, 193, 78, 0.9), transparent); box-shadow: 0 -22px 70px rgba(242, 193, 78, 0.16); pointer-events: none; }
+.hero-content { position: relative; z-index: 2; width: min(1320px, calc(100% - 48px)); max-width: 1320px; margin: 0 auto; padding: 188px 0 92px; box-sizing: border-box; }
 .site-nav { padding: clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px); }
 .hero-header { gap: 24px; align-items: center; }
 .brand-block { gap: 16px; min-width: 0; }
@@ -39,8 +42,8 @@ const responsiveStyles = `
 .mobile-toggle { display: none; }
 .mobile-menu { display: none; width: 100%; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 0; border-top: 1px solid rgba(255,255,255,0.12); }
 .mobile-nav-link { display: block; width: 100%; }
-.hero-headline { font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.02; max-width: 11ch; }
-.hero-subheadline { font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; max-width: 620px; }
+.hero-headline { font-size: clamp(3.05rem, 6.7vw, 7.2rem); line-height: 0.92; max-width: 900px; }
+.hero-subheadline { font-size: clamp(1rem, 1.45vw, 1.22rem); line-height: 1.82; max-width: 680px; }
 .whats-new-section, .academic-programs, .uniform-collection, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
@@ -200,8 +203,7 @@ const responsiveStyles = `
 .footer .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
 
 @media (max-width: 1200px) {
-  .hero-content { padding: clamp(132px, 14vw, 168px) clamp(24px, 3vw, 42px) clamp(64px, 8vw, 96px); }
-  .hero-headline { max-width: 12ch; }
+  .hero-content { padding: 176px 0 86px; }
 }
 
 @media (max-width: 992px) {
@@ -239,10 +241,10 @@ const responsiveStyles = `
 }
 
 @media (max-width: 768px) {
-  .hero-content { padding: 172px 20px 56px; }
+  .hero-content { width: min(100% - 30px, 1320px); padding: 164px 0 64px; }
   .hero-header { flex-direction: row; align-items: center; }
   .brand-block { flex-direction: row; align-items: center; }
-  .hero-headline { font-size: clamp(2.75rem, 8vw, 4.2rem); }
+  .hero-headline { font-size: clamp(2.75rem, 13vw, 4.35rem); }
   .hero-subheadline { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
   .whats-new-section { padding: 68px 0; }
   .personality-development { padding: 66px 0; }
@@ -271,10 +273,10 @@ const responsiveStyles = `
 }
 
 @media (max-width: 576px) {
-  .hero-content { padding: 188px 18px 48px; }
+  .hero-content { width: min(100% - 30px, 1320px); padding: 164px 0 60px; }
   .site-nav { padding: 14px 18px; }
   .hero-header { gap: 16px; }
-  .hero-headline { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+  .hero-headline { font-size: clamp(2.65rem, 13vw, 4rem); }
   .hero-subheadline { font-size: 0.95rem; }
   .whats-new-section .container { padding: 0 15px; }
   .personality-development .container { padding: 0 15px; }
@@ -401,6 +403,12 @@ const uniformSlides = [
   },
 ];
 
+const homeHeroRevealProps = {
+  initial: { opacity: 0, y: 34 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.72, ease: 'easeOut' },
+};
+
 function App() {
   const location = useLocation();
 
@@ -423,6 +431,7 @@ function App() {
       <SiteNav />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
         <Route path="/admissions" element={<Admissions />} />
         <Route path="/campus-life" element={<CampusLife />} />
         <Route path="/school-events" element={<SchoolEvents />} />
@@ -434,26 +443,25 @@ function App() {
 function HomePage() {
   return (
     <>
-      <section id="home" style={hero}>
+      <section id="home" className="hero" style={hero}>
         <div style={heroOverlay} />
 
-        <div style={heroContent} className="hero-content">
+        <div className="hero-content">
           <div style={heroBody} className="hero-body">
-            <div style={heroText}>
+            <motion.div style={heroText} {...homeHeroRevealProps}>
               <h1 style={headline} className="hero-headline">
-                Faith. Excellence.
-                <br />
-                <span style={headlineAccent}>Purpose.</span>
+                Nurturing Hearts. <span style={headlineAccent}>Building Futures.</span> Glorifying God.
               </h1>
 
               <p style={subheadline} className="hero-subheadline">
-                Guiding hearts. Developing minds.
-                <br />
-                Preparing leaders for a greater tomorrow.
+                Philippians Academy is committed to providing Christ-centered education that develops academic excellence, strong character, leadership, and lifelong faith.
               </p>
 
-              <button style={discoverButton}>Discover More</button>
-            </div>
+              <div style={heroActions}>
+                <Link style={discoverButton} to="/admissions">Admissions</Link>
+                <a style={secondaryButton} href="#contact">Contact Us</a>
+              </div>
+            </motion.div>
           </div>
         </div>
 
@@ -664,15 +672,12 @@ function HomePage() {
 const page = {
   width: '100%',
   minHeight: '100vh',
-  overflowX: 'hidden',
   fontFamily: 'Inter, Arial, sans-serif',
   color: 'white',
 };
 
 const hero = {
   position: 'relative',
-  minHeight: '680px',
-  maxHeight: '720px',
   width: '100%',
   overflow: 'hidden',
   backgroundImage: `url(${heroBanner})`,
@@ -680,43 +685,37 @@ const hero = {
   backgroundPosition: 'center top',
   backgroundRepeat: 'no-repeat',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-end',
   justifyContent: 'center',
+  color: '#ffffff',
 };
 
 const heroOverlay = {
   position: 'absolute',
   inset: 0,
   background:
-    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.72) 28%, rgba(8, 24, 60, 0.18) 58%, rgba(8, 24, 60, 0.04) 84%, transparent 100%)',
+    'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 38%, rgba(8, 24, 60, 0.36) 68%, rgba(8, 24, 60, 0.16) 100%), radial-gradient(circle at 78% 24%, rgba(242, 193, 78, 0.24), transparent 28%)',
   pointerEvents: 'none',
-};
-
-const heroContent = {
-  position: 'relative',
-  zIndex: 1,
-  width: '100%',
-  maxWidth: '1500px',
-  padding: 'clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px)',
-  boxSizing: 'border-box',
 };
 
 const heroBody = {
   display: 'flex',
   width: '100%',
   justifyContent: 'flex-start',
-  alignItems: 'flex-start',
+  alignItems: 'flex-end',
 };
 
 const heroText = {
-  maxWidth: '680px',
+  maxWidth: '900px',
   marginTop: '0',
 };
 
 const headline = {
-  fontSize: 'clamp(3.5rem, 5vw, 5.5rem)',
-  lineHeight: '1.02',
-  fontWeight: 900,
+  fontFamily: "Georgia, 'Times New Roman', serif",
+  fontSize: 'clamp(3.05rem, 6.7vw, 7.2rem)',
+  lineHeight: '0.92',
+  fontWeight: 700,
+  letterSpacing: 0,
   margin: 0,
   color: 'white',
 };
@@ -727,23 +726,45 @@ const headlineAccent = {
 
 const subheadline = {
   marginTop: '28px',
-  marginBottom: '28px',
-  fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
-  lineHeight: 1.9,
-  maxWidth: '520px',
-  color: 'rgba(255,255,255,0.88)',
+  marginBottom: '34px',
+  fontSize: 'clamp(1rem, 1.45vw, 1.22rem)',
+  lineHeight: 1.82,
+  maxWidth: '680px',
+  color: 'rgba(255,255,255,0.86)',
+};
+
+const heroActions = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '14px',
 };
 
 const discoverButton = {
-  background: 'rgb(242, 193, 78)',
-  color: 'rgb(17, 24, 39)',
-  border: 'none',
-  padding: '16px 30px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '52px',
+  background: 'linear-gradient(135deg, rgb(242, 193, 78), #d99a21)',
+  color: 'rgb(8, 24, 60)',
+  border: '1px solid rgba(242, 193, 78, 0.82)',
+  padding: '14px 26px',
   borderRadius: '999px',
-  fontSize: '16px',
-  fontWeight: 700,
+  fontSize: '0.82rem',
+  fontWeight: 900,
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  textDecoration: 'none',
   cursor: 'pointer',
-  boxShadow: '0 16px 30px rgba(0,0,0,0.2)',
+  boxShadow: '0 18px 38px rgba(0,0,0,0.24)',
+};
+
+const secondaryButton = {
+  ...discoverButton,
+  background: 'rgba(255,255,255,0.08)',
+  color: '#ffffff',
+  backdropFilter: 'blur(14px)',
+  WebkitBackdropFilter: 'blur(14px)',
+  boxShadow: 'none',
 };
 
 export default App;

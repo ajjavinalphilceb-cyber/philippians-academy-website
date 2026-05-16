@@ -4,7 +4,7 @@ import gradeSchoolImage from '../assets/Grade School.png';
 import seniorHighImage from '../assets/Senior High School.png';
 
 const schoolEventsStyles = `
-.school-events-page { min-height: 100vh; overflow: hidden; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); color: #08183c; }
+.school-events-page { min-height: 100vh; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); color: #08183c; }
 .school-events-page .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
 .events-header { max-width: 820px; margin: 0 auto 52px; text-align: center; }
 .events-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }

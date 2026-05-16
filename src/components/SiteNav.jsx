@@ -10,8 +10,8 @@ const navItems = [
   },
   {
     label: 'About Us',
-    href: '/#about',
-    isActive: ({ pathname, hash }) => pathname === '/' && hash === '#about',
+    href: '/about',
+    isActive: ({ pathname }) => pathname === '/about',
   },
   {
     label: 'Admissions',
@@ -59,7 +59,13 @@ function SiteNav() {
   }, []);
 
   useEffect(() => {
-    setMobileNavOpen(false);
+    const frameId = window.requestAnimationFrame(() => {
+      setMobileNavOpen(false);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
   }, [location.pathname, location.hash]);
 
   return (

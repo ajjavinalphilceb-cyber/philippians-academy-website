@@ -7,7 +7,7 @@ import seniorHighImage from '../assets/Senior High School.png';
 import personalityDevelopmentImage from '../assets/Personality Development.png?version=20260515-refresh';
 
 const campusLifeStyles = `
-.campus-life-page { min-height: 100vh; overflow: hidden; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 56%, #fffaf0 100%); color: #08183c; }
+.campus-life-page { min-height: 100vh; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 56%, #fffaf0 100%); color: #08183c; }
 .campus-life-page .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
 .campus-hero { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr); gap: clamp(30px, 5vw, 72px); align-items: center; margin-bottom: 68px; }
 .campus-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }

@@ -2,7 +2,7 @@ import { CheckCircle2, ClipboardList, FileText, Globe2, MessageCircle, UserCheck
 import Footer from '../components/Footer.jsx';
 
 const admissionsPageStyles = `
-.admissions-page { position: relative; overflow: hidden; min-height: 100vh; padding: 170px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 52%, #fffaf0 100%); color: #08183c; }
+.admissions-page { position: relative; min-height: 100vh; padding: 170px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 52%, #fffaf0 100%); color: #08183c; }
 .admissions-page::before { content: ""; position: absolute; left: 50%; top: 110px; width: min(780px, 86vw); aspect-ratio: 1 / 0.42; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(242, 193, 78, 0.18), rgba(242, 193, 78, 0)); pointer-events: none; }
 .admissions-page .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
 .admissions-hero { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.65fr); gap: clamp(30px, 5vw, 72px); align-items: end; margin-bottom: 58px; }

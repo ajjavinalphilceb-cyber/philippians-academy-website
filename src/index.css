@@ -4,8 +4,22 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+}
+
+html {
+  overflow-y: auto;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #ffffff;
   color: #111827;
+  overflow: auto;
+  overscroll-behavior-y: auto;
 }
