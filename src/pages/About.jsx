@@ -10,12 +10,8 @@ import {
 } from 'lucide-react';
 import Footer from '../components/Footer.jsx';
 import heroBanner from '../assets/hero banner.png';
-import gradeSchoolImage from '../assets/Grade School.png';
-import juniorHighImage from '../assets/Junior High School.png';
 import seniorHighImage from '../assets/Senior High School.png';
-import personalityDevelopmentImage from '../assets/Personality Development.png?version=20260515-refresh';
-import roboticsAiImage from '../assets/Robotics AI.png?version=20260515-refresh';
-import multimediaImage from '../assets/Multi Media.png?version=20260515-refresh';
+import ourStoryImage from '../assets/Our Story Image.jpg';
 
 const aboutStyles = `
 .about-page { --navy: #08183c; --navy-soft: #102a63; --gold: #f2c14e; --gold-deep: #b98416; --ink: #18243d; --muted: #5a667a; position: relative; background: #ffffff; color: var(--ink); }
@@ -24,16 +20,17 @@ const aboutStyles = `
 .about-title { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.45rem, 4.8vw, 5rem); line-height: 0.98; letter-spacing: 0; margin: 0; }
 .about-copy { color: var(--muted); font-size: clamp(1rem, 1.25vw, 1.13rem); line-height: 1.78; margin: 0; }
 .gold-divider { width: 72px; height: 2px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.about-hero { position: relative; min-height: 680px; max-height: 720px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; color: #ffffff; background-image: url("${heroBanner}"); background-size: cover; background-position: center top; background-repeat: no-repeat; }
-.about-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.72) 28%, rgba(8, 24, 60, 0.18) 58%, rgba(8, 24, 60, 0.04) 84%, transparent 100%); pointer-events: none; }
+.about-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${heroBanner}"); background-size: cover; background-position: center top; background-repeat: no-repeat; }
+.about-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 24, 60, 0.88), rgba(8, 24, 60, 0.68)), linear-gradient(180deg, rgba(8, 24, 60, 0.24), rgba(8, 24, 60, 0.38)); pointer-events: none; }
 .about-hero::after { display: none; }
 .about-hero-gold { display: none; }
-.about-hero .about-container { position: relative; z-index: 1; width: 100%; max-width: 1500px; padding: clamp(132px, 14vw, 176px) clamp(24px, 3vw, 48px) clamp(72px, 8vw, 112px); box-sizing: border-box; }
+.about-hero .about-container { position: relative; z-index: 1; width: min(820px, calc(100% - 40px)); max-width: 820px; padding: 0 20px; box-sizing: border-box; text-align: center; transform: translateY(55px); }
 .about-hero-kicker { display: none; }
-.about-hero h1 { max-width: 760px; color: #ffffff; font-family: Inter, Arial, sans-serif; font-size: clamp(3.5rem, 5vw, 5.5rem); font-weight: 900; line-height: 1.02; letter-spacing: 0; margin: 0 0 28px; }
-.about-hero h1 span { color: var(--gold); }
-.about-hero p { max-width: 620px; color: rgba(255,255,255,0.88); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; margin: 0; }
-.about-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.about-hero h1 { max-width: 100%; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.5rem, 4vw, 4.15rem); font-weight: 700; line-height: 1; letter-spacing: 0; margin: 0; text-shadow: 0 16px 34px rgba(0, 0, 0, 0.28); }
+.about-hero h1 span { color: inherit; }
+.about-hero-divider { width: 82px; height: 2px; margin: 18px auto 18px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.about-hero p { max-width: 650px; color: var(--gold); font-size: clamp(0.68rem, 0.86vw, 0.82rem); font-weight: 900; letter-spacing: 0.22em; line-height: 1.35; margin: 0 auto; text-transform: uppercase; text-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); }
+.about-hero-actions { display: none; }
 .about-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 26px; border-radius: 999px; border: 1px solid rgba(242,193,78,0.82); font-size: 0.82rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: transform 230ms ease, background 230ms ease, color 230ms ease, box-shadow 230ms ease; }
 .about-btn.primary { background: linear-gradient(135deg, var(--gold), #d99a21); color: var(--navy); box-shadow: 0 18px 38px rgba(0,0,0,0.24); }
 .about-btn.secondary { background: rgba(255,255,255,0.08); color: #ffffff; backdrop-filter: blur(14px); }
@@ -43,12 +40,12 @@ const aboutStyles = `
 .about-hero .about-btn.secondary { border: 1px solid rgba(255,255,255,0.42); background: rgba(255,255,255,0.08); color: #ffffff; }
 .story-section { position: relative; padding: 110px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
 .story-grid { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr); gap: clamp(36px, 5vw, 76px); align-items: center; }
-.story-media { position: relative; min-height: 620px; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 78px rgba(8,24,60,0.17); background: #eef2f7; }
-.story-media img { width: 100%; height: 100%; min-height: 620px; display: block; object-fit: cover; transition: transform 640ms ease; }
-.story-media:hover img { transform: scale(1.035); }
-.story-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8,24,60,0) 46%, rgba(8,24,60,0.66)); pointer-events: none; }
-.story-media::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; z-index: 2; width: 9px; background: linear-gradient(180deg, var(--gold), var(--navy)); }
-.story-media-badge { position: absolute; left: 30px; right: 30px; bottom: 28px; z-index: 3; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.55rem, 2.5vw, 2.55rem); line-height: 1.12; }
+.story-media { position: relative; display: flex; flex-direction: column; gap: 16px; min-height: 0; padding: 12px 12px 22px; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 78px rgba(8,24,60,0.17); background: #ffffff; border: 1px solid rgba(8,24,60,0.08); }
+.story-media img { width: 100%; height: auto; min-height: 0; aspect-ratio: 1254 / 970; display: block; object-fit: contain; border-radius: 22px; background: #eef2f7; transition: filter 240ms ease; }
+.story-media:hover img { filter: saturate(1.04); }
+.story-media::before { display: none; }
+.story-media::after { display: none; }
+.story-media-badge { position: relative; z-index: 3; color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.28rem, 2vw, 2rem); line-height: 1.16; padding: 0 18px 0 20px; }
 .story-copy { max-width: 680px; }
 .story-copy .about-title { margin: 14px 0 20px; }
 .story-copy .gold-divider { margin: 0 0 26px; }
@@ -68,24 +65,14 @@ const aboutStyles = `
 .values-header .about-title { margin: 14px 0 18px; }
 .values-header .gold-divider { margin: 0 auto; }
 .values-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
-.value-card, .choice-card, .campus-preview-card { position: relative; min-width: 0; background: rgba(255,255,255,0.96); border: 1px solid rgba(8,24,60,0.08); box-shadow: 0 18px 48px rgba(8,24,60,0.09); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
+.value-card, .choice-card { position: relative; min-width: 0; background: rgba(255,255,255,0.96); border: 1px solid rgba(8,24,60,0.08); box-shadow: 0 18px 48px rgba(8,24,60,0.09); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
 .value-card { overflow: hidden; padding: 34px 28px 32px; border-radius: 24px; }
-.value-card::before, .choice-card::before, .campus-preview-card::before { content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 3px; border-radius: 0 0 999px 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.value-card:hover, .choice-card:hover, .campus-preview-card:hover { transform: translateY(-7px); border-color: rgba(242,193,78,0.48); box-shadow: 0 30px 68px rgba(8,24,60,0.14); }
+.value-card::before, .choice-card::before { content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 3px; border-radius: 0 0 999px 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.value-card:hover, .choice-card:hover { transform: translateY(-7px); border-color: rgba(242,193,78,0.48); box-shadow: 0 30px 68px rgba(8,24,60,0.14); }
 .value-icon, .choice-icon { width: 64px; aspect-ratio: 1; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--gold); background: var(--navy); margin-bottom: 24px; box-shadow: 0 14px 30px rgba(8,24,60,0.16); }
 .value-icon svg, .choice-icon svg { width: 30px; height: 30px; stroke-width: 1.8; }
-.value-card h3, .choice-card h3, .campus-preview-card h3 { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.34rem, 1.7vw, 1.72rem); line-height: 1.08; margin: 0 0 14px; }
-.value-card p, .choice-card p, .campus-preview-card p { color: var(--muted); font-size: 0.96rem; line-height: 1.66; margin: 0; }
-.campus-preview { padding: 102px 0; background: #ffffff; }
-.section-split-header { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.72fr); gap: 36px; align-items: end; margin-bottom: 42px; }
-.section-split-header .about-title { margin-top: 14px; }
-.campus-preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-.campus-preview-card { display: grid; grid-template-rows: auto 1fr; overflow: hidden; border-radius: 22px; }
-.campus-preview-image { aspect-ratio: 16 / 10; overflow: hidden; background: #eef2f7; }
-.campus-preview-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 520ms ease; }
-.campus-preview-card:hover img { transform: scale(1.035); }
-.campus-preview-body { padding: 25px 24px 28px; }
-.campus-action { margin-top: 34px; text-align: center; }
+.value-card h3, .choice-card h3 { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.34rem, 1.7vw, 1.72rem); line-height: 1.08; margin: 0 0 14px; }
+.value-card p, .choice-card p { color: var(--muted); font-size: 0.96rem; line-height: 1.66; margin: 0; }
 .choices-section { padding: 96px 0 104px; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
 .choices-header { max-width: 820px; margin: 0 auto 42px; text-align: center; }
 .choices-header .about-title { margin: 14px 0 18px; }
@@ -101,32 +88,37 @@ const aboutStyles = `
 .scripture-about-cta p { color: var(--gold); font-size: 0.82rem; font-weight: 950; letter-spacing: 0.24em; text-transform: uppercase; margin: 0 0 32px; }
 
 @media (max-width: 1080px) {
-  .story-grid, .section-split-header { grid-template-columns: 1fr; }
+  .about-hero { height: 340px; }
+  .about-hero .about-container { padding: 0 18px; transform: translateY(50px); }
+  .story-grid { grid-template-columns: 1fr; }
   .values-grid, .choices-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .campus-preview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
   .about-container { width: min(100% - 30px, 1320px); }
-  .about-hero { min-height: auto; max-height: none; }
-  .about-hero .about-container { padding: 172px 20px 56px; }
-  .about-hero h1 { font-size: clamp(2.75rem, 8vw, 4.2rem); }
+  .about-hero { height: 320px; max-height: none; }
+  .about-hero .about-container { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
+  .about-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }
+  .about-hero p { font-size: clamp(0.62rem, 1.6vw, 0.74rem); letter-spacing: 0.18em; }
   .mv-card { padding: 28px 22px; border-radius: 22px; }
-  .story-section, .mission-vision, .values-section, .campus-preview, .choices-section, .scripture-about-cta { padding: 70px 0; }
-  .story-media, .story-media img { min-height: 360px; border-radius: 22px; }
-  .mv-grid, .values-grid, .choices-grid, .campus-preview-grid { grid-template-columns: 1fr; }
+  .story-section, .mission-vision, .values-section, .choices-section, .scripture-about-cta { padding: 70px 0; }
+  .story-media { min-height: 0; border-radius: 22px; padding: 10px 10px 20px; }
+  .story-media img { min-height: 0; border-radius: 18px; }
+  .mv-grid, .values-grid, .choices-grid { grid-template-columns: 1fr; }
   .about-btn { width: 100%; }
-  .campus-action .about-btn, .scripture-about-cta .about-btn { width: auto; }
+  .scripture-about-cta .about-btn { width: auto; }
 }
 
 @media (max-width: 576px) {
-  .about-hero .about-container { padding: 188px 18px 48px; }
-  .about-hero h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
-  .about-hero p { font-size: 0.95rem; }
+  .about-hero { height: 290px; }
+  .about-hero .about-container { padding: 0 8px; transform: translateY(46px); }
+  .about-hero h1 { font-size: clamp(1.85rem, 9vw, 2.45rem); line-height: 1; }
+  .about-hero-divider { width: 70px; margin: 14px auto 14px; }
+  .about-hero p { font-size: 0.56rem; letter-spacing: 0.14em; line-height: 1.45; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .value-card, .choice-card, .campus-preview-card, .story-media img, .campus-preview-image img, .about-btn { transition: none; }
+  .value-card, .choice-card, .story-media img, .about-btn { transition: none; }
 }
 `;
 
@@ -166,39 +158,6 @@ const values = [
   },
 ];
 
-const campusPreviews = [
-  {
-    title: 'Student Activities',
-    description: 'Spaces for confidence, friendship, discovery, and joyful participation.',
-    image: gradeSchoolImage,
-  },
-  {
-    title: 'Recognition Ceremonies',
-    description: 'Meaningful moments that honor effort, growth, leadership, and excellence.',
-    image: seniorHighImage,
-  },
-  {
-    title: 'Foundation Day',
-    description: 'A celebration of community, gratitude, creativity, and school spirit.',
-    image: juniorHighImage,
-  },
-  {
-    title: 'Christian Formation',
-    description: 'Faith-shaped rhythms that guide students toward wisdom and purpose.',
-    image: heroBanner,
-  },
-  {
-    title: 'Academic Programs',
-    description: 'Learning pathways that develop strong minds and future-ready skills.',
-    image: roboticsAiImage,
-  },
-  {
-    title: 'Community Events',
-    description: 'Gatherings that connect families, educators, students, and shared values.',
-    image: multimediaImage,
-  },
-];
-
 const familyChoices = [
   ['Christ-Centered Education', Cross],
   ['Safe & Supportive Environment', ShieldCheck],
@@ -219,18 +178,14 @@ function About() {
             <div>
               <div className="about-hero-kicker">About Philippians Academy</div>
               <h1 id="about-page-title">
-                Faith. Excellence.
+                Philippians Academy
                 <br />
-                <span>Purpose.</span>
+                of Paranaque
               </h1>
+              <div className="about-hero-divider" />
               <p>
-                Guiding hearts. Developing minds.
-                <br />
-                Preparing leaders for a greater tomorrow.
+                Molding Young Minds Towards Christ
               </p>
-              <div className="about-hero-actions">
-                <a className="about-btn primary" href="#about-story">Discover More</a>
-              </div>
             </div>
           </div>
         </section>
@@ -238,7 +193,7 @@ function About() {
         <section className="story-section" id="about-story">
           <div className="about-container story-grid">
             <motion.div className="story-media" {...revealProps}>
-              <img src={personalityDevelopmentImage} alt="Philippians Academy students in a warm learning environment" />
+              <img src={ourStoryImage} alt="Philippians Academy school building" />
               <div className="story-media-badge">A school community where every learner is guided with faith and care.</div>
             </motion.div>
 
@@ -247,10 +202,10 @@ function About() {
               <h2 className="about-title">Our Story</h2>
               <div className="gold-divider" />
               <p className="about-copy">
-                Philippians Academy of Para&ntilde;aque is a faith-centered educational institution dedicated to shaping students through academic excellence, Christian values, leadership, and meaningful learning experiences. Located in Para&ntilde;aque City, the academy provides a nurturing and supportive environment where students are guided to grow intellectually, spiritually, socially, and emotionally.
+                Philippians Academy of Para&ntilde;aque Inc. was officially established on June 6, 2006 with the vision of providing Christ-centered and quality education for families in Para&ntilde;aque. From its beginning, the academy has been rooted in faith, service, and a calling to nurture learners through academic excellence, Christian values, character, and meaningful learning experiences.
               </p>
               <p className="about-copy">
-                Inspired by the biblical message of Philippians 4:13, the academy continues to build a community grounded in faith, discipline, integrity, compassion, and service.
+                Located in Para&ntilde;aque City, the academy provides a nurturing and supportive environment where students are guided to grow intellectually, spiritually, socially, and emotionally. Since its founding, Philippians Academy has remained committed to shaping learners into compassionate, disciplined, and purpose-driven individuals guided by Christian values and lifelong learning.
               </p>
               <p className="about-copy">
                 The school believes that education goes beyond academics. It is about developing future leaders with strong moral character, a heart for service, and the confidence to pursue their God-given purpose.
@@ -295,38 +250,6 @@ function About() {
           </div>
         </section>
 
-        <section className="campus-preview">
-          <div className="about-container">
-            <motion.div className="section-split-header" {...revealProps}>
-              <div>
-                <p className="about-eyebrow">Campus Life Preview</p>
-                <h2 className="about-title">A Community of Learning and Growth</h2>
-              </div>
-              <p className="about-copy">
-                At Philippians Academy, students experience a vibrant and supportive school community filled with opportunities for learning, creativity, leadership, friendship, and faith formation.
-              </p>
-            </motion.div>
-
-            <div className="campus-preview-grid">
-              {campusPreviews.map((preview, index) => (
-                <motion.article className="campus-preview-card" key={preview.title} {...revealProps} transition={{ duration: 0.64, ease: 'easeOut', delay: index * 0.04 }}>
-                  <div className="campus-preview-image">
-                    <img src={preview.image} alt={`${preview.title} at Philippians Academy`} />
-                  </div>
-                  <div className="campus-preview-body">
-                    <h3>{preview.title}</h3>
-                    <p>{preview.description}</p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-
-            <div className="campus-action">
-              <Link className="about-btn primary" to="/campus-life">Explore Campus Life</Link>
-            </div>
-          </div>
-        </section>
-
         <section className="choices-section">
           <div className="about-container">
             <motion.div className="choices-header" {...revealProps}>
@@ -353,7 +276,6 @@ function About() {
               <div className="gold-divider" />
               <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
               <p>Philippians 4:13</p>
-              <Link className="about-btn primary" to="/admissions">Apply for Admission</Link>
             </motion.div>
           </div>
         </section>

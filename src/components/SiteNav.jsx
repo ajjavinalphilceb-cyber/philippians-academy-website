@@ -20,8 +20,14 @@ const navItems = [
   },
   {
     label: 'Academics',
-    href: '/#academics',
-    isActive: ({ pathname, hash }) => pathname === '/' && hash === '#academics',
+    href: '/academics',
+    isActive: ({ pathname }) => pathname.startsWith('/academics'),
+    children: [
+      { label: 'Kindergarten', href: '/academics/kindergarten' },
+      { label: 'Elementary', href: '/academics/elementary' },
+      { label: 'Junior High School', href: '/academics/junior-high-school' },
+      { label: 'Senior High School', href: '/academics/senior-high-school' },
+    ],
   },
   {
     label: 'School Events',
@@ -35,13 +41,14 @@ const navItems = [
   },
   {
     label: 'Contact Us',
-    href: '/#contact',
-    isActive: ({ pathname, hash }) => pathname === '/' && hash === '#contact',
+    href: '/contact-us',
+    isActive: ({ pathname }) => pathname === '/contact-us',
   },
 ];
 
 function SiteNav() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [academicsOpen, setAcademicsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
@@ -61,6 +68,7 @@ function SiteNav() {
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
       setMobileNavOpen(false);
+      setAcademicsOpen(false);
     });
 
     return () => {
@@ -83,6 +91,29 @@ function SiteNav() {
           <nav className="hero-nav-links" aria-label="Main navigation">
             {navItems.map((item) => {
               const active = item.isActive(location);
+
+              if (item.children) {
+                return (
+                  <div className="nav-dropdown-wrap" key={item.label}>
+                    <Link
+                      to={item.href}
+                      className={`nav-link${active ? ' active' : ''}`}
+                      aria-current={active ? 'page' : undefined}
+                      aria-haspopup="true"
+                    >
+                      {item.label}
+                      <span className="nav-caret" aria-hidden="true" />
+                    </Link>
+                    <div className="nav-dropdown" aria-label={`${item.label} programs`}>
+                      {item.children.map((child) => (
+                        <Link className="nav-dropdown-link" to={child.href} key={child.href}>
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
 
               return (
                 <Link
@@ -115,6 +146,29 @@ function SiteNav() {
       <nav className={`mobile-menu${mobileNavOpen ? ' open' : ''}`} aria-label="Mobile navigation">
         {navItems.map((item) => {
           const active = item.isActive(location);
+
+          if (item.children) {
+            return (
+              <div className="mobile-nav-group" key={item.label}>
+                <button
+                  type="button"
+                  className={`mobile-nav-link mobile-nav-accordion${active ? ' active' : ''}${academicsOpen ? ' open' : ''}`}
+                  aria-expanded={academicsOpen}
+                  onClick={() => setAcademicsOpen((open) => !open)}
+                >
+                  <span>{item.label}</span>
+                  <span className="mobile-caret" aria-hidden="true" />
+                </button>
+                <div className={`mobile-submenu${academicsOpen ? ' open' : ''}`}>
+                  {item.children.map((child) => (
+                    <Link className="mobile-submenu-link" to={child.href} key={child.href}>
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          }
 
           return (
             <Link
@@ -256,6 +310,85 @@ const navStyles = `
   padding: 10px 0;
 }
 
+.nav-dropdown-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 7px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  transform: translateY(1px);
+  transition: transform 260ms ease;
+}
+
+.nav-dropdown-wrap:hover .nav-caret,
+.nav-dropdown-wrap:focus-within .nav-caret {
+  transform: translateY(1px) rotate(180deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 5;
+  width: 260px;
+  padding: 12px;
+  border: 1px solid rgba(242, 193, 78, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 24px 58px rgba(2, 8, 23, 0.24);
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.nav-dropdown::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+}
+
+.nav-dropdown-wrap:hover .nav-dropdown,
+.nav-dropdown-wrap:focus-within .nav-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.nav-dropdown-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: #08183c;
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.nav-dropdown-link:hover {
+  color: #08183c;
+  background: linear-gradient(135deg, rgba(242, 193, 78, 0.22), rgba(242, 193, 78, 0.08));
+  transform: translateX(4px);
+}
+
 .nav-link::after,
 .mobile-nav-link::after {
   content: "";
@@ -368,7 +501,7 @@ const navStyles = `
 }
 
 .mobile-menu.open {
-  max-height: 390px;
+  max-height: 640px;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -378,6 +511,71 @@ const navStyles = `
 .mobile-nav-link {
   width: 100%;
   padding: 12px 4px;
+}
+
+.mobile-nav-group {
+  width: 100%;
+}
+
+.mobile-nav-accordion {
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.mobile-caret {
+  width: 0;
+  height: 0;
+  margin-left: 12px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid currentColor;
+  transition: transform 240ms ease;
+}
+
+.mobile-nav-accordion.open .mobile-caret {
+  transform: rotate(180deg);
+}
+
+.mobile-submenu {
+  display: grid;
+  gap: 6px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding-left: 14px;
+  transition: max-height 280ms ease, opacity 220ms ease, padding 240ms ease;
+}
+
+.mobile-submenu.open {
+  max-height: 240px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
+.mobile-submenu-link {
+  display: block;
+  padding: 10px 12px;
+  border-left: 2px solid rgba(242, 193, 78, 0.52);
+  border-radius: 0 12px 12px 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.mobile-submenu-link:hover {
+  color: #f2c14e;
+  background: rgba(242, 193, 78, 0.1);
+  transform: translateX(4px);
 }
 
 .mobile-nav-link::after {

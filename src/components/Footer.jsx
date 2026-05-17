@@ -18,18 +18,18 @@ function Footer() {
             <h3>Quick Links</h3>
             <ul>
               <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/#academics">Academics</Link></li>
+              <li><Link to="/academics">Academics</Link></li>
               <li><Link to="/admissions">Admissions</Link></li>
               <li><Link to="/school-events">School Events</Link></li>
               <li><Link to="/campus-life">Campus Life</Link></li>
-              <li><a href="/#contact">Contact</a></li>
+              <li><Link to="/contact-us">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <h3>Admissions &amp; Contact</h3>
-            <p>1316 Haise Street<br />Moonwalk Village, Para&ntilde;aque City</p>
-            <p>Phone: (02) 123-4567<br />Email: info@philippiansacademy.edu.ph</p>
+            <p>1316 Haise St. cor. Borman St.<br />Moonwalk, Para&ntilde;aque City</p>
+            <p>Phone: +63 2 8254 7418<br />Email: info@philippiansacademy.edu.ph</p>
           </div>
 
           <div>

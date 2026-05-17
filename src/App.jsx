@@ -5,14 +5,12 @@ import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
 import Footer from './components/Footer.jsx';
 import SiteNav from './components/SiteNav.jsx';
 import About from './pages/About.jsx';
+import Academics, { AcademicProgramDetail } from './pages/Academics.jsx';
 import Admissions from './pages/Admissions.jsx';
 import CampusLife from './pages/CampusLife.jsx';
-import SchoolEvents from './pages/SchoolEvents.jsx';
+import ContactUs from './pages/ContactUs.jsx';
+import SchoolEvents, { SchoolEventArticle } from './pages/SchoolEvents.jsx';
 import heroBanner from './assets/hero banner.png';
-import kindergartenImage from './assets/Kindergarten.png';
-import gradeSchoolImage from './assets/Grade School.png';
-import juniorHighImage from './assets/Junior High School.png';
-import seniorHighImage from './assets/Senior High School.png';
 import kindergartenUniformImage from './assets/Kindergarten Uniform.png';
 import gradeSchoolUniformImage from './assets/Grade School Uniform.png';
 import juniorHighUniformImage from './assets/Junior  High Uniform.png';
@@ -44,7 +42,7 @@ const responsiveStyles = `
 .mobile-nav-link { display: block; width: 100%; }
 .hero-headline { font-size: clamp(2.85rem, 5vw, 5.45rem); line-height: 0.98; max-width: 820px; }
 .hero-subheadline { font-size: clamp(0.98rem, 1.25vw, 1.12rem); line-height: 1.68; max-width: 620px; }
-.whats-new-section, .academic-programs, .uniform-collection, .footer { scroll-margin-top: 110px; }
+.whats-new-section, .uniform-collection, .footer { scroll-margin-top: 110px; }
 
 /* New sections responsive styles */
 .whats-new-section { position: relative; padding: 92px 0 86px; overflow: hidden; background: linear-gradient(180deg, #f7fbff 0%, #ffffff 48%, #f5f8fc 100%); }
@@ -118,27 +116,6 @@ const responsiveStyles = `
 .why-choose-us .feature-title { color: #08183c; font-size: 1.18rem; line-height: 1.22; font-weight: 850; margin: 0 0 13px; }
 .why-card-accent { width: 44px; height: 2px; margin: 0 auto 16px; border-radius: 999px; background: #d69b14; }
 .why-choose-us .feature-desc { color: #5e6878; font-size: 0.95rem; line-height: 1.65; margin: 0; }
-
-.academic-programs { padding: 96px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); overflow: hidden; }
-.academic-programs .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
-.academic-programs h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.65rem, 5vw, 5rem); line-height: 0.98; margin: 0 0 18px; text-align: center; }
-.academic-programs .section-intro { max-width: 720px; margin: 0 auto 58px; color: #465268; font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.76; text-align: center; }
-.program-stories { display: grid; gap: 74px; }
-.program-story { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr); gap: clamp(30px, 5vw, 70px); align-items: center; }
-.program-story.reverse { grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr); }
-.program-story.reverse .program-story-media { order: 2; }
-.program-story.reverse .program-story-copy { order: 1; }
-.program-story-media { position: relative; min-width: 0; min-height: 420px; overflow: hidden; border-radius: 28px; }
-.program-story-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, 0.34); border-radius: inherit; pointer-events: none; }
-.program-story-media img { width: 100%; height: 100%; min-height: 420px; display: block; object-fit: cover; transition: transform 480ms ease; }
-.program-story:hover .program-story-media img { transform: scale(1.035); }
-.program-story-copy { min-width: 0; max-width: 540px; }
-.program-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 14px; }
-.program-story-copy h3 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 3.4vw, 3.45rem); line-height: 1; margin: 0 0 18px; }
-.program-story-copy p { color: #465268; font-size: 1.03rem; line-height: 1.78; margin: 0 0 24px; }
-.program-link { display: inline-flex; align-items: center; gap: 10px; color: #08183c; font-size: 0.92rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-.program-link::after { content: ""; width: 42px; height: 2px; border-radius: 999px; background: #d69b14; transition: width 220ms ease; }
-.program-link:hover::after { width: 62px; }
 
 .student-life { padding: 94px 0 100px; background: #ffffff; overflow: hidden; }
 .student-life .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
@@ -224,11 +201,6 @@ const responsiveStyles = `
   .personality-photo img { min-height: 440px; }
   .uniform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .why-choose-us .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .program-story,
-  .program-story.reverse { grid-template-columns: 1fr; gap: 28px; }
-  .program-story.reverse .program-story-media,
-  .program-story.reverse .program-story-copy { order: initial; }
-  .program-story-copy { max-width: 100%; }
   .student-life-editorial { grid-template-columns: 1fr; }
   .student-life-feature { min-height: 480px; }
   .student-life-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -257,7 +229,6 @@ const responsiveStyles = `
   .personality-icon { width: 64px; }
   .uniform-header { margin-bottom: 36px; }
   .why-choose-us { padding: 60px 0; }
-  .academic-programs { padding: 60px 0; }
   .student-life { padding: 60px 0; }
   .news-events { padding: 60px 0; }
   .scripture-cta { padding: 76px 0 80px; }
@@ -267,9 +238,6 @@ const responsiveStyles = `
   .news-card.featured .news-image,
   .news-side-stack .news-image { aspect-ratio: 16 / 9; max-height: none; }
   .hero { height: auto; }
-  .program-stories { gap: 54px; }
-  .program-story-media,
-  .program-story-media img { min-height: 340px; }
   .student-life-feature { min-height: 410px; }
   .student-life-stack { grid-template-columns: 1fr; }
 }
@@ -304,11 +272,6 @@ const responsiveStyles = `
   .why-choose-us .features-grid { grid-template-columns: 1fr; gap: 18px; }
   .why-choose-us .feature-card { padding: 30px 22px 28px; }
   .why-choose-us .feature-icon { width: 68px; margin-bottom: 20px; }
-  .academic-programs .container { padding: 0 15px; }
-  .program-stories { gap: 44px; }
-  .program-story-media,
-  .program-story-media img { min-height: 285px; border-radius: 22px; }
-  .program-label { font-size: 0.7rem; letter-spacing: 0.14em; }
   .student-life .container { padding: 0 15px; }
   .student-life-header { margin-bottom: 30px; }
   .student-life-feature { min-height: 340px; border-radius: 22px; }
@@ -442,9 +405,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/academics" element={<Academics />} />
+        <Route path="/academics/:programSlug" element={<AcademicProgramDetail />} />
         <Route path="/admissions" element={<Admissions />} />
         <Route path="/campus-life" element={<CampusLife />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/school-events" element={<SchoolEvents />} />
+        <Route path="/school-events/:slug" element={<SchoolEventArticle />} />
       </Routes>
     </main>
   );
@@ -469,7 +436,7 @@ function HomePage() {
 
               <div style={heroActions}>
                 <Link style={discoverButton} to="/admissions">Admissions</Link>
-                <a style={secondaryButton} href="#contact">Contact Us</a>
+                <Link style={secondaryButton} to="/contact-us">Contact Us</Link>
               </div>
             </motion.div>
           </div>
@@ -565,67 +532,6 @@ function HomePage() {
           <h2>&ldquo;I can do all things through Christ who strengthens me.&rdquo;</h2>
           <div className="scripture-reference">PHILIPPIANS 4:13</div>
         </motion.div>
-      </section>
-
-      {/* Academic Programs Section */}
-      <section id="academics" className="academic-programs">
-        <div className="container">
-          <motion.div {...homeRevealProps()}>
-            <h2>Academic Programs</h2>
-            <p className="section-intro">
-              Purposeful learning pathways designed to nurture faith, character, academic excellence, and leadership at every stage.
-            </p>
-          </motion.div>
-          <div className="program-stories">
-            <motion.article className="program-story" {...homeRevealProps()}>
-              <div className="program-story-media">
-                <img src={kindergartenImage} alt="Kindergarten students learning together" />
-              </div>
-              <div className="program-story-copy">
-                <p className="program-label">Early Learning</p>
-                <h3>Kindergarten</h3>
-                <p>Building joyful foundations through Christ-centered early learning and creativity.</p>
-                <a className="program-link" href="/admissions">Learn More</a>
-              </div>
-            </motion.article>
-
-            <motion.article className="program-story reverse" {...homeRevealProps()}>
-              <div className="program-story-media">
-                <img src={gradeSchoolImage} alt="Grade School students in an academy setting" />
-              </div>
-              <div className="program-story-copy">
-                <p className="program-label">Foundation Years</p>
-                <h3>Grade School</h3>
-                <p>Developing discipline, confidence, academic excellence, and lifelong curiosity.</p>
-                <a className="program-link" href="/admissions">Learn More</a>
-              </div>
-            </motion.article>
-
-            <motion.article className="program-story" {...homeRevealProps()}>
-              <div className="program-story-media">
-                <img src={juniorHighImage} alt="Junior High School students studying" />
-              </div>
-              <div className="program-story-copy">
-                <p className="program-label">Leadership Formation</p>
-                <h3>Junior High School</h3>
-                <p>Empowering students through leadership, collaboration, and deeper academic growth.</p>
-                <a className="program-link" href="/admissions">Learn More</a>
-              </div>
-            </motion.article>
-
-            <motion.article className="program-story reverse" {...homeRevealProps()}>
-              <div className="program-story-media">
-                <img src={seniorHighImage} alt="Senior High School students preparing for the future" />
-              </div>
-              <div className="program-story-copy">
-                <p className="program-label">Future Readiness</p>
-                <h3>Senior High School</h3>
-                <p>Preparing future-ready learners for college, careers, and purposeful leadership.</p>
-                <a className="program-link" href="/admissions">Learn More</a>
-              </div>
-            </motion.article>
-          </div>
-        </div>
       </section>
 
       {/* Why Choose Us Section */}
