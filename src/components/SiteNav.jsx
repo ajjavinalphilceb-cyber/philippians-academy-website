@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logoSrc from '../assets/Philippians Logo.jpg';
+import OptimizedImage from './OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+
+const logoSrc = optimizedImages['Philippians Logo.jpg'];
 
 const navItems = [
   {
@@ -81,7 +84,12 @@ function SiteNav() {
       <style>{navStyles}</style>
       <header className="hero-header">
         <Link to="/" className="brand-block" aria-label="Philippians Academy home">
-          <img src={logoSrc} alt="Philippians Academy logo" className="brand-logo" />
+          <OptimizedImage
+            image={logoSrc}
+            alt="Philippians Academy logo"
+            className="brand-logo"
+            sizes="52px"
+          />
           <span className="brand-text">
             <span className="brand-name">Philippians Academy</span>
           </span>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   BookOpenCheck,
@@ -9,9 +8,13 @@ import {
   UserCheck,
 } from 'lucide-react';
 import Footer from '../components/Footer.jsx';
-import heroBanner from '../assets/hero banner.png';
-import seniorHighImage from '../assets/Senior High School.png';
-import ourStoryImage from '../assets/Our Story Image.jpg';
+import OptimizedImage from '../components/OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+import { getVariantForWidth } from '../utils/imageVariants.js';
+
+const heroBanner = optimizedImages['hero banner.png'];
+const seniorHighImage = optimizedImages['Senior High School.png'];
+const ourStoryImage = optimizedImages['Our Story Image.jpg'];
 
 const aboutStyles = `
 .about-page { --navy: #08183c; --navy-soft: #102a63; --gold: #f2c14e; --gold-deep: #b98416; --ink: #18243d; --muted: #5a667a; position: relative; background: #ffffff; color: var(--ink); }
@@ -20,7 +23,7 @@ const aboutStyles = `
 .about-title { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.45rem, 4.8vw, 5rem); line-height: 0.98; letter-spacing: 0; margin: 0; }
 .about-copy { color: var(--muted); font-size: clamp(1rem, 1.25vw, 1.13rem); line-height: 1.78; margin: 0; }
 .gold-divider { width: 72px; height: 2px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.about-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${heroBanner}"); background-size: cover; background-position: center top; background-repeat: no-repeat; }
+.about-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${getVariantForWidth(heroBanner, 1920)}"); background-size: cover; background-position: center top; background-repeat: no-repeat; }
 .about-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 24, 60, 0.88), rgba(8, 24, 60, 0.68)), linear-gradient(180deg, rgba(8, 24, 60, 0.24), rgba(8, 24, 60, 0.38)); pointer-events: none; }
 .about-hero::after { display: none; }
 .about-hero-gold { display: none; }
@@ -80,7 +83,7 @@ const aboutStyles = `
 .choice-card { overflow: hidden; padding: 30px 26px 28px; border-radius: 24px; }
 .choice-icon { width: 58px; margin-bottom: 20px; }
 .scripture-about-cta { position: relative; overflow: hidden; padding: 104px 0 110px; color: #ffffff; text-align: center; background: var(--navy); }
-.scripture-about-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${seniorHighImage}"); background-size: cover; background-position: center; filter: saturate(0.96); }
+.scripture-about-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); }
 .scripture-about-cta::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242,193,78,0.22), transparent 38%); pointer-events: none; }
 .scripture-about-cta .about-container { position: relative; z-index: 1; max-width: 980px; }
 .scripture-about-cta .gold-divider { margin: 0 auto 26px; width: 96px; }
@@ -96,7 +99,8 @@ const aboutStyles = `
 
 @media (max-width: 760px) {
   .about-container { width: min(100% - 30px, 1320px); }
-  .about-hero { height: 320px; max-height: none; }
+  .about-hero { height: 320px; max-height: none; background-image: url("${getVariantForWidth(heroBanner, 768)}"); }
+  .scripture-about-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 768)}"); }
   .about-hero .about-container { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
   .about-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }
   .about-hero p { font-size: clamp(0.62rem, 1.6vw, 0.74rem); letter-spacing: 0.18em; }
@@ -193,12 +197,16 @@ function About() {
         <section className="story-section" id="about-story">
           <div className="about-container story-grid">
             <motion.div className="story-media" {...revealProps}>
-              <img src={ourStoryImage} alt="Philippians Academy school building" />
+              <OptimizedImage
+                image={ourStoryImage}
+                alt="Philippians Academy school building"
+                sizes="(max-width: 1080px) 100vw, 50vw"
+              />
               <div className="story-media-badge">A school community where every learner is guided with faith and care.</div>
             </motion.div>
 
             <motion.div className="story-copy" {...revealProps}>
-              <p className="about-eyebrow">Our Story</p>
+              <p className="about-eyebrow">About Us</p>
               <h2 className="about-title">Our Story</h2>
               <div className="gold-divider" />
               <p className="about-copy">

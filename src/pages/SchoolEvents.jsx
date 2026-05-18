@@ -1,29 +1,32 @@
 ﻿import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import Footer from '../components/Footer.jsx';
-import heroBanner from '../assets/hero banner.png';
-import friendshipDayImage from '../assets/Friendship Day 2026/Friendship Day 2026.png';
-import friendshipDayGallery1 from '../assets/Friendship Day 2026/fd 2.png';
-import friendshipDayGallery2 from '../assets/Friendship Day 2026/fd3.png';
-import friendshipDayGallery3 from '../assets/Friendship Day 2026/fd4.png';
-import promotionalTalkImage from '../assets/Promotional Talk for Grade 6/4344.png';
-import promotionalTalkGallery0 from '../assets/Promotional Talk for Grade 6/111.png';
-import promotionalTalkGallery1 from '../assets/Promotional Talk for Grade 6/222.png';
-import promotionalTalkGallery2 from '../assets/Promotional Talk for Grade 6/333.png';
-import promotionalTalkGallery3 from '../assets/Promotional Talk for Grade 6/555.png';
-import enrollmentCampaignImage from '../assets/ENROLLMENT  CAMPAIGN.jpg';
-import recognitionCeremonyImage from '../assets/RECOGNITION CEREMONY/feature photo.jpg';
-import recognitionCeremonyGallery1 from '../assets/RECOGNITION CEREMONY/featured photo.jpg';
-import recognitionCeremonyGallery2 from '../assets/RECOGNITION CEREMONY/rc 10.jpg';
-import recognitionCeremonyGallery3 from '../assets/RECOGNITION CEREMONY/rc1.jpg';
-import recognitionCeremonyGallery4 from '../assets/RECOGNITION CEREMONY/rc2.jpg';
-import recognitionCeremonyGallery5 from '../assets/RECOGNITION CEREMONY/rc3.jpg';
-import recognitionCeremonyGallery6 from '../assets/RECOGNITION CEREMONY/rc5.jpg';
-import recognitionCeremonyGallery7 from '../assets/RECOGNITION CEREMONY/rc6.jpg';
-import recognitionCeremonyGallery8 from '../assets/RECOGNITION CEREMONY/rc8.jpg';
-import recognitionCeremonyGallery9 from '../assets/RECOGNITION CEREMONY/rc9.jpg';
-import recognitionCeremonyGallery10 from '../assets/RECOGNITION CEREMONY/Recognition Ceremonies 31.jpg';
-import recognitionCeremonyGallery11 from '../assets/RECOGNITION CEREMONY/Recognition Ceremonies 33.jpg';
+import OptimizedImage from '../components/OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+import { getVariantForWidth } from '../utils/imageVariants.js';
+const heroBanner = optimizedImages['hero banner.png'];
+const friendshipDayImage = optimizedImages['Friendship Day 2026/Friendship Day 2026.png'];
+const friendshipDayGallery1 = optimizedImages['Friendship Day 2026/fd 2.png'];
+const friendshipDayGallery2 = optimizedImages['Friendship Day 2026/fd3.png'];
+const friendshipDayGallery3 = optimizedImages['Friendship Day 2026/fd4.png'];
+const promotionalTalkImage = optimizedImages['Promotional Talk for Grade 6/4344.png'];
+const promotionalTalkGallery0 = optimizedImages['Promotional Talk for Grade 6/111.png'];
+const promotionalTalkGallery1 = optimizedImages['Promotional Talk for Grade 6/222.png'];
+const promotionalTalkGallery2 = optimizedImages['Promotional Talk for Grade 6/333.png'];
+const promotionalTalkGallery3 = optimizedImages['Promotional Talk for Grade 6/555.png'];
+const enrollmentCampaignImage = optimizedImages['ENROLLMENT  CAMPAIGN.jpg'];
+const recognitionCeremonyImage = optimizedImages['RECOGNITION CEREMONY/feature photo.jpg'];
+const recognitionCeremonyGallery1 = optimizedImages['RECOGNITION CEREMONY/featured photo.jpg'];
+const recognitionCeremonyGallery2 = optimizedImages['RECOGNITION CEREMONY/rc 10.jpg'];
+const recognitionCeremonyGallery3 = optimizedImages['RECOGNITION CEREMONY/rc1.jpg'];
+const recognitionCeremonyGallery4 = optimizedImages['RECOGNITION CEREMONY/rc2.jpg'];
+const recognitionCeremonyGallery5 = optimizedImages['RECOGNITION CEREMONY/rc3.jpg'];
+const recognitionCeremonyGallery6 = optimizedImages['RECOGNITION CEREMONY/rc5.jpg'];
+const recognitionCeremonyGallery7 = optimizedImages['RECOGNITION CEREMONY/rc6.jpg'];
+const recognitionCeremonyGallery8 = optimizedImages['RECOGNITION CEREMONY/rc8.jpg'];
+const recognitionCeremonyGallery9 = optimizedImages['RECOGNITION CEREMONY/rc9.jpg'];
+const recognitionCeremonyGallery10 = optimizedImages['RECOGNITION CEREMONY/Recognition Ceremonies 31.jpg'];
+const recognitionCeremonyGallery11 = optimizedImages['RECOGNITION CEREMONY/Recognition Ceremonies 33.jpg'];
 
 const schoolEventsStyles = `
 .news-events-page {
@@ -69,7 +72,7 @@ const schoolEventsStyles = `
   place-items: center;
   overflow: hidden;
   color: #ffffff;
-  background-image: url("${heroBanner}");
+  background-image: url("${getVariantForWidth(heroBanner, 1920)}");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -176,7 +179,7 @@ const schoolEventsStyles = `
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url("${recognitionCeremonyImage}");
+  background-image: url("${getVariantForWidth(recognitionCeremonyImage, 1360)}");
   background-size: cover;
   background-position: center 18%;
   background-repeat: no-repeat;
@@ -433,7 +436,7 @@ const schoolEventsStyles = `
   color: #ffffff;
   background:
     linear-gradient(90deg, rgba(8, 24, 60, 0.96), rgba(8, 24, 60, 0.76), rgba(8, 24, 60, 0.54)),
-    url("${heroBanner}");
+    url("${getVariantForWidth(heroBanner, 1920)}");
   background-size: cover;
   background-position: center top;
 }
@@ -626,6 +629,17 @@ const schoolEventsStyles = `
   .news-hero {
     height: 320px;
     max-height: none;
+    background-image: url("${getVariantForWidth(heroBanner, 768)}");
+  }
+
+  .featured-story::before {
+    background-image: url("${getVariantForWidth(recognitionCeremonyImage, 768)}");
+  }
+
+  .article-detail-hero {
+    background:
+      linear-gradient(90deg, rgba(8, 24, 60, 0.96), rgba(8, 24, 60, 0.76), rgba(8, 24, 60, 0.54)),
+      url("${getVariantForWidth(heroBanner, 768)}");
   }
 
   .news-hero-content {
@@ -995,7 +1009,11 @@ function SchoolEvents() {
                     {...revealProps(index * 0.05)}
                   >
                     <div className="news-card-image">
-                      <img src={story.image} alt={`${story.title} at Philippians Academy`} />
+                      <OptimizedImage
+                        image={story.image}
+                        alt={`${story.title} at Philippians Academy`}
+                        sizes="(max-width: 760px) 100vw, (max-width: 1080px) 50vw, 33vw"
+                      />
                     </div>
                     <div className="news-card-body">
                       {story.date ? <p className="news-card-date">{story.date}</p> : null}
@@ -1062,7 +1080,11 @@ export function SchoolEventArticle() {
             <article className="article-detail-shell">
               {!article.hideDetailImage ? (
                 <figure className={`article-detail-image${article.imageFit === 'focusTop' ? ' focus-top-image' : ''}`}>
-                  <img src={article.image} alt={`${article.title} at Philippians Academy`} />
+                  <OptimizedImage
+                    image={article.image}
+                    alt={`${article.title} at Philippians Academy`}
+                    sizes="(max-width: 980px) 100vw, 72vw"
+                  />
                 </figure>
               ) : null}
               <div className="article-detail-content">
@@ -1073,8 +1095,12 @@ export function SchoolEventArticle() {
                 {article.galleryImages?.length ? (
                   <div className="article-detail-gallery" aria-label={`${article.title} photo gallery`}>
                     {article.galleryImages.map((image, index) => (
-                      <figure key={image}>
-                        <img src={image} alt={`${article.title} gallery photo ${index + 1}`} />
+                      <figure key={image.src}>
+                        <OptimizedImage
+                          image={image}
+                          alt={`${article.title} gallery photo ${index + 1}`}
+                          sizes="(max-width: 760px) 50vw, 25vw"
+                        />
                       </figure>
                     ))}
                   </div>

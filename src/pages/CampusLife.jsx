@@ -1,15 +1,18 @@
 import Footer from '../components/Footer.jsx';
-import campusFeaturedImage from '../assets/CAMPUS LIFE/FEATURED IMAGE.png';
-import bibleMonthImage from '../assets/Bible Month Culmination Activity 2026/1111.png';
-import bibleMonthGallery1 from '../assets/Bible Month Culmination Activity 2026/2222.png';
-import bibleMonthGallery2 from '../assets/Bible Month Culmination Activity 2026/3333.png';
-import bibleMonthGallery3 from '../assets/Bible Month Culmination Activity 2026/4444.png';
-import bibleMonthGallery4 from '../assets/Bible Month Culmination Activity 2026/5555.png';
-import bibleMonthGallery5 from '../assets/Bible Month Culmination Activity 2026/6666.png';
-import unitedNationsImage from '../assets/United Nations Celebration 2025/1.png';
-import unitedNationsGallery1 from '../assets/United Nations Celebration 2025/2.png';
-import unitedNationsGallery2 from '../assets/United Nations Celebration 2025/3.png';
-import unitedNationsGallery3 from '../assets/United Nations Celebration 2025/4.png';
+import OptimizedImage from '../components/OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+
+const campusFeaturedImage = optimizedImages['CAMPUS LIFE/FEATURED IMAGE.png'];
+const bibleMonthImage = optimizedImages['Bible Month Culmination Activity 2026/1111.png'];
+const bibleMonthGallery1 = optimizedImages['Bible Month Culmination Activity 2026/2222.png'];
+const bibleMonthGallery2 = optimizedImages['Bible Month Culmination Activity 2026/3333.png'];
+const bibleMonthGallery3 = optimizedImages['Bible Month Culmination Activity 2026/4444.png'];
+const bibleMonthGallery4 = optimizedImages['Bible Month Culmination Activity 2026/5555.png'];
+const bibleMonthGallery5 = optimizedImages['Bible Month Culmination Activity 2026/6666.png'];
+const unitedNationsImage = optimizedImages['United Nations Celebration 2025/1.png'];
+const unitedNationsGallery1 = optimizedImages['United Nations Celebration 2025/2.png'];
+const unitedNationsGallery2 = optimizedImages['United Nations Celebration 2025/3.png'];
+const unitedNationsGallery3 = optimizedImages['United Nations Celebration 2025/4.png'];
 
 const campusLifeStyles = `
 .campus-life-page { min-height: 100vh; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 56%, #fffaf0 100%); color: #08183c; }
@@ -119,7 +122,13 @@ function CampusLife() {
               </p>
             </div>
             <div className="campus-hero-image">
-              <img src={campusFeaturedImage} alt="Campus life at Philippians Academy" />
+              <OptimizedImage
+                image={campusFeaturedImage}
+                alt="Campus life at Philippians Academy"
+                loading="eager"
+                fetchPriority="high"
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
             </div>
           </div>
 
@@ -127,7 +136,11 @@ function CampusLife() {
             {campusStories.map((story) => (
               <article className="campus-story" key={story.title}>
                 <figure className="campus-story-featured">
-                  <img src={story.image} alt={`${story.title} at Philippians Academy`} />
+                  <OptimizedImage
+                    image={story.image}
+                    alt={`${story.title} at Philippians Academy`}
+                    sizes="(max-width: 760px) 100vw, 50vw"
+                  />
                 </figure>
                 <div className="campus-story-content">
                   <p className="campus-story-kicker">{story.category}</p>
@@ -138,8 +151,12 @@ function CampusLife() {
                   ))}
                   <div className="campus-story-gallery" aria-label={`${story.title} photo gallery`}>
                     {story.galleryImages.map((image, index) => (
-                      <figure key={image}>
-                        <img src={image} alt={`${story.title} gallery photo ${index + 1}`} />
+                      <figure key={image.src}>
+                        <OptimizedImage
+                          image={image}
+                          alt={`${story.title} gallery photo ${index + 1}`}
+                          sizes="(max-width: 760px) 50vw, 25vw"
+                        />
                       </figure>
                     ))}
                   </div>

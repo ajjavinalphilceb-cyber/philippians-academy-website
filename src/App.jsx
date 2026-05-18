@@ -3,6 +3,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
 import Footer from './components/Footer.jsx';
+import OptimizedImage from './components/OptimizedImage.jsx';
 import SiteNav from './components/SiteNav.jsx';
 import About from './pages/About.jsx';
 import Academics, { AcademicProgramDetail } from './pages/Academics.jsx';
@@ -10,26 +11,29 @@ import Admissions from './pages/Admissions.jsx';
 import CampusLife from './pages/CampusLife.jsx';
 import ContactUs from './pages/ContactUs.jsx';
 import SchoolEvents, { SchoolEventArticle } from './pages/SchoolEvents.jsx';
-import heroBanner from './assets/hero banner.png';
-import kindergartenUniformImage from './assets/Kindergarten Uniform.png';
-import gradeSchoolUniformImage from './assets/Grade School Uniform.png';
-import juniorHighUniformImage from './assets/Junior  High Uniform.png';
-import seniorHighUniformImage from './assets/Senior High Uniform.png';
-import englishOnlyImage from './assets/English only Policy.png?version=20260515-refresh';
-import roboticsAiImage from './assets/Robotics AI.png?version=20260515-refresh';
-import webDevelopmentImage from './assets/Web Development.png?version=20260515-refresh';
-import multimediaImage from './assets/Multi Media.png?version=20260515-refresh';
-import culinaryImage from './assets/Culinary.png?version=20260515-refresh';
-import personalityDevelopmentImage from './assets/Personality Development.png?version=20260515-refresh';
-import speechDevelopmentImage from './assets/Speech Dev.png?version=20260515-refresh';
-import tableMannersImage from './assets/Proper table manner.png?version=20260515-refresh';
-import properOutfitImage from './assets/Proper Outfit.png?version=20260515-refresh';
-import publicSpeakingImage from './assets/Public Speaking.png?version=20260515-refresh';
+import { optimizedImages } from './assets/optimized-images.js';
+
+const heroBanner = optimizedImages['hero banner.png'];
+const kindergartenUniformImage = optimizedImages['Kindergarten Uniform.png'];
+const gradeSchoolUniformImage = optimizedImages['Grade School Uniform.png'];
+const juniorHighUniformImage = optimizedImages['Junior  High Uniform.png'];
+const seniorHighUniformImage = optimizedImages['Senior High Uniform.png'];
+const englishOnlyImage = optimizedImages['English only Policy.png'];
+const roboticsAiImage = optimizedImages['Robotics AI.png'];
+const webDevelopmentImage = optimizedImages['Web Development.png'];
+const multimediaImage = optimizedImages['Multi Media.png'];
+const culinaryImage = optimizedImages['Culinary.png'];
+const personalityDevelopmentImage = optimizedImages['Personality Development.png'];
+const speechDevelopmentImage = optimizedImages['Speech Dev.png'];
+const tableMannersImage = optimizedImages['Proper table manner.png'];
+const properOutfitImage = optimizedImages['Proper Outfit.png'];
+const publicSpeakingImage = optimizedImages['Public Speaking.png'];
 
 const responsiveStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
 .hero { min-height: clamp(560px, 80vh, 720px); }
+.hero-bg-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }
 .hero::after { content: ""; position: absolute; inset: auto 0 0 0; z-index: 1; height: 10px; background: linear-gradient(90deg, transparent, rgba(242, 193, 78, 0.9), transparent); box-shadow: 0 -22px 70px rgba(242, 193, 78, 0.16); pointer-events: none; }
 .hero-content { position: relative; z-index: 2; width: min(1320px, calc(100% - 48px)); max-width: 1320px; margin: 0 auto; padding: clamp(128px, 15vh, 164px) 0 clamp(54px, 8vh, 76px); box-sizing: border-box; }
 .site-nav { padding: clamp(18px, 2vw, 28px) clamp(24px, 3vw, 48px); }
@@ -421,6 +425,15 @@ function HomePage() {
   return (
     <>
       <section id="home" className="hero" style={hero}>
+        <OptimizedImage
+          image={heroBanner}
+          alt=""
+          className="hero-bg-image"
+          loading="eager"
+          fetchPriority="high"
+          sizes="100vw"
+          aria-hidden="true"
+        />
         <div style={heroOverlay} />
 
         <div className="hero-content">
@@ -447,7 +460,6 @@ function HomePage() {
       {/* What's New Section */}
       <section id="about" className="whats-new-section">
         <div className="container">
-          <motion.div {...homeRevealProps()} className="section-kicker">New at Philippians</motion.div>
           <motion.div {...homeRevealProps(0.06)} className="section-heading">
             <h2>What's New in Philippians?</h2>
             <p>Innovative programs and modern learning opportunities designed for the leaders of tomorrow.</p>
@@ -457,7 +469,11 @@ function HomePage() {
             {whatsNewPrograms.map((program, index) => (
               <motion.article className="new-program-card" key={program.title} {...homeRevealProps(index * 0.04)}>
                 <div className="new-program-image">
-                  <img src={program.image} alt={program.alt} />
+                  <OptimizedImage
+                    image={program.image}
+                    alt={program.alt}
+                    sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                  />
                 </div>
                 <h3 className="new-program-title">{program.title}</h3>
                 <div className="gold-rule" />
@@ -483,7 +499,7 @@ function HomePage() {
               {personalityFeatures.map((feature, index) => (
                 <motion.article className="personality-feature" key={feature.title} {...homeRevealProps(index * 0.04)}>
                   <div className="personality-icon">
-                    <img src={feature.image} alt={feature.alt} />
+                    <OptimizedImage image={feature.image} alt={feature.alt} sizes="72px" />
                   </div>
                   <div>
                     <h3>{feature.title}</h3>
@@ -495,7 +511,11 @@ function HomePage() {
           </motion.div>
 
           <motion.div className="personality-photo" {...homeRevealProps(0.1)}>
-            <img src={personalityDevelopmentImage} alt="Personality Development program" />
+            <OptimizedImage
+              image={personalityDevelopmentImage}
+              alt="Personality Development program"
+              sizes="(max-width: 980px) 100vw, 50vw"
+            />
           </motion.div>
         </div>
       </section>
@@ -514,7 +534,11 @@ function HomePage() {
             {uniformSlides.map((slide, index) => (
               <motion.article className="uniform-card" key={slide.title} {...homeRevealProps(index * 0.05)}>
                 <div className="uniform-card-image">
-                  <img src={slide.image} alt={slide.alt} />
+                  <OptimizedImage
+                    image={slide.image}
+                    alt={slide.alt}
+                    sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                  />
                 </div>
                 <div className="uniform-card-body">
                   <h3>{slide.title}</h3>
@@ -598,7 +622,6 @@ const hero = {
   position: 'relative',
   width: '100%',
   overflow: 'hidden',
-  backgroundImage: `url(${heroBanner})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center top',
   backgroundRepeat: 'no-repeat',
@@ -611,6 +634,7 @@ const hero = {
 const heroOverlay = {
   position: 'absolute',
   inset: 0,
+  zIndex: 1,
   background:
     'linear-gradient(90deg, rgba(8, 24, 60, 0.96) 0%, rgba(8, 24, 60, 0.78) 38%, rgba(8, 24, 60, 0.36) 68%, rgba(8, 24, 60, 0.16) 100%), radial-gradient(circle at 78% 24%, rgba(242, 193, 78, 0.24), transparent 28%)',
   pointerEvents: 'none',

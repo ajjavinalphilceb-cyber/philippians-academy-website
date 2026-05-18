@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
 import { Navigation, Send } from 'lucide-react';
 import Footer from '../components/Footer.jsx';
-import heroBanner from '../assets/hero banner.png';
+import { optimizedImages } from '../assets/optimized-images.js';
+import { getVariantForWidth } from '../utils/imageVariants.js';
+
+const heroBanner = optimizedImages['hero banner.png'];
 
 const contactStyles = `
 .contact-page { --navy: #08183c; --navy-2: #102a63; --gold: #f2c14e; --gold-deep: #b98416; --ink: #18243d; --muted: #5a667a; background: #ffffff; color: var(--ink); overflow-x: clip; }
 .contact-container { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
-.contact-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${heroBanner}"); background-size: cover; background-position: center top; background-repeat: no-repeat; text-align: center; }
+.contact-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${getVariantForWidth(heroBanner, 1920)}"); background-size: cover; background-position: center top; background-repeat: no-repeat; text-align: center; }
 .contact-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 24, 60, 0.88), rgba(8, 24, 60, 0.68)), linear-gradient(180deg, rgba(8, 24, 60, 0.24), rgba(8, 24, 60, 0.38)); pointer-events: none; }
 .contact-hero-content { position: relative; z-index: 1; width: min(820px, calc(100% - 40px)); max-width: 820px; padding: 0 20px; box-sizing: border-box; transform: translateY(55px); }
 .contact-kicker { margin: 0 0 12px; color: var(--gold-deep); font-family: 'Montserrat', 'Poppins', Arial, sans-serif; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; line-height: 1.4; text-transform: uppercase; }
@@ -78,6 +80,7 @@ const contactStyles = `
 
 @media (max-width: 680px) {
   .contact-container { width: min(100% - 30px, 1320px); }
+  .contact-hero { background-image: url("${getVariantForWidth(heroBanner, 768)}"); }
   .contact-hero { height: 320px; max-height: none; }
   .contact-hero-content { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
   .contact-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }

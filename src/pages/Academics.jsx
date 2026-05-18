@@ -1,12 +1,16 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { BookOpenCheck, Cross, HandHeart, MonitorCheck, ShieldCheck } from 'lucide-react';
 import Footer from '../components/Footer.jsx';
-import heroBanner from '../assets/hero banner.png';
-import kindergartenImage from '../assets/ACADEMIC PAGE/KINDERGARTEN.png';
-import gradeSchoolImage from '../assets/ACADEMIC PAGE/ELEMENTARY.png';
-import juniorHighImage from '../assets/ACADEMIC PAGE/JUNIOR HIGH.png';
-import seniorHighImage from '../assets/ACADEMIC PAGE/SENIOR HIGH.png';
-import personalityDevelopmentImage from '../assets/Personality Development.png?version=20260515-refresh';
+import OptimizedImage from '../components/OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+import { getVariantForWidth } from '../utils/imageVariants.js';
+
+const heroBanner = optimizedImages['hero banner.png'];
+const kindergartenImage = optimizedImages['ACADEMIC PAGE/KINDERGARTEN.png'];
+const gradeSchoolImage = optimizedImages['ACADEMIC PAGE/ELEMENTARY.png'];
+const juniorHighImage = optimizedImages['ACADEMIC PAGE/JUNIOR HIGH.png'];
+const seniorHighImage = optimizedImages['ACADEMIC PAGE/SENIOR HIGH.png'];
+const personalityDevelopmentImage = optimizedImages['Personality Development.png'];
 
 const academicsStyles = `
 .academics-page { --navy: #08183c; --navy-soft: #102a63; --gold: #f2c14e; --gold-deep: #b98416; --ink: #18243d; --muted: #5a667a; background: #ffffff; color: var(--ink); overflow-x: clip; }
@@ -15,7 +19,7 @@ const academicsStyles = `
 .academics-title { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.45rem, 4.8vw, 5rem); line-height: 0.98; letter-spacing: 0; margin: 0; }
 .academics-copy { color: var(--muted); font-family: 'Poppins', 'Inter', Arial, sans-serif; font-size: clamp(1rem, 1.25vw, 1.13rem); line-height: 1.78; margin: 0; }
 .academics-gold-line { width: 82px; height: 2px; margin: 18px auto 18px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.academics-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${heroBanner}"); background-size: cover; background-position: center top; background-repeat: no-repeat; text-align: center; }
+.academics-hero { position: relative; width: 100%; height: clamp(380px, 32vw, 420px); max-height: 430px; display: grid; place-items: center; overflow: hidden; color: #ffffff; background-image: url("${getVariantForWidth(heroBanner, 1920)}"); background-size: cover; background-position: center top; background-repeat: no-repeat; text-align: center; }
 .academics-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 24, 60, 0.88), rgba(8, 24, 60, 0.68)), linear-gradient(180deg, rgba(8, 24, 60, 0.24), rgba(8, 24, 60, 0.38)); pointer-events: none; }
 .academics-hero-content { position: relative; z-index: 1; width: min(820px, calc(100% - 40px)); max-width: 820px; padding: 0 20px; box-sizing: border-box; transform: translateY(55px); }
 .academics-hero h1 { margin: 0; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.5rem, 4vw, 4.15rem); font-weight: 700; line-height: 1; letter-spacing: 0; text-shadow: 0 16px 34px rgba(0, 0, 0, 0.28); }
@@ -57,7 +61,7 @@ const academicsStyles = `
 .development-list li { position: relative; padding-left: 22px; color: var(--navy); font-family: 'Montserrat', 'Poppins', Arial, sans-serif; font-weight: 800; line-height: 1.45; }
 .development-list li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; border-radius: 999px; background: var(--gold); box-shadow: 0 0 0 4px rgba(242,193,78,0.14); }
 .academics-cta { position: relative; overflow: hidden; padding: 104px 0 110px; background: var(--navy); color: #ffffff; text-align: center; }
-.academics-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${seniorHighImage}"); background-size: cover; background-position: center; filter: saturate(0.96); pointer-events: none; }
+.academics-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); pointer-events: none; }
 .academics-cta::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242,193,78,0.22), transparent 38%); pointer-events: none; }
 .academics-cta .academics-container { position: relative; z-index: 1; max-width: 860px; }
 .academics-cta h2 { color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.15rem, 4.7vw, 4.8rem); line-height: 1.06; margin: 0 0 22px; }
@@ -72,6 +76,7 @@ const academicsStyles = `
 .program-detail-card:hover .program-detail-image img { filter: saturate(1.04); }
 .program-detail-copy { min-width: 0; max-width: 680px; }
 .program-detail-copy .academics-title { margin: 14px 0 20px; }
+.program-detail-copy .academics-copy + .academics-copy { margin-top: 18px; }
 .detail-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 54px; }
 .detail-highlight { position: relative; min-width: 0; overflow: hidden; padding: 34px 28px 32px; border-radius: 24px; background: rgba(255,255,255,0.96); border: 1px solid rgba(8,24,60,0.08); box-shadow: 0 18px 48px rgba(8,24,60,0.09); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
 .detail-highlight h3 { margin: 0 0 14px; color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.34rem, 1.7vw, 1.72rem); line-height: 1.08; }
@@ -89,7 +94,8 @@ const academicsStyles = `
 
 @media (max-width: 760px) {
   .academics-container, .program-detail-shell { width: min(100% - 30px, 1320px); }
-  .academics-hero { height: 320px; max-height: none; }
+  .academics-hero { height: 320px; max-height: none; background-image: url("${getVariantForWidth(heroBanner, 768)}"); }
+  .academics-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 768)}"); }
   .academics-hero-content { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
   .academics-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }
   .academics-hero p { font-size: clamp(0.62rem, 1.6vw, 0.74rem); letter-spacing: 0.18em; }
@@ -123,6 +129,14 @@ const programs = [
       'A joyful early learning environment where young learners develop literacy, numeracy, creativity, social skills, and Christ-centered values.',
     description:
       'Our Kindergarten Program provides a nurturing and joyful learning environment where young learners begin their academic journey with confidence. Through play-based learning, early literacy, numeracy, creativity, social development, and Christian values formation, children are guided to grow emotionally, socially, spiritually, and intellectually.',
+    detailDescription: [
+      'The Kindergarten Program of Philippians Academy of Parañaque Inc. is thoughtfully designed to provide young learners with a strong academic and Christ-centered foundation during their most important developmental years. Built upon progressive early childhood education principles and enriched with values-based learning, the program uses a holistic and multidisciplinary approach that nurtures the intellectual, emotional, social, spiritual, and creative growth of every child.',
+      'Our program offers a balanced combination of guided instruction, interactive exploration, and play-based learning experiences that allow children to naturally develop their skills and confidence. Learners are engaged in meaningful activities in literacy, numeracy, science, music and movement, social studies, arts, communication, and practical life skills within a safe, caring, and encouraging environment.',
+      'At Philippians Academy, we believe that young children learn best through discovery, participation, and positive experiences. Our curriculum introduces routines, discipline, responsibility, and foundational study habits that help learners become independent, confident, and motivated students. We also develop critical thinking, creativity, problem-solving, collaboration, and communication skills to prepare children for lifelong learning and real-world situations.',
+      'Our teachers provide personalized attention, patience, and guidance to ensure that each learner receives the support they need according to their individual pace and learning style. Rather than focusing on rote memorization, we encourage understanding, exploration, and meaningful connections across subjects to help children appreciate learning in a natural and enjoyable way.',
+      'Most importantly, our Kindergarten Program integrates Christian values and character formation into everyday learning experiences, helping children grow not only academically, but also spiritually and morally as compassionate, respectful, and God-centered individuals.',
+    ],
+    hideDetailHeading: true,
     highlights: [
       ['Joyful Foundations', 'Play-based learning helps young children discover, participate, and grow with confidence.'],
       ['Early Skills', 'Literacy, numeracy, creativity, and communication are introduced through meaningful activities.'],
@@ -219,7 +233,11 @@ function Academics() {
             {programs.map((program) => (
               <article id={program.slug} className={`program-row${program.reverse ? ' reverse' : ''}`} key={program.slug}>
                 <div className="program-image">
-                  <img src={program.image} alt={program.alt} />
+                  <OptimizedImage
+                    image={program.image}
+                    alt={program.alt}
+                    sizes="(max-width: 980px) 100vw, 50vw"
+                  />
                 </div>
                 <div className="program-copy">
                   <span className="academics-eyebrow">{program.label}</span>
@@ -257,7 +275,11 @@ function Academics() {
         <section className="student-development">
           <div className="academics-container development-grid">
             <div className="development-image">
-              <img src={personalityDevelopmentImage} alt="Philippians Academy student development experience" />
+              <OptimizedImage
+                image={personalityDevelopmentImage}
+                alt="Philippians Academy student development experience"
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
             </div>
             <div className="development-copy">
               <p className="academics-eyebrow">Student Development</p>
@@ -311,12 +333,22 @@ export function AcademicProgramDetail() {
         <section className="program-detail-shell" aria-label={`${program.title} details`}>
           <article className="program-detail-card">
             <div className="program-detail-image">
-              <img src={program.image} alt={program.alt} />
+              <OptimizedImage
+                image={program.image}
+                alt={program.alt}
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
             </div>
             <div className="program-detail-copy">
-              <p className="academics-eyebrow">{program.title}</p>
-              <h2 className="academics-title">{program.detailTitle}</h2>
-              <p className="academics-copy">{program.description}</p>
+              {!program.hideDetailHeading && (
+                <>
+                  <p className="academics-eyebrow">{program.title}</p>
+                  <h2 className="academics-title">{program.detailTitle}</h2>
+                </>
+              )}
+              {(program.detailDescription || [program.description]).map((paragraph) => (
+                <p className="academics-copy" key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </article>
 

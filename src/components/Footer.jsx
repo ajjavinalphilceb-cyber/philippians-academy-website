@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
-import logoSrc from '../assets/Philippians Logo.jpg';
+import OptimizedImage from './OptimizedImage.jsx';
+import { optimizedImages } from '../assets/optimized-images.js';
+
+const logoSrc = optimizedImages['Philippians Logo.jpg'];
 
 function Footer() {
   return (
@@ -8,7 +11,7 @@ function Footer() {
       <footer className="footer" id="contact">
         <div className="container">
           <div className="footer-brand-panel">
-            <img src={logoSrc} alt="Philippians Academy logo" className="footer-logo" />
+            <OptimizedImage image={logoSrc} alt="Philippians Academy logo" className="footer-logo" sizes="68px" />
             <h2>Philippians Academy</h2>
             <p>Guiding hearts. Developing minds. Preparing leaders for a greater tomorrow through Christ-centered education.</p>
             <Link className="footer-admissions-link" to="/admissions">Admissions</Link>
