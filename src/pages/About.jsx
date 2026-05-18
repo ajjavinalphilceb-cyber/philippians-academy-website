@@ -13,7 +13,6 @@ import { optimizedImages } from '../assets/optimized-images.js';
 import { getVariantForWidth } from '../utils/imageVariants.js';
 
 const heroBanner = optimizedImages['hero banner.png'];
-const seniorHighImage = optimizedImages['Senior High School.png'];
 const ourStoryImage = optimizedImages['Our Story Image.jpg'];
 
 const aboutStyles = `
@@ -83,7 +82,7 @@ const aboutStyles = `
 .choice-card { overflow: hidden; padding: 30px 26px 28px; border-radius: 24px; }
 .choice-icon { width: 58px; margin-bottom: 20px; }
 .scripture-about-cta { position: relative; overflow: hidden; padding: 104px 0 110px; color: #ffffff; text-align: center; background: var(--navy); }
-.scripture-about-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); }
+.scripture-about-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(heroBanner, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); }
 .scripture-about-cta::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242,193,78,0.22), transparent 38%); pointer-events: none; }
 .scripture-about-cta .about-container { position: relative; z-index: 1; max-width: 980px; }
 .scripture-about-cta .gold-divider { margin: 0 auto 26px; width: 96px; }
@@ -100,7 +99,7 @@ const aboutStyles = `
 @media (max-width: 760px) {
   .about-container { width: min(100% - 30px, 1320px); }
   .about-hero { height: 320px; max-height: none; background-image: url("${getVariantForWidth(heroBanner, 768)}"); }
-  .scripture-about-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 768)}"); }
+  .scripture-about-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(heroBanner, 768)}"); }
   .about-hero .about-container { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
   .about-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }
   .about-hero p { font-size: clamp(0.62rem, 1.6vw, 0.74rem); letter-spacing: 0.18em; }
@@ -206,7 +205,6 @@ function About() {
             </motion.div>
 
             <motion.div className="story-copy" {...revealProps}>
-              <p className="about-eyebrow">About Us</p>
               <h2 className="about-title">Our Story</h2>
               <div className="gold-divider" />
               <p className="about-copy">
@@ -218,7 +216,6 @@ function About() {
               <p className="about-copy">
                 The school believes that education goes beyond academics. It is about developing future leaders with strong moral character, a heart for service, and the confidence to pursue their God-given purpose.
               </p>
-              <div className="verse-note">&ldquo;I can do all things through Christ who strengthens me.&rdquo;</div>
             </motion.div>
           </div>
         </section>

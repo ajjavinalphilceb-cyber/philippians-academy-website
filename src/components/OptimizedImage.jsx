@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 function OptimizedImage({
   image,
   alt,
@@ -9,11 +11,20 @@ function OptimizedImage({
   style,
   width,
   height,
+  onLoad,
   ...props
 }) {
+  const priority = loading === 'eager' || fetchPriority === 'high';
+  const [loaded, setLoaded] = useState(priority);
+
   if (!image) {
     return null;
   }
+
+  const handleLoad = (event) => {
+    setLoaded(true);
+    onLoad?.(event);
+  };
 
   return (
     <picture style={{ display: 'contents' }}>
@@ -27,7 +38,18 @@ function OptimizedImage({
         loading={loading}
         fetchPriority={fetchPriority}
         decoding={decoding}
-        style={{ backgroundColor: '#eef2f7', ...style }}
+        onLoad={handleLoad}
+        data-loaded={loaded ? 'true' : 'false'}
+        style={{
+          backgroundColor: '#eef2f7',
+          backgroundImage: loaded
+            ? 'none'
+            : 'linear-gradient(90deg, #eef2f7 0%, #f7f9fc 48%, #eef2f7 100%)',
+          backgroundSize: '200% 100%',
+          opacity: loaded ? 1 : 0.72,
+          transition: priority ? undefined : 'opacity 260ms ease, filter 260ms ease',
+          ...style,
+        }}
         {...props}
       />
     </picture>

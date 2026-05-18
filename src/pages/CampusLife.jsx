@@ -2,7 +2,6 @@ import Footer from '../components/Footer.jsx';
 import OptimizedImage from '../components/OptimizedImage.jsx';
 import { optimizedImages } from '../assets/optimized-images.js';
 
-const campusFeaturedImage = optimizedImages['CAMPUS LIFE/FEATURED IMAGE.png'];
 const bibleMonthImage = optimizedImages['Bible Month Culmination Activity 2026/1111.png'];
 const bibleMonthGallery1 = optimizedImages['Bible Month Culmination Activity 2026/2222.png'];
 const bibleMonthGallery2 = optimizedImages['Bible Month Culmination Activity 2026/3333.png'];
@@ -17,12 +16,10 @@ const unitedNationsGallery3 = optimizedImages['United Nations Celebration 2025/4
 const campusLifeStyles = `
 .campus-life-page { min-height: 100vh; padding: 168px 0 96px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 56%, #fffaf0 100%); color: #08183c; }
 .campus-life-page .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
-.campus-hero { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr); gap: clamp(30px, 5vw, 72px); align-items: center; margin-bottom: 68px; }
+.campus-hero { max-width: 860px; margin: 0 auto 68px; text-align: center; }
 .campus-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }
 .campus-hero h1 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.7rem, 5vw, 5rem); line-height: 0.98; margin: 0 0 20px; }
-.campus-hero p { color: #465268; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; margin: 0; max-width: 680px; }
-.campus-hero-image { min-height: 440px; border-radius: 30px; overflow: hidden; box-shadow: 0 24px 64px rgba(8, 24, 60, 0.16); }
-.campus-hero-image img { width: 100%; height: 100%; min-height: 440px; display: block; object-fit: cover; }
+.campus-hero p { color: #465268; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; margin: 0 auto; max-width: 680px; }
 .campus-stories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 34px); align-items: start; }
 .campus-story { min-width: 0; overflow: hidden; border-radius: 24px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 24px 62px rgba(8, 24, 60, 0.11); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
 .campus-story:hover { transform: translateY(-7px); border-color: rgba(242, 193, 78, 0.34); box-shadow: 0 34px 78px rgba(8, 24, 60, 0.16); }
@@ -42,17 +39,13 @@ const campusLifeStyles = `
 
 @media (max-width: 992px) {
   .campus-life-page { padding-top: 148px; }
-  .campus-hero { grid-template-columns: 1fr; margin-bottom: 46px; }
-  .campus-hero-image,
-  .campus-hero-image img { min-height: 360px; }
+  .campus-hero { margin-bottom: 46px; }
   .campus-stories { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
   .campus-life-page { padding: 132px 0 68px; }
   .campus-life-page .container { padding: 0 15px; }
-  .campus-hero-image,
-  .campus-hero-image img { min-height: 300px; border-radius: 22px; }
   .campus-story { border-radius: 22px; }
   .campus-story-content { padding: 24px 20px 28px; }
   .campus-story h2 { font-size: clamp(1.8rem, 8vw, 2.45rem); }
@@ -82,7 +75,6 @@ const campusStories = [
       'To conclude the celebration, simple Bible bookmarks were distributed to all Philippians learners as a meaningful reminder to continue reading, reflecting on, and living out the Word of God each day.',
       'The event also highlighted the school\'s commitment to unity and mutual respect among students coming from different Christian denominations. Despite differences in traditions and backgrounds, the school community stood together in believing in one God who teaches love, faith, forgiveness, humility, unity, and compassion.',
       'More than just a school activity, the Bible Month Culmination became a meaningful opportunity for students to strengthen their faith, appreciate shared Christian values, and grow together spiritually as one school community.',
-      'May God\'s Word continue to be the light and guide of every Philippians learner in their journey of faith and education.',
     ],
   },
   {
@@ -120,15 +112,6 @@ function CampusLife() {
               <p>
                 Student life at Philippians Academy nurtures joyful learning, Christ-centered values, meaningful friendships, and purposeful experiences beyond the classroom.
               </p>
-            </div>
-            <div className="campus-hero-image">
-              <OptimizedImage
-                image={campusFeaturedImage}
-                alt="Campus life at Philippians Academy"
-                loading="eager"
-                fetchPriority="high"
-                sizes="(max-width: 980px) 100vw, 50vw"
-              />
             </div>
           </div>
 

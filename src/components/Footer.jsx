@@ -32,7 +32,7 @@ function Footer() {
           <div>
             <h3>Admissions &amp; Contact</h3>
             <p>1316 Haise St. cor. Borman St.<br />Moonwalk, Para&ntilde;aque City</p>
-            <p>Phone: +63 2 8254 7418<br />Email: info@philippiansacademy.edu.ph</p>
+            <p>Phone: (+63) 938-049-0288<br />(+63) 999-517-1276<br />Email: info@philippiansacademy.edu.ph</p>
           </div>
 
           <div>

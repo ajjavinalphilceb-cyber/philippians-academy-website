@@ -6,10 +6,9 @@ import { optimizedImages } from '../assets/optimized-images.js';
 import { getVariantForWidth } from '../utils/imageVariants.js';
 
 const heroBanner = optimizedImages['hero banner.png'];
-const kindergartenImage = optimizedImages['ACADEMIC PAGE/KINDERGARTEN.png'];
-const gradeSchoolImage = optimizedImages['ACADEMIC PAGE/ELEMENTARY.png'];
-const juniorHighImage = optimizedImages['ACADEMIC PAGE/JUNIOR HIGH.png'];
-const seniorHighImage = optimizedImages['ACADEMIC PAGE/SENIOR HIGH.png'];
+const kindergartenImage = optimizedImages['Early Learning Kindergarten.png'];
+const gradeSchoolImage = optimizedImages['Elementary.jpg'];
+const juniorHighImage = optimizedImages['Junior High School.png'];
 const personalityDevelopmentImage = optimizedImages['Personality Development.png'];
 
 const academicsStyles = `
@@ -24,6 +23,8 @@ const academicsStyles = `
 .academics-hero-content { position: relative; z-index: 1; width: min(820px, calc(100% - 40px)); max-width: 820px; padding: 0 20px; box-sizing: border-box; transform: translateY(55px); }
 .academics-hero h1 { margin: 0; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.5rem, 4vw, 4.15rem); font-weight: 700; line-height: 1; letter-spacing: 0; text-shadow: 0 16px 34px rgba(0, 0, 0, 0.28); }
 .academics-hero p { max-width: 650px; margin: 0 auto; color: var(--gold); font-family: 'Montserrat', 'Poppins', Arial, sans-serif; font-size: clamp(0.68rem, 0.86vw, 0.82rem); font-weight: 900; letter-spacing: 0.22em; line-height: 1.35; text-transform: uppercase; text-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); }
+.academics-hero.kindergarten-detail-hero { height: clamp(450px, 36vw, 520px); max-height: 540px; }
+.academics-hero .program-hero-intro { max-width: 890px; margin: 22px auto 0; color: rgba(255,255,255,0.84); font-family: 'Poppins', 'Inter', Arial, sans-serif; font-size: clamp(0.98rem, 1.2vw, 1.14rem); font-weight: 400; letter-spacing: 0; line-height: 1.72; text-transform: none; text-shadow: 0 10px 24px rgba(0,0,0,0.24); }
 .programs-editorial { padding: 110px 0 98px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
 .program-stack { display: grid; gap: 86px; }
 .program-row { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr); gap: clamp(36px, 5vw, 76px); align-items: center; }
@@ -61,7 +62,7 @@ const academicsStyles = `
 .development-list li { position: relative; padding-left: 22px; color: var(--navy); font-family: 'Montserrat', 'Poppins', Arial, sans-serif; font-weight: 800; line-height: 1.45; }
 .development-list li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; border-radius: 999px; background: var(--gold); box-shadow: 0 0 0 4px rgba(242,193,78,0.14); }
 .academics-cta { position: relative; overflow: hidden; padding: 104px 0 110px; background: var(--navy); color: #ffffff; text-align: center; }
-.academics-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); pointer-events: none; }
+.academics-cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(juniorHighImage, 1920)}"); background-size: cover; background-position: center; filter: saturate(0.96); pointer-events: none; }
 .academics-cta::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(242,193,78,0.22), transparent 38%); pointer-events: none; }
 .academics-cta .academics-container { position: relative; z-index: 1; max-width: 860px; }
 .academics-cta h2 { color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.15rem, 4.7vw, 4.8rem); line-height: 1.06; margin: 0 0 22px; }
@@ -81,25 +82,49 @@ const academicsStyles = `
 .detail-highlight { position: relative; min-width: 0; overflow: hidden; padding: 34px 28px 32px; border-radius: 24px; background: rgba(255,255,255,0.96); border: 1px solid rgba(8,24,60,0.08); box-shadow: 0 18px 48px rgba(8,24,60,0.09); transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease; }
 .detail-highlight h3 { margin: 0 0 14px; color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.34rem, 1.7vw, 1.72rem); line-height: 1.08; }
 .detail-highlight p { margin: 0; color: var(--muted); font-size: 0.96rem; line-height: 1.66; }
+.kindergarten-editorial { display: block; }
+.kindergarten-editorial-grid { display: grid; grid-template-columns: minmax(0, 0.94fr) minmax(390px, 1.06fr); gap: clamp(34px, 5vw, 72px); align-items: stretch; }
+.kindergarten-image-card { position: relative; min-width: 0; overflow: hidden; border-radius: 30px; border: 1px solid rgba(242,193,78,0.62); background: #ffffff; box-shadow: 0 30px 78px rgba(8,24,60,0.17); }
+.kindergarten-image-card img { width: 100%; height: 100%; min-height: 620px; display: block; object-fit: cover; object-position: center; background: #eef2f7; }
+.kindergarten-image-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(22px, 3vw, 32px); color: #ffffff; background: linear-gradient(180deg, rgba(8,24,60,0), rgba(8,24,60,0.94) 34%, rgba(8,24,60,0.98)); }
+.kindergarten-image-overlay p { max-width: 520px; margin: 0; color: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.2vw, 2.15rem); line-height: 1.14; }
+.kindergarten-card-stack { display: grid; gap: 18px; align-content: center; min-width: 0; }
+.kindergarten-card { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 18px; min-width: 0; padding: 24px 26px; border-radius: 22px; background: #ffffff; border: 1px solid rgba(8,24,60,0.08); box-shadow: 0 18px 48px rgba(8,24,60,0.09); overflow: hidden; transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+.kindergarten-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(180deg, var(--gold), rgba(242,193,78,0.22)); }
+.kindergarten-card:hover { transform: translateY(-4px); border-color: rgba(242,193,78,0.44); box-shadow: 0 26px 62px rgba(8,24,60,0.13); }
+.kindergarten-card-icon { width: 52px; aspect-ratio: 1; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--gold); background: rgba(242,193,78,0.12); border: 1px solid rgba(242,193,78,0.42); font-family: 'Montserrat', 'Poppins', Arial, sans-serif; font-size: 0.78rem; font-weight: 950; letter-spacing: 0.08em; }
+.kindergarten-card-body { min-width: 0; }
+.kindergarten-card h3 { margin: 0 0 8px; color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.22rem, 1.5vw, 1.5rem); line-height: 1.12; }
+.kindergarten-card p { margin: 0; color: var(--muted); font-family: 'Poppins', 'Inter', Arial, sans-serif; font-size: 0.96rem; line-height: 1.66; }
 
 @media (max-width: 1080px) {
   .academics-hero { height: 340px; }
   .academics-hero-content { padding: 0 18px; transform: translateY(50px); }
   .program-row, .program-row.reverse, .development-grid, .program-detail-card { grid-template-columns: 1fr; }
+  .kindergarten-editorial-grid { grid-template-columns: 1fr; }
   .program-row.reverse .program-image, .program-row.reverse .program-copy { order: initial; }
   .program-copy, .development-copy, .program-detail-copy { max-width: 100%; }
   .approach-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .detail-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kindergarten-image-card img { min-height: 460px; }
 }
 
 @media (max-width: 760px) {
   .academics-container, .program-detail-shell { width: min(100% - 30px, 1320px); }
   .academics-hero { height: 320px; max-height: none; background-image: url("${getVariantForWidth(heroBanner, 768)}"); }
-  .academics-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(seniorHighImage, 768)}"); }
+  .academics-hero.kindergarten-detail-hero { height: 430px; }
+  .academics-cta::before { background-image: linear-gradient(135deg, rgba(8,24,60,0.96), rgba(8,24,60,0.74)), url("${getVariantForWidth(juniorHighImage, 768)}"); }
   .academics-hero-content { width: min(100% - 30px, 900px); padding: 0 12px; transform: translateY(48px); }
   .academics-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); line-height: 1; }
   .academics-hero p { font-size: clamp(0.62rem, 1.6vw, 0.74rem); letter-spacing: 0.18em; }
+  .academics-hero .program-hero-intro { max-width: 62ch; margin-top: 18px; font-size: 0.95rem; letter-spacing: 0; line-height: 1.62; }
   .programs-editorial, .student-development, .learning-approach, .academics-cta, .program-detail-shell { padding-top: 70px; padding-bottom: 70px; }
+  .kindergarten-editorial { gap: 38px; }
+  .kindergarten-editorial-grid { gap: 28px; }
+  .kindergarten-image-card { border-radius: 22px; }
+  .kindergarten-image-card img { min-height: 340px; }
+  .kindergarten-card { grid-template-columns: 46px 1fr; gap: 14px; padding: 22px 20px; border-radius: 20px; }
+  .kindergarten-card-icon { width: 46px; }
   .program-stack { gap: 64px; }
   .program-image, .development-image, .program-detail-image { border-radius: 22px; padding: 10px; }
   .program-image img, .development-image img, .program-detail-image img { border-radius: 18px; }
@@ -109,11 +134,17 @@ const academicsStyles = `
 
 @media (max-width: 576px) {
   .academics-hero { height: 290px; }
+  .academics-hero.kindergarten-detail-hero { height: 430px; }
   .academics-hero-content { padding: 0 8px; transform: translateY(46px); }
   .academics-hero h1 { font-size: clamp(1.85rem, 9vw, 2.45rem); line-height: 1; }
   .academics-gold-line { width: 70px; margin: 14px auto 14px; }
   .academics-hero p { font-size: 0.56rem; letter-spacing: 0.14em; line-height: 1.45; }
+  .academics-hero .program-hero-intro { font-size: 0.9rem; line-height: 1.58; }
   .program-copy h2, .program-detail-copy .academics-title { font-size: clamp(2.1rem, 10vw, 3rem); }
+  .kindergarten-image-card img { min-height: 300px; }
+  .kindergarten-image-overlay { padding: 22px 18px; }
+  .kindergarten-image-overlay p { font-size: 1.22rem; }
+  .kindergarten-card { grid-template-columns: 1fr; }
 }
 `;
 
@@ -129,14 +160,32 @@ const programs = [
       'A joyful early learning environment where young learners develop literacy, numeracy, creativity, social skills, and Christ-centered values.',
     description:
       'Our Kindergarten Program provides a nurturing and joyful learning environment where young learners begin their academic journey with confidence. Through play-based learning, early literacy, numeracy, creativity, social development, and Christian values formation, children are guided to grow emotionally, socially, spiritually, and intellectually.',
-    detailDescription: [
-      'The Kindergarten Program of Philippians Academy of Parañaque Inc. is thoughtfully designed to provide young learners with a strong academic and Christ-centered foundation during their most important developmental years. Built upon progressive early childhood education principles and enriched with values-based learning, the program uses a holistic and multidisciplinary approach that nurtures the intellectual, emotional, social, spiritual, and creative growth of every child.',
-      'Our program offers a balanced combination of guided instruction, interactive exploration, and play-based learning experiences that allow children to naturally develop their skills and confidence. Learners are engaged in meaningful activities in literacy, numeracy, science, music and movement, social studies, arts, communication, and practical life skills within a safe, caring, and encouraging environment.',
-      'At Philippians Academy, we believe that young children learn best through discovery, participation, and positive experiences. Our curriculum introduces routines, discipline, responsibility, and foundational study habits that help learners become independent, confident, and motivated students. We also develop critical thinking, creativity, problem-solving, collaboration, and communication skills to prepare children for lifelong learning and real-world situations.',
-      'Our teachers provide personalized attention, patience, and guidance to ensure that each learner receives the support they need according to their individual pace and learning style. Rather than focusing on rote memorization, we encourage understanding, exploration, and meaningful connections across subjects to help children appreciate learning in a natural and enjoyable way.',
-      'Most importantly, our Kindergarten Program integrates Christian values and character formation into everyday learning experiences, helping children grow not only academically, but also spiritually and morally as compassionate, respectful, and God-centered individuals.',
+    editorialIntro:
+      'The Kindergarten Program of Philippians Academy of Parañaque Inc. provides young learners with a strong academic and Christ-centered foundation, nurturing their intellectual, emotional, social, spiritual, and creative growth during their most important developmental years.',
+    imageOverlay:
+      'Nurturing young hearts and minds. Building a Christ-centered future.',
+    editorialCards: [
+      {
+        title: 'Holistic & Christ-Centered Foundation',
+        text: 'Built on progressive early childhood education and values-based learning, the program nurtures each child’s intellectual, emotional, social, spiritual, and creative growth.',
+      },
+      {
+        title: 'Balanced Learning Experiences',
+        text: 'Children grow through guided instruction, interactive exploration, and play-based activities in literacy, numeracy, science, music, movement, arts, communication, and practical life skills.',
+      },
+      {
+        title: 'Building Skills for Life',
+        text: 'Learners develop routines, discipline, responsibility, study habits, critical thinking, creativity, collaboration, and communication for lifelong learning.',
+      },
+      {
+        title: 'Personalized Teacher Guidance',
+        text: 'Teachers provide patience, attention, and support according to each child’s pace and learning style, encouraging understanding, exploration, and meaningful connections.',
+      },
+      {
+        title: 'Values & Character Formation',
+        text: 'Christian values are integrated into everyday learning, helping children grow as compassionate, respectful, God-centered individuals.',
+      },
     ],
-    hideDetailHeading: true,
     highlights: [
       ['Joyful Foundations', 'Play-based learning helps young children discover, participate, and grow with confidence.'],
       ['Early Skills', 'Literacy, numeracy, creativity, and communication are introduced through meaningful activities.'],
@@ -146,14 +195,19 @@ const programs = [
   {
     slug: 'elementary',
     label: 'Foundational Education',
-    title: 'Grade School',
+    title: 'Elementary',
     detailTitle: 'Elementary Program',
+    hideDetailEyebrow: true,
+    hideDetailTitle: true,
     image: gradeSchoolImage,
-    alt: 'Grade School students at Philippians Academy',
+    alt: 'Elementary students at Philippians Academy',
     overview:
       'A strong academic foundation focused on communication, mathematics, science, discipline, confidence, and character development.',
-    description:
-      'Our Elementary Program builds a strong foundation in core academic subjects while nurturing curiosity, discipline, creativity, and character. Students are guided through meaningful learning experiences that develop communication skills, critical thinking, responsibility, and Christ-centered values.',
+    description: [
+      'A strong academic foundation designed to develop communication skills, critical thinking, creativity, discipline, confidence, and Christian character in young learners.',
+      'The Elementary Program of Philippians Academy of Parañaque Inc. provides students with a well-balanced and Christ-centered learning experience that strengthens both academic excellence and personal growth. Using a holistic and learner-focused approach, the program nurtures students intellectually, socially, emotionally, spiritually, and morally during their formative years.',
+      'Our curriculum integrates literacy, mathematics, science, social studies, communication, technology, arts, music, and practical life skills through engaging and meaningful learning experiences. Students are encouraged to actively participate, collaborate, explore ideas, and develop confidence in expressing themselves while building a deeper understanding of the world around them.',
+    ],
     reverse: true,
     highlights: [
       ['Academic Foundation', 'Core subjects are strengthened through guided, engaging, and purposeful learning.'],
@@ -166,34 +220,21 @@ const programs = [
     label: 'Academic Development',
     title: 'Junior High School',
     detailTitle: 'Junior High School Program',
+    hideDetailEyebrow: true,
+    hideDetailTitle: true,
     image: juniorHighImage,
     alt: 'Junior High School students at Philippians Academy',
     overview:
       'A structured learning experience that develops critical thinking, collaboration, leadership, communication, and readiness for higher academic challenges.',
-    description:
-      'Our Junior High School Program prepares learners for higher academic challenges through a balanced curriculum that strengthens analytical thinking, leadership, collaboration, and personal responsibility. Students are encouraged to grow in faith, excellence, discipline, and service as they develop confidence for the next stage of learning.',
+    description: [
+      'The Junior High School Program of Philippians Academy of Parañaque Inc. offers a Christ-centered and holistic educational experience for students in Grades 7 to 10, helping learners develop academic excellence, leadership, discipline, confidence, and strong moral values as they prepare for higher education and future careers.',
+      'Designed in alignment with the standards of the Department of Education, the program provides students with a balanced and engaging curriculum that strengthens foundational knowledge while developing critical thinking, creativity, collaboration, and communication skills. Learners are guided through meaningful and practical learning experiences that encourage them to apply knowledge confidently in both academic and real-life situations.',
+      'The school promotes experiential and student-centered learning where learners are encouraged to participate actively, explore ideas, and discover their unique strengths and talents.',
+    ],
     highlights: [
       ['Academic Readiness', 'Students build stronger analytical skills for higher learning and real-life application.'],
       ['Leadership Practice', 'Learners are encouraged to collaborate, serve, communicate, and lead responsibly.'],
       ['Faith and Discipline', 'Christian values guide students toward excellence, integrity, and purpose.'],
-    ],
-  },
-  {
-    slug: 'senior-high-school',
-    label: 'Future Readiness',
-    title: 'Senior High School',
-    detailTitle: 'Senior High School Program',
-    image: seniorHighImage,
-    alt: 'Senior High School students at Philippians Academy',
-    overview:
-      'A future-ready program preparing learners for college, careers, responsible decision-making, and values-driven leadership.',
-    description:
-      'Our Senior High School Program equips students with the knowledge, skills, values, and confidence needed for college, career pathways, and future leadership. Through academic preparation, personal development, Christian formation, and practical learning experiences, students are guided toward their God-given purpose.',
-    reverse: true,
-    highlights: [
-      ['College Preparation', 'Learners strengthen academic foundations for future programs and career pathways.'],
-      ['Practical Growth', 'Students develop confidence through communication, leadership, and applied learning.'],
-      ['Purposeful Formation', 'Faith and values help students pursue their God-given purpose with excellence.'],
     ],
   },
 ];
@@ -310,6 +351,39 @@ function Academics() {
   );
 }
 
+function KindergartenEditorialDetail({ program }) {
+  return (
+    <div className="kindergarten-editorial">
+      <div className="kindergarten-editorial-grid">
+        <figure className="kindergarten-image-card">
+          <OptimizedImage
+            image={program.image}
+            alt={program.alt}
+            sizes="(max-width: 1080px) 100vw, 48vw"
+          />
+          <figcaption className="kindergarten-image-overlay">
+            <p>{program.imageOverlay}</p>
+          </figcaption>
+        </figure>
+
+        <div className="kindergarten-card-stack">
+          {program.editorialCards.map((card, index) => (
+            <article className="kindergarten-card" key={card.title}>
+              <div className="kindergarten-card-icon" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              <div className="kindergarten-card-body">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function AcademicProgramDetail() {
   const { programSlug } = useParams();
   const program = programs.find((item) => item.slug === programSlug);
@@ -322,44 +396,54 @@ export function AcademicProgramDetail() {
     <>
       <style>{academicsStyles}</style>
       <section className="program-detail-page">
-        <section className="academics-hero" aria-labelledby="program-detail-title">
+        <section className={`academics-hero${program.editorialIntro ? ' kindergarten-detail-hero' : ''}`} aria-labelledby="program-detail-title">
           <div className="academics-hero-content">
             <h1 id="program-detail-title">{program.detailTitle}</h1>
             <div className="academics-gold-line" />
-            <p>{program.label}</p>
+            {program.editorialIntro ? (
+              <p className="program-hero-intro">{program.editorialIntro}</p>
+            ) : (
+              <p>{program.label}</p>
+            )}
           </div>
         </section>
 
         <section className="program-detail-shell" aria-label={`${program.title} details`}>
-          <article className="program-detail-card">
-            <div className="program-detail-image">
-              <OptimizedImage
-                image={program.image}
-                alt={program.alt}
-                sizes="(max-width: 980px) 100vw, 50vw"
-              />
-            </div>
-            <div className="program-detail-copy">
-              {!program.hideDetailHeading && (
-                <>
-                  <p className="academics-eyebrow">{program.title}</p>
-                  <h2 className="academics-title">{program.detailTitle}</h2>
-                </>
-              )}
-              {(program.detailDescription || [program.description]).map((paragraph) => (
-                <p className="academics-copy" key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </article>
-
-          <div className="detail-highlights" aria-label={`${program.title} highlights`}>
-            {program.highlights.map(([title, description]) => (
-              <article className="detail-highlight" key={title}>
-                <h3>{title}</h3>
-                <p>{description}</p>
+          {program.editorialCards ? (
+            <KindergartenEditorialDetail program={program} />
+          ) : (
+            <>
+              <article className="program-detail-card">
+                <div className="program-detail-image">
+                  <OptimizedImage
+                    image={program.image}
+                    alt={program.alt}
+                    sizes="(max-width: 980px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="program-detail-copy">
+                  {!program.hideDetailEyebrow && <p className="academics-eyebrow">{program.title}</p>}
+                  {!program.hideDetailTitle && <h2 className="academics-title">{program.detailTitle}</h2>}
+                  {Array.isArray(program.description) ? (
+                    program.description.map((paragraph) => (
+                      <p className="academics-copy" key={paragraph}>{paragraph}</p>
+                    ))
+                  ) : (
+                    <p className="academics-copy">{program.description}</p>
+                  )}
+                </div>
               </article>
-            ))}
-          </div>
+
+              <div className="detail-highlights" aria-label={`${program.title} highlights`}>
+                {program.highlights.map(([title, description]) => (
+                  <article className="detail-highlight" key={title}>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </article>
+                ))}
+              </div>
+            </>
+          )}
         </section>
       </section>
       <Footer />

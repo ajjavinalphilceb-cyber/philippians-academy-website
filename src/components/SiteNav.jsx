@@ -29,7 +29,6 @@ const navItems = [
       { label: 'Kindergarten', href: '/academics/kindergarten' },
       { label: 'Elementary', href: '/academics/elementary' },
       { label: 'Junior High School', href: '/academics/junior-high-school' },
-      { label: 'Senior High School', href: '/academics/senior-high-school' },
     ],
   },
   {

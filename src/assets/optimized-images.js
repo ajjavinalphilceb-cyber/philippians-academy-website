@@ -558,6 +558,34 @@ export const optimizedImages = {
       }
     ]
   },
+  "Early Learning Kindergarten.png": {
+    "src": "/optimized/early-learning-kindergarten-943w.webp",
+    "width": 943,
+    "height": 775,
+    "srcSet": "/optimized/early-learning-kindergarten-320w.webp 320w, /optimized/early-learning-kindergarten-480w.webp 480w, /optimized/early-learning-kindergarten-768w.webp 768w, /optimized/early-learning-kindergarten-943w.webp 943w",
+    "variants": [
+      {
+        "width": 320,
+        "height": 263,
+        "src": "/optimized/early-learning-kindergarten-320w.webp"
+      },
+      {
+        "width": 480,
+        "height": 394,
+        "src": "/optimized/early-learning-kindergarten-480w.webp"
+      },
+      {
+        "width": 768,
+        "height": 631,
+        "src": "/optimized/early-learning-kindergarten-768w.webp"
+      },
+      {
+        "width": 943,
+        "height": 775,
+        "src": "/optimized/early-learning-kindergarten-943w.webp"
+      }
+    ]
+  },
   "Earthquake drill at the school handled by Philipine Air Force!/EQ1.jpg": {
     "src": "/optimized/earthquake-drill-at-the-school-handled-by-philipine-air-force-eq1-552w.webp",
     "width": 552,
@@ -670,6 +698,49 @@ export const optimizedImages = {
         "width": 552,
         "height": 310,
         "src": "/optimized/earthquake-drill-at-the-school-handled-by-philipine-air-force-eq5-552w.webp"
+      }
+    ]
+  },
+  "Elementary.jpg": {
+    "src": "/optimized/elementary-2048w.webp",
+    "width": 2048,
+    "height": 1536,
+    "srcSet": "/optimized/elementary-320w.webp 320w, /optimized/elementary-480w.webp 480w, /optimized/elementary-768w.webp 768w, /optimized/elementary-1024w.webp 1024w, /optimized/elementary-1360w.webp 1360w, /optimized/elementary-1920w.webp 1920w, /optimized/elementary-2048w.webp 2048w",
+    "variants": [
+      {
+        "width": 320,
+        "height": 240,
+        "src": "/optimized/elementary-320w.webp"
+      },
+      {
+        "width": 480,
+        "height": 360,
+        "src": "/optimized/elementary-480w.webp"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "src": "/optimized/elementary-768w.webp"
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "src": "/optimized/elementary-1024w.webp"
+      },
+      {
+        "width": 1360,
+        "height": 1020,
+        "src": "/optimized/elementary-1360w.webp"
+      },
+      {
+        "width": 1920,
+        "height": 1440,
+        "src": "/optimized/elementary-1920w.webp"
+      },
+      {
+        "width": 2048,
+        "height": 1536,
+        "src": "/optimized/elementary-2048w.webp"
       }
     ]
   },
@@ -1367,34 +1438,6 @@ export const optimizedImages = {
         "width": 1080,
         "height": 1350,
         "src": "/optimized/kindergarten-uniform-1080w.webp"
-      }
-    ]
-  },
-  "Kindergarten.png": {
-    "src": "/optimized/kindergarten-943w.webp",
-    "width": 943,
-    "height": 775,
-    "srcSet": "/optimized/kindergarten-320w.webp 320w, /optimized/kindergarten-480w.webp 480w, /optimized/kindergarten-768w.webp 768w, /optimized/kindergarten-943w.webp 943w",
-    "variants": [
-      {
-        "width": 320,
-        "height": 263,
-        "src": "/optimized/kindergarten-320w.webp"
-      },
-      {
-        "width": 480,
-        "height": 394,
-        "src": "/optimized/kindergarten-480w.webp"
-      },
-      {
-        "width": 768,
-        "height": 631,
-        "src": "/optimized/kindergarten-768w.webp"
-      },
-      {
-        "width": 943,
-        "height": 775,
-        "src": "/optimized/kindergarten-943w.webp"
       }
     ]
   },

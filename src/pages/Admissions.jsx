@@ -1,11 +1,11 @@
-import { CheckCircle2, ClipboardList, FileText, Globe2, MessageCircle, UserCheck } from 'lucide-react';
+import { CheckCircle2, ClipboardList, FileText, MessageCircle, UserCheck } from 'lucide-react';
 import Footer from '../components/Footer.jsx';
 
 const admissionsPageStyles = `
 .admissions-page { position: relative; min-height: 100vh; padding: 170px 0 104px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 52%, #fffaf0 100%); color: #08183c; }
 .admissions-page::before { content: ""; position: absolute; left: 50%; top: 110px; width: min(780px, 86vw); aspect-ratio: 1 / 0.42; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(242, 193, 78, 0.18), rgba(242, 193, 78, 0)); pointer-events: none; }
 .admissions-page .container { position: relative; z-index: 1; max-width: 1360px; margin: 0 auto; padding: 0 24px; }
-.admissions-hero { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.65fr); gap: clamp(30px, 5vw, 72px); align-items: end; margin-bottom: 58px; }
+.admissions-hero { max-width: 920px; margin-bottom: 58px; }
 .admissions-label { color: #b98416; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }
 .admissions-hero h1 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 4.35vw, 4.45rem); line-height: 1; margin: 0 0 22px; max-width: 920px; }
 .admissions-subtitle { color: #344057; font-size: clamp(1rem, 1.55vw, 1.22rem); line-height: 1.72; max-width: 720px; margin: 0; }
@@ -38,7 +38,7 @@ const admissionsPageStyles = `
 
 @media (max-width: 992px) {
   .admissions-page { padding-top: 150px; }
-  .admissions-hero { grid-template-columns: 1fr; align-items: start; margin-bottom: 44px; }
+  .admissions-hero { margin-bottom: 44px; }
   .admissions-hero-panel { max-width: 720px; }
   .requirements-grid { grid-template-columns: 1fr; }
   .enrollment-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -97,16 +97,6 @@ const admissionsRequirementGroups = [
       'Clearance from previous school, if required',
     ],
   },
-  {
-    title: 'For Foreign Students, if applicable',
-    Icon: Globe2,
-    items: [
-      'Copy of passport',
-      'Copy of valid visa',
-      'School records from previous school',
-      'Other documents required by Philippine education regulations',
-    ],
-  },
 ];
 
 const enrollmentSteps = [
@@ -129,12 +119,6 @@ function Admissions() {
               <h1>Start Your Child&rsquo;s Journey at Philippians Academy</h1>
               <p className="admissions-subtitle">
                 We welcome families who seek a nurturing, Christ-centered, and academically supportive learning environment for their children.
-              </p>
-            </div>
-            <div className="admissions-hero-panel">
-              <h2>Admissions</h2>
-              <p>
-                Our admissions team helps families prepare requirements, understand the enrollment process, and move forward with clarity and care.
               </p>
             </div>
           </div>

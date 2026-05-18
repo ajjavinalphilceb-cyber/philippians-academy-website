@@ -1,23 +1,29 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpenCheck, Cross, HandHeart, ShieldCheck } from 'lucide-react';
 import Footer from './components/Footer.jsx';
 import OptimizedImage from './components/OptimizedImage.jsx';
 import SiteNav from './components/SiteNav.jsx';
-import About from './pages/About.jsx';
-import Academics, { AcademicProgramDetail } from './pages/Academics.jsx';
-import Admissions from './pages/Admissions.jsx';
-import CampusLife from './pages/CampusLife.jsx';
-import ContactUs from './pages/ContactUs.jsx';
-import SchoolEvents, { SchoolEventArticle } from './pages/SchoolEvents.jsx';
 import { optimizedImages } from './assets/optimized-images.js';
+
+const About = lazy(() => import('./pages/About.jsx'));
+const Academics = lazy(() => import('./pages/Academics.jsx'));
+const AcademicProgramDetail = lazy(() =>
+  import('./pages/Academics.jsx').then((module) => ({ default: module.AcademicProgramDetail })),
+);
+const Admissions = lazy(() => import('./pages/Admissions.jsx'));
+const CampusLife = lazy(() => import('./pages/CampusLife.jsx'));
+const ContactUs = lazy(() => import('./pages/ContactUs.jsx'));
+const SchoolEvents = lazy(() => import('./pages/SchoolEvents.jsx'));
+const SchoolEventArticle = lazy(() =>
+  import('./pages/SchoolEvents.jsx').then((module) => ({ default: module.SchoolEventArticle })),
+);
 
 const heroBanner = optimizedImages['hero banner.png'];
 const kindergartenUniformImage = optimizedImages['Kindergarten Uniform.png'];
 const gradeSchoolUniformImage = optimizedImages['Grade School Uniform.png'];
 const juniorHighUniformImage = optimizedImages['Junior  High Uniform.png'];
-const seniorHighUniformImage = optimizedImages['Senior High Uniform.png'];
 const englishOnlyImage = optimizedImages['English only Policy.png'];
 const roboticsAiImage = optimizedImages['Robotics AI.png'];
 const webDevelopmentImage = optimizedImages['Web Development.png'];
@@ -33,6 +39,8 @@ const responsiveStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
 .hero { min-height: clamp(560px, 80vh, 720px); }
+.route-loading { min-height: 62vh; display: grid; place-items: center; background: #ffffff; color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.5rem, 3vw, 2.4rem); }
+.route-loading::after { content: ""; width: 84px; height: 3px; margin-top: 18px; border-radius: 999px; background: linear-gradient(90deg, transparent, #f2c14e, transparent); }
 .hero-bg-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }
 .hero::after { content: ""; position: absolute; inset: auto 0 0 0; z-index: 1; height: 10px; background: linear-gradient(90deg, transparent, rgba(242, 193, 78, 0.9), transparent); box-shadow: 0 -22px 70px rgba(242, 193, 78, 0.16); pointer-events: none; }
 .hero-content { position: relative; z-index: 2; width: min(1320px, calc(100% - 48px)); max-width: 1320px; margin: 0 auto; padding: clamp(128px, 15vh, 164px) 0 clamp(54px, 8vh, 76px); box-sizing: border-box; }
@@ -94,7 +102,7 @@ const responsiveStyles = `
 .uniform-header { max-width: 880px; margin: 0 auto 48px; text-align: center; }
 .uniform-header h2 { color: #08183c; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.55rem, 4.8vw, 4.9rem); line-height: 0.98; margin: 0 0 20px; }
 .uniform-subtext { color: #26324e; font-size: clamp(1rem, 1.45vw, 1.18rem); line-height: 1.72; max-width: 760px; margin: 0 auto; }
-.uniform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.uniform-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; max-width: 980px; margin: 0 auto; }
 .uniform-card { min-width: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; border-radius: 20px; background: #ffffff; border: 1px solid rgba(8, 24, 60, 0.08); box-shadow: 0 18px 46px rgba(8, 24, 60, 0.11); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
 .uniform-card:hover { transform: translateY(-6px); border-color: rgba(242, 193, 78, 0.42); box-shadow: 0 28px 64px rgba(8, 24, 60, 0.16); }
 .uniform-card-image { width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: #f1f3f7; }
@@ -366,11 +374,6 @@ const uniformSlides = [
     image: juniorHighUniformImage,
     alt: 'Junior High Philippians Academy uniform',
   },
-  {
-    title: 'Senior High School Uniform',
-    image: seniorHighUniformImage,
-    alt: 'Senior High School Philippians Academy uniform',
-  },
 ];
 
 const homeHeroRevealProps = {
@@ -404,19 +407,29 @@ function App() {
 
   return (
     <main style={page}>
+      <link
+        rel="preload"
+        as="image"
+        href={heroBanner.src}
+        imageSrcSet={heroBanner.srcSet}
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
       <style>{responsiveStyles}</style>
       <SiteNav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/academics" element={<Academics />} />
-        <Route path="/academics/:programSlug" element={<AcademicProgramDetail />} />
-        <Route path="/admissions" element={<Admissions />} />
-        <Route path="/campus-life" element={<CampusLife />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/school-events" element={<SchoolEvents />} />
-        <Route path="/school-events/:slug" element={<SchoolEventArticle />} />
-      </Routes>
+      <Suspense fallback={<div className="route-loading" aria-label="Loading page" />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/academics" element={<Academics />} />
+          <Route path="/academics/:programSlug" element={<AcademicProgramDetail />} />
+          <Route path="/admissions" element={<Admissions />} />
+          <Route path="/campus-life" element={<CampusLife />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/school-events" element={<SchoolEvents />} />
+          <Route path="/school-events/:slug" element={<SchoolEventArticle />} />
+        </Routes>
+      </Suspense>
     </main>
   );
 }
